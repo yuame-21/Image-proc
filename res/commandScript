@@ -1,0 +1,9 @@
+load ././res/pink.ppm pink
+
+brighten 10 pink brighterPink
+
+red-component pink redPink
+
+value-component  redPink  redPink
+
+save   ././res/pink2.ppm   redPink
