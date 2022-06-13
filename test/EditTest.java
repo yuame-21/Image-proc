@@ -7,6 +7,7 @@ import model.edit.ColorComponent;
 import model.edit.FlipHorizontal;
 import model.edit.FlipVertical;
 import model.edit.ILV;
+import model.edit.Transform;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.fail;
@@ -127,6 +128,23 @@ public class EditTest {
     assertArrayEquals(new int[][][]{{{255, 255, 255}, {190, 190, 190}},
                     {{171, 171, 171}, {255, 255, 255}}},
             new ILV("value").applyEdit("test", this.twoXTwo).copyImage());
+  }
+
+
+  @Test
+  public void applyFilter() {
+    assertArrayEquals(new int[][][]{{{55, 55, 55}, {169, 169, 169}},
+                    {{135, 135, 135}, {63, 63, 63}}},
+            new Transform("greyscale").applyEdit("test",
+                    this.twoXTwo).copyImage());
+  }
+
+  @Test
+  public void applyTransform() {
+    assertArrayEquals(new int[][][]{{{115, 102, 80}, {209, 186, 145}},
+                    {{163, 146, 113}, {124, 110, 86}}},
+            new Transform("sepia").applyEdit("test",
+                    this.twoXTwo).copyImage());
   }
 
 
