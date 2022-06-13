@@ -30,14 +30,14 @@ public interface ImageModelState {
    * @param col y coordinate
    * @return array of RGB that makes up a pixel
    */
-  int[] getPixel(int row, int col);
+  Pixel getPixel(int row, int col);
 
   /**
    * Return a deep copy of the pixels that make up an image.
    *
    * @return 3-D array of pixels
    */
-  int[][][] copyImage();
+  Pixel[][] copyImage();
 
   /**
    * Returns the max value for color, at most 255.

@@ -2,6 +2,7 @@ package model.edit;
 
 import model.ImageModelState;
 import model.ImageModelStateImpl;
+import model.Pixel;
 
 /**
  * Shared functionalities of an editor, which includeds part of the edit applier,
@@ -18,7 +19,11 @@ public abstract class AEdit implements Edit {
    */
   @Override
   public ImageModelState applyEdit(String newName, ImageModelState image) {
-    int[][][] filteredBoard = new int[image.getHeight()][image.getWidth()][3];
+    Pixel[][] filteredBoard = new Pixel[image.getHeight()][image.getWidth()];
+
+    // pixe class
+    // int x
+    // int y
 
     // goes through each row
     for (int r = 0; r < image.getHeight(); r++) {
@@ -62,7 +67,7 @@ public abstract class AEdit implements Edit {
    * @param c     column location
    * @return 3-d array of colors to make up an image
    */
-  protected abstract int[][][] setRGB(int[][][] image, int r, int c, int maxNum);
+  protected abstract Pixel[][] setRGB(Pixel[][] image, int r, int c, int maxNum);
 
 
 }

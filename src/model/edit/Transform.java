@@ -1,5 +1,7 @@
 package model.edit;
 
+import model.Pixel;
+
 public class Transform extends AEdit {
 
   private String transformType;
@@ -28,7 +30,7 @@ public class Transform extends AEdit {
    * @return 3-d array representing an image
    */
   @Override
-  protected int[][][] setRGB(int[][][] image, int r, int c, int maxNum) {
+  protected Pixel[][] setRGB(Pixel[][] image, int r, int c, int maxNum) {
     double[][] transform = this.getTransform();
     int[] pixel = new int[3];
 

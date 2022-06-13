@@ -1,5 +1,7 @@
 package model.edit;
 
+import model.Pixel;
+
 /**
  * Edits an image by flipping it horizontally.
  */
@@ -14,7 +16,7 @@ public class FlipHorizontal extends AEdit {
    * @return edited 3-d array of RGB to make up an image.
    */
   @Override
-  protected int[][][] setRGB(int[][][] image, int r, int c, int maxNum) {
+  protected Pixel[][] setRGB(Pixel[][] image, int r, int c, int maxNum) {
     int[][][] flipped = new int[image.length][image[0].length][3];
 
     for (int i = 0; i < image.length; i++) {

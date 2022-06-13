@@ -1,5 +1,7 @@
 package model.edit;
 
+import model.Pixel;
+
 public class Filter extends AEdit {
   private String filterType;
 
@@ -29,7 +31,7 @@ public class Filter extends AEdit {
    * @return
    */
   @Override
-  protected int[][][] setRGB(int[][][] image, int r, int c, int maxNum) {
+  protected Pixel[][] setRGB(Pixel[][] image, int r, int c, int maxNum) {
 
     int[][][] kernel = getKernel(r, c, image);
     int preClamp = 0;
