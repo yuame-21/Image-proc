@@ -32,13 +32,13 @@ public class Transform extends AEdit {
   @Override
   protected Pixel[][] setRGB(Pixel[][] image, int r, int c, int maxNum) {
     double[][] transform = this.getTransform();
-    int[] pixel = new int[3];
+    Pixel pixel = new Pixel(0,0,0);
 
     for (int i = 0; i < 3; i++) {
-      int preClamp = (int) Math.round(image[r][c][0] * transform[i][0]
-              + image[r][c][1] * transform[i][1] + image[r][c][2] * transform[i][2]);
+      int preClamp = (int) Math.round(image[r][c].get(0) * transform[i][0]
+              + image[r][c].get(1) * transform[i][1] + image[r][c].get(2) * transform[i][2]);
 
-      pixel[i] = clamp(preClamp, maxNum);
+      pixel.set(i, clamp(preClamp, maxNum));
     }
     image[r][c] = pixel;
     return image;

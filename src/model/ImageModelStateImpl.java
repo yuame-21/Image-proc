@@ -113,7 +113,7 @@ public class ImageModelStateImpl implements ImageModelState {
 
     for (int i = 0; i < width; i++) {
       for (int j = 0; j < height; j++) {
-        image[i][j] = new Pixel(i, j, sc.nextInt(), sc.nextInt(), sc.nextInt());
+        image[i][j] = new Pixel( sc.nextInt(), sc.nextInt(), sc.nextInt());
       }
     }
 

@@ -17,7 +17,7 @@ public class FlipVertical extends AEdit {
    */
   @Override
   protected Pixel[][] setRGB(Pixel[][] image, int r, int c, int maxNum) {
-    int[][][] flipped = new int[image.length][image[0].length][3];
+    Pixel[][] flipped = new Pixel[image.length][image[0].length];
 
     for (int i = 0; i < image.length; i++) {
       flipped[image.length - 1 - i] = image[i];

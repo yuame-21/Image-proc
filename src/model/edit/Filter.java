@@ -33,14 +33,14 @@ public class Filter extends AEdit {
   @Override
   protected Pixel[][] setRGB(Pixel[][] image, int r, int c, int maxNum) {
 
-    int[][][] kernel = getKernel(r, c, image);
+    Pixel[][] kernel = getKernel(r, c, image);
     int preClamp = 0;
 
     for (int i = 0; i < kernel[0].length; i++) {
       for (int j = 0; j < kernel[0].length; j++) {
         for (int p = 0; p < 3; p++) {
-          preClamp = (int) Math.round(kernel[i][j][p] * this.getFilter()[i][j]);
-          image[r][c][p] = clamp(preClamp, maxNum);
+          preClamp = (int) Math.round(kernel[i][j].get(p) * this.getFilter()[i][j]);
+          image[r][c].set(p, clamp(preClamp, maxNum));
         }
       }
     }
@@ -68,10 +68,10 @@ public class Filter extends AEdit {
     return filter;
   }
 
-  private int[][][] getKernel(int r, int c, int[][][] image) {
+  private Pixel[][] getKernel(int r, int c, Pixel[][] image) {
     double[][] matrix = this.getFilter();
     int matrixSize = matrix[0].length;
-    int[][][] kernel = new int[][][]{};
+    Pixel[][] kernel = new Pixel[][]{};
 
     for (int i = 0; i < matrixSize; i++) {
       for (int j = 0; j < matrixSize; j++) {
@@ -81,7 +81,7 @@ public class Filter extends AEdit {
         try {
           kernel[i][j] = image[i + (r - halfMatrix)][j + (c - halfMatrix)];
         } catch (IndexOutOfBoundsException e) {
-          kernel[i][j] = new int[]{0, 0, 0};
+          kernel[i][j] = new Pixel(0, 0, 0);
         }
       }
     }
