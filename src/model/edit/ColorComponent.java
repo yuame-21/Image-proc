@@ -1,5 +1,7 @@
 package model.edit;
 
+import model.Pixel;
+
 /**
  * Edits an image to visualize a color component, creating a greyscale image.
  * It can visualize either red, green, or blue components.
@@ -31,19 +33,19 @@ public class ColorComponent extends AEdit {
    * @return 3-d array of image that visualizes for a color
    */
   @Override
-  protected int[][][] setRGB(int[][][] image, int r, int c, int maxNum) {
-    int[] pixel = image[r][c];
+  protected Pixel[][] setRGB(Pixel[][] image, int r, int c, int maxNum) {
+    Pixel pixel = image[r][c];
     int newRGB;
 
     switch (this.color) {
       case "red":
-        newRGB = pixel[0];
+        newRGB = pixel.get(0);
         break;
       case "green":
-        newRGB = pixel[1];
+        newRGB = pixel.get(1);
         break;
       case "blue":
-        newRGB = pixel[2];
+        newRGB = pixel.get(2);
         break;
       default:
         throw new IllegalStateException("must enter red, green, or blue");
@@ -52,7 +54,7 @@ public class ColorComponent extends AEdit {
 
     for (int rgb = 0; rgb < 3; rgb++) {
 
-      image[r][c][rgb] = clamp(newRGB, maxNum);
+      pixel.set(rgb, clamp(newRGB, maxNum));
 
     }
     return image;

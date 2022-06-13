@@ -2,6 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import model.ImageModelStateImpl;
+import model.Pixel;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -11,30 +12,35 @@ import static org.junit.Assert.assertEquals;
  */
 public class ImageModelStateImplTest {
   ImageModelStateImpl pink;
-  int[][][] pinkBoard;
+  Pixel[][] pinkBoard;
   String pinkName;
   int pinkMaxNum;
 
   ImageModelStateImpl twoXTwo;
-  int[][][] twoBoard;
+  Pixel[][] twoBoard;
   String twoName;
   int twoMaxNum;
 
   @Before
   public void init() {
-    this.pinkBoard = new int[][][]{
-            {{170, 0, 255}, {140, 190, 41}, {0, 171, 169}, {255, 0, 127}}, //r1
-            {{0, 0, 0}, {255, 0, 127}, {239, 150, 8}, {0, 0, 0}},
-            {{0, 171, 169}, {0, 0, 0}, {170, 0, 255}, {239, 150, 8}},
-            {{170, 0, 255}, {0, 0, 0}, {140, 190, 41}, {0, 0, 0}}
+    this.pinkBoard = new Pixel[][]{
+            {new Pixel(170, 0, 255), new Pixel(140, 190, 41),
+                    new Pixel(0, 171, 169), new Pixel(255, 0, 127)}, //r1
+            {new Pixel(0, 0, 0), new Pixel(255, 0, 127),
+                    new Pixel(239, 150, 8), new Pixel(0, 0, 0)},
+            {new Pixel(0, 171, 169), new Pixel(0, 0, 0),
+                    new Pixel(170, 0, 255), new Pixel(239, 150, 8)},
+            {new Pixel(170, 0, 255), new Pixel(0, 0, 0),
+                    new Pixel(140, 190, 41), new Pixel(0, 0, 0)}
     };
     this.pinkName = "pink";
     this.pinkMaxNum = 255;
     this.pink = new ImageModelStateImpl(pinkBoard, pinkMaxNum);
 
 
-    this.twoBoard = new int[][][]{
-            {{170, 0, 255}, {140, 190, 41}}, {{0, 171, 169}, {255, 0, 127}}
+    this.twoBoard = new Pixel[][]{
+            {new Pixel(170, 0, 255), new Pixel(140, 190, 41)},
+            {new Pixel(0, 171, 169), new Pixel(255, 0, 127)}
     };
     this.twoName = "2x2";
     this.twoMaxNum = 255;
@@ -68,16 +74,16 @@ public class ImageModelStateImplTest {
 
   @Test
   public void getPixel() {
-    int[] p0 = new int[]{170, 0, 255};
-    int[] pp4 = new int[]{255, 0, 127};
-    int[] pp16 = new int[]{0, 0, 0};
-    assertArrayEquals(p0, this.pink.getPixel(0, 0));
-    assertArrayEquals(pp4, this.pink.getPixel(0, 3));
-    assertArrayEquals(pp16, this.pink.getPixel(3, 3));
+    Pixel p0 = new Pixel(170, 0, 255);
+    Pixel pp4 = new Pixel(255, 0, 127);
+    Pixel pp16 = new Pixel(0, 0, 0);
+    assertEquals(p0, this.pink.getPixel(0, 0));
+    assertEquals(pp4, this.pink.getPixel(0, 3));
+    assertEquals(pp16, this.pink.getPixel(3, 3));
 
-    assertArrayEquals(p0, this.twoXTwo.getPixel(0, 0));
-    int[] twop2 = new int[]{140, 190, 41};
-    assertArrayEquals(twop2, this.twoXTwo.getPixel(0, 1));
+    assertEquals(p0, this.twoXTwo.getPixel(0, 0));
+    Pixel twop2 = new Pixel(140, 190, 41);
+    assertEquals(twop2, this.twoXTwo.getPixel(0, 1));
   }
 
   @Test

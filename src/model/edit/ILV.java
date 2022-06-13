@@ -2,6 +2,8 @@ package model.edit;
 
 import java.util.Arrays;
 
+import model.Pixel;
+
 /**
  * Edits an image to visualize intensity.
  * Intensity is the average of the three components in a pixel
@@ -31,28 +33,28 @@ public class ILV extends AEdit {
    * @return image edited to greyscale for intensity.
    */
   @Override
-  protected int[][][] setRGB(int[][][] image, int r, int c, int maxNum) {
+  protected Pixel[][] setRGB(Pixel[][] image, int r, int c, int maxNum) {
     int newNum = 0;
-    int[] pixel = image[r][c];
+    Pixel pixel = image[r][c];
 
     switch (this.s) {
       case "intensity":
         int sum = 0;
         for (int i = 0; i < 3; i++) {
-          sum += pixel[i];
+          sum += pixel.get(i);
         }
         newNum = Math.round(sum / 3);
         break;
       case "luma":
-        newNum = (int) Math.round(0.2126 * pixel[0] + .7152 * pixel[1] + 0.0722 * pixel[2]);
+        newNum = (int) Math.round(0.2126 * pixel.get(0)+ .7152 * pixel.get(1) + 0.0722 * pixel.get(2));
         break;
       case "value":
-        Arrays.sort(pixel);
-        newNum = pixel[2];
+        Arrays.sort(pixel.getChannel());
+        newNum = pixel.get(2);
         break;
     }
     for (int rgb = 0; rgb < 3; rgb++) {
-      image[r][c][rgb] = clamp(newNum, maxNum);
+      image[r][c].set(rgb, clamp(newNum, maxNum));
     }
     return image;
   }

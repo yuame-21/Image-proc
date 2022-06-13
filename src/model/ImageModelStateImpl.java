@@ -10,7 +10,7 @@ import java.util.Scanner;
  * the version name, and the max number for colors.
  */
 public class ImageModelStateImpl implements ImageModelState {
-  private int[][][] image;
+  private Pixel[][] image;
   private int maxNum;
 
   /**
@@ -19,7 +19,7 @@ public class ImageModelStateImpl implements ImageModelState {
    * @param image  3-d array of colors which make up an image.
    * @param maxNum max number for colors
    */
-  public ImageModelStateImpl(int[][][] image, int maxNum) {
+  public ImageModelStateImpl(Pixel[][] image, int maxNum) {
     this.image = image;
     this.maxNum = maxNum;
   }
@@ -80,8 +80,6 @@ public class ImageModelStateImpl implements ImageModelState {
 //    }
 //    sc.close();
 //  }
-
-
   public ImageModelStateImpl(String path) {
     Scanner sc;
 
@@ -111,14 +109,13 @@ public class ImageModelStateImpl implements ImageModelState {
     int width = sc.nextInt();
     this.maxNum = sc.nextInt();
 
-    this.image = new int[width][height][3];
+    this.image = new Pixel[width][height];
 
-    for (int i = 0; i < width ; i++) {
-        for (int j = 0; j < height ; j++) {
-        image[i][j] = new int[]{sc.nextInt(), sc.nextInt(), sc.nextInt()};
-
-        }
+    for (int i = 0; i < width; i++) {
+      for (int j = 0; j < height; j++) {
+        image[i][j] = new Pixel( sc.nextInt(), sc.nextInt(), sc.nextInt());
       }
+    }
 
     sc.close();
   }
@@ -154,7 +151,7 @@ public class ImageModelStateImpl implements ImageModelState {
    * @return array of three integers
    */
   @Override
-  public int[] getPixel(int row, int col) {
+  public Pixel getPixel(int row, int col) {
     return this.image[row][col];
   }
 
@@ -163,8 +160,8 @@ public class ImageModelStateImpl implements ImageModelState {
    *
    * @return 3-d array representing an image.
    */
-  public int[][][] copyImage() {
-    int[][][] copy = new int[this.getHeight()][this.getWidth()][3];
+  public Pixel[][] copyImage() {
+    Pixel[][] copy = new Pixel[this.getHeight()][this.getWidth()];
 
     for (int i = 0; i < this.getHeight(); i++) {
 

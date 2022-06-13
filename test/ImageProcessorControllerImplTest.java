@@ -10,6 +10,7 @@ import model.ImageModel;
 import model.ImageModelImpl;
 import model.ImageModelState;
 import model.ImageModelStateImpl;
+import model.Pixel;
 import view.ImageProcessorTextView;
 import view.ImageProcessorView;
 
@@ -23,7 +24,7 @@ public class ImageProcessorControllerImplTest {
   ImageProcessorController c2;
   ImageModel m1;
   ImageModelState pink;
-  int[][][] pinkBoard;
+  Pixel[][] pinkBoard;
   String pinkName;
   int pinkMaxNum;
   Appendable app;
@@ -33,11 +34,15 @@ public class ImageProcessorControllerImplTest {
   @Before
   public void init() {
 
-    this.pinkBoard = new int[][][]{
-            {{170, 0, 255}, {140, 190, 41}, {0, 171, 169}, {255, 0, 127}}, //r1
-            {{0, 0, 0}, {255, 0, 127}, {239, 150, 8}, {0, 0, 0}},
-            {{0, 171, 169}, {0, 0, 0}, {170, 0, 255}, {239, 150, 8}},
-            {{170, 0, 255}, {0, 0, 0}, {140, 190, 41}, {0, 0, 0}}
+    this.pinkBoard = new Pixel[][]{
+            {new Pixel(170, 0, 255), new Pixel(140, 190, 41),
+                    new Pixel(0, 171, 169), new Pixel(255, 0, 127)}, //r1
+            {new Pixel(0, 0, 0), new Pixel(255, 0, 127),
+                    new Pixel(239, 150, 8), new Pixel(0, 0, 0)},
+            {new Pixel(0, 171, 169), new Pixel(0, 0, 0),
+                    new Pixel(170, 0, 255), new Pixel(239, 150, 8)},
+            {new Pixel(170, 0, 255), new Pixel(0, 0, 0),
+                    new Pixel(140, 190, 41), new Pixel(0, 0, 0)}
     };
     this.pinkName = "pink";
     this.pinkMaxNum = 255;
