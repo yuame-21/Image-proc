@@ -10,7 +10,7 @@ public class Filter extends AEdit {
    * @throws IllegalArgumentException if the filterType is not blur or sharpen
    */
   public Filter(String filterType) {
-    if (!(filterType.equals("blur") || (filterType.equals("sharpen")))){
+    if (!(filterType.equals("blur") || (filterType.equals("sharpen")))) {
       throw new IllegalArgumentException("invalid filter type");
     }
 
@@ -30,15 +30,24 @@ public class Filter extends AEdit {
    */
   @Override
   protected int[][][] setRGB(int[][][] image, int r, int c, int maxNum) {
-    return new int[0][][];
-    // call kernels with double loop
 
-    // edit pixels within  loop
-    // use clamp()
+    int[][][] kernel = getKernel(r, c, image);
+    int preClamp = 0;
+
+    for (int i = 0; i < kernel[0].length; i++) {
+      for (int j = 0; j < kernel[0].length; j++) {
+        for (int p = 0; p < 3; p++) {
+          preClamp = (int) Math.round(kernel[i][j][p] * this.getFilter()[i][j]);
+          image[r][c][p] = clamp(preClamp, maxNum);
+        }
+      }
+    }
+    return image;
   }
 
   /**
    * Gets the correct filter matrix based on filter type.
+   *
    * @return matrix of filter values
    */
   private double[][] getFilter() {
@@ -55,6 +64,26 @@ public class Filter extends AEdit {
               {-1 / 8, -1 / 8, -1 / 8, -1 / 8, -1 / 8}};
     }
     return filter;
+  }
+
+  private int[][][] getKernel(int r, int c, int[][][] image) {
+    double[][] matrix = this.getFilter();
+    int matrixSize = matrix[0].length;
+    int[][][] kernel = new int[][][]{};
+
+    for (int i = 0; i < matrixSize; i++) {
+      for (int j = 0; j < matrixSize; j++) {
+
+        // floor of half the matrix so we start at the top-left corner when getting kernels
+        int halfMatrix = (int) (Math.floor(matrixSize / 2));
+        try {
+          kernel[i][j] = image[i + (r - halfMatrix)][j + (c - halfMatrix)];
+        } catch (IndexOutOfBoundsException e) {
+          kernel[i][j] = new int[]{0, 0, 0};
+        }
+      }
+    }
+    return kernel;
   }
 
 
