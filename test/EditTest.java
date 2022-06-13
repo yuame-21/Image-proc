@@ -2,6 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import model.ImageModelStateImpl;
+import model.Pixel;
 import model.edit.BrightenDarken;
 import model.edit.ColorComponent;
 import model.edit.FlipHorizontal;
@@ -15,13 +16,16 @@ import static org.junit.Assert.fail;
 
 public class EditTest {
   ImageModelStateImpl twoXTwo;
-  int[][][] twoBoard;
+  Pixel[][] twoBoard;
   String twoName;
   int twoMaxNum;
 
   @Before
   public void init() {
-    this.twoBoard = new int[][][]{{{170, 0, 255}, {140, 190, 41}}, {{0, 171, 169}, {255, 0, 127}}};
+    this.twoBoard = new Pixel[][]{
+            {new Pixel(170, 0, 255), new Pixel(140, 190, 41)},
+            {new Pixel(0, 171, 169), new Pixel(255, 0, 127)}
+    };
     this.twoName = "2x2";
     this.twoMaxNum = 255;
     this.twoXTwo = new ImageModelStateImpl(twoBoard, twoMaxNum);
@@ -54,12 +58,12 @@ public class EditTest {
 
   @Test
   public void applyEditBrightenDarken() {
-    assertArrayEquals(new int[][][]{{{180, 10, 255}, {150, 200, 51}},
-                    {{10, 181, 179}, {255, 10, 137}}},
+    assertArrayEquals(new Pixel[][]{{new Pixel(180, 10, 255), new Pixel(150, 200, 51)},
+                    {new Pixel(10, 181, 179), new Pixel(255, 10, 137)}},
             new BrightenDarken(10).applyEdit("test", this.twoXTwo).copyImage());
     init();
-    assertArrayEquals(new int[][][]{{{160, 0, 245}, {130, 180, 31}},
-                    {{0, 161, 159}, {245, 0, 117}}},
+    assertArrayEquals(new Pixel[][]{{new Pixel(160, 0, 245), new Pixel(130, 180, 31)},
+                    {new Pixel(0, 161, 159), new Pixel(245, 0, 117)}},
             new BrightenDarken(-10).applyEdit("test", this.twoXTwo).copyImage());
   }
 
@@ -141,8 +145,10 @@ public class EditTest {
 
   @Test
   public void applyTransform() {
-    assertArrayEquals(new int[][][]{{{115, 102, 80}, {209, 186, 145}},
-                    {{163, 146, 113}, {124, 110, 86}}},
+    assertArrayEquals(new Pixel[][]{{new Pixel(115, 102, 80),
+                    new Pixel(209, 186, 145)},
+                    {new Pixel(163, 146, 113),
+                            new Pixel(124, 110, 86)}},
             new Transform("sepia").applyEdit("test",
                     this.twoXTwo).copyImage());
   }

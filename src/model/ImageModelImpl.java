@@ -109,9 +109,9 @@ public class ImageModelImpl implements ImageModel {
 
     for (int r = 0; r < saving.getHeight(); r++) {
       for (int c = 0; c < saving.getWidth(); c++) {
-        int[] RGB = saving.getPixel(r, c);
+        Pixel RGB = saving.getPixel(r, c);
         for (int i = 0; i < 3; i++) {
-          ans.append(RGB[i] + "\n");
+          ans.append(RGB.get(i) + "\n");
         }
       }
     }
