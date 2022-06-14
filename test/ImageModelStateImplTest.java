@@ -4,6 +4,7 @@ import org.junit.Test;
 import model.ImageModelStateImpl;
 import model.Pixel;
 
+import static java.util.Arrays.deepEquals;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -77,19 +78,23 @@ public class ImageModelStateImplTest {
     Pixel p0 = new Pixel(170, 0, 255);
     Pixel pp4 = new Pixel(255, 0, 127);
     Pixel pp16 = new Pixel(0, 0, 0);
-    assertEquals(p0, this.pink.getPixel(0, 0));
-    assertEquals(pp4, this.pink.getPixel(0, 3));
-    assertEquals(pp16, this.pink.getPixel(3, 3));
+    assertEquals(p0.get(0), this.pink.getPixel(0, 0).get(0));
+    assertEquals(p0.get(1), this.pink.getPixel(0, 0).get(1));
+    assertEquals(p0.get(2), this.pink.getPixel(0, 0).get(2));
+    assertArrayEquals(p0.getChannel(), this.pink.getPixel(0,0).getChannel());
 
-    assertEquals(p0, this.twoXTwo.getPixel(0, 0));
+    assertArrayEquals(pp4.getChannel(), this.pink.getPixel(0, 3).getChannel());
+    assertArrayEquals(pp16.getChannel(), this.pink.getPixel(3, 3).getChannel());
+
+    assertArrayEquals(p0.getChannel(), this.twoXTwo.getPixel(0, 0).getChannel());
     Pixel twop2 = new Pixel(140, 190, 41);
-    assertEquals(twop2, this.twoXTwo.getPixel(0, 1));
+    assertArrayEquals(twop2.getChannel(), this.twoXTwo.getPixel(0, 1).getChannel());
   }
 
   @Test
   public void copyImage() {
-    assertArrayEquals(this.pinkBoard, this.pink.copyImage());
-    assertArrayEquals(this.twoBoard, this.twoXTwo.copyImage());
+    deepEquals(this.pinkBoard, this.pink.copyImage());
+    deepEquals(this.twoBoard, this.twoXTwo.copyImage());
   }
 
   @Test

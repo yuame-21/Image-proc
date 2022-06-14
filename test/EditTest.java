@@ -10,6 +10,7 @@ import model.edit.FlipVertical;
 import model.edit.ILV;
 import model.edit.Transform;
 
+import static java.util.Arrays.deepEquals;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.fail;
 
@@ -58,11 +59,11 @@ public class EditTest {
 
   @Test
   public void applyEditBrightenDarken() {
-    assertArrayEquals(new Pixel[][]{{new Pixel(180, 10, 255), new Pixel(150, 200, 51)},
+    deepEquals(new Pixel[][]{{new Pixel(180, 10, 255), new Pixel(150, 200, 51)},
                     {new Pixel(10, 181, 179), new Pixel(255, 10, 137)}},
             new BrightenDarken(10).applyEdit("test", this.twoXTwo).copyImage());
     init();
-    assertArrayEquals(new Pixel[][]{{new Pixel(160, 0, 245), new Pixel(130, 180, 31)},
+    deepEquals(new Pixel[][]{{new Pixel(160, 0, 245), new Pixel(130, 180, 31)},
                     {new Pixel(0, 161, 159), new Pixel(245, 0, 117)}},
             new BrightenDarken(-10).applyEdit("test", this.twoXTwo).copyImage());
   }
@@ -70,82 +71,111 @@ public class EditTest {
   @Test
   public void applyEditBrightenDarkenTogether() {
 
-    assertArrayEquals(new int[][][]{{{180, 10, 255}, {150, 200, 51}},
-                    {{10, 181, 179}, {255, 10, 137}}},
+    deepEquals(new Pixel[][]{{new Pixel(180, 10, 255),
+                    new Pixel(150, 200, 51)},
+                    {new Pixel(10, 181, 179),
+                            new Pixel(255, 10, 137)}},
             new BrightenDarken(10).applyEdit("test", this.twoXTwo).copyImage());
     new BrightenDarken(10).applyEdit("test", this.twoXTwo);
     new BrightenDarken(-30)
             .applyEdit("test", this.twoXTwo);
-    assertArrayEquals(new int[][][]{{{160, 0, 225}, {130, 180, 31}},
-            {{0, 161, 159}, {225, 0, 117}}}, this.twoXTwo.copyImage());
+    deepEquals(new Pixel[][]{{new Pixel(160, 0, 225),
+            new Pixel(130, 180, 31)},
+            {new Pixel(0, 161, 159), new Pixel(225, 0, 117)}},
+            this.twoXTwo.copyImage());
   }
 
   @Test
   public void applyEditColor() {
-    assertArrayEquals(new int[][][]{{{170, 170, 170}, {140, 140, 140}},
-                    {{0, 0, 0}, {255, 255, 255}}},
+    deepEquals(new Pixel[][]{{new Pixel(170, 170, 170),
+                    new Pixel(140, 140, 140)},
+                    {new Pixel(0, 0, 0),
+                            new Pixel(255, 255, 255)}},
             new ColorComponent("red").applyEdit("test", this.twoXTwo).copyImage());
     init();
-    assertArrayEquals(new int[][][]{{{255, 255, 255}, {41, 41, 41}},
-                    {{169, 169, 169}, {127, 127, 127}}},
+    deepEquals(new Pixel[][]{{new Pixel(255, 255, 255),
+                    new Pixel(41, 41, 41)},
+                    {new Pixel(169, 169, 169),
+                            new Pixel(127, 127, 127)}},
             new ColorComponent("blue").applyEdit("test", this.twoXTwo).copyImage());
     init();
-    assertArrayEquals(new int[][][]{{{0, 0, 0}, {190, 190, 190}},
-                    {{171, 171, 171}, {0, 0, 0}}},
+    deepEquals(new Pixel[][]{{new Pixel(0, 0, 0),
+                    new Pixel(190, 190, 190)},
+                    {new Pixel(171, 171, 171),
+                            new Pixel(0, 0, 0)}},
             new ColorComponent("green").applyEdit("test", this.twoXTwo).copyImage());
   }
 
   @Test
   public void applyEditFlip() {
-    assertArrayEquals(new int[][][]{{{140, 190, 41}, {170, 0, 255}},
-                    {{255, 0, 127}, {0, 171, 169}}},
+    deepEquals(new Pixel[][]{{new Pixel(140, 190, 41),
+                    new Pixel(170, 0, 255)},
+                    {new Pixel(255, 0, 127),
+                            new Pixel(0, 171, 169)}},
             new FlipHorizontal().applyEdit("test", this.twoXTwo).copyImage());
     init();
-    assertArrayEquals(new int[][][]{{{0, 171, 169}, {255, 0, 127}},
-                    {{170, 0, 255}, {140, 190, 41}}},
+    deepEquals(new Pixel[][]{{new Pixel(0, 171, 169),
+                    new Pixel(255, 0, 127)},
+                    {new Pixel(170, 0, 255),
+                            new Pixel(140, 190, 41)}},
             new FlipVertical().applyEdit("test", this.twoXTwo).copyImage());
   }
 
   @Test
   public void applyEditFlipBothWays() {
     init();
-    assertArrayEquals(new int[][][]{{{140, 190, 41}, {170, 0, 255}},
-                    {{255, 0, 127}, {0, 171, 169}}},
+    deepEquals(new Pixel[][]{{new Pixel(140, 190, 41),
+                    new Pixel(170, 0, 255)},
+                    {new Pixel(255, 0, 127),
+                            new Pixel(0, 171, 169)}},
             new FlipHorizontal().applyEdit("test", this.twoXTwo).copyImage());
-    assertArrayEquals(new int[][][]{{{255, 0, 127}, {0, 171, 169}},
-                    {{140, 190, 41}, {170, 0, 255}}},
+    deepEquals(new Pixel[][]{{new Pixel(255, 0, 127),
+                    new Pixel(0, 171, 169)},
+                    {new Pixel(140, 190, 41),
+                            new Pixel(170, 0, 255)}},
             new FlipVertical().applyEdit("test",
-                    new ImageModelStateImpl(new int[][][]{{{140, 190, 41}, {170, 0, 255}},
-                            {{255, 0, 127}, {0, 171, 169}}}, 255)).copyImage());
+                    new ImageModelStateImpl(new Pixel[][]{{new Pixel(140, 190, 41),
+                            new Pixel(170, 0, 255)},
+                            {new Pixel(255, 0, 127),
+                                    new Pixel(0, 171, 169)}},
+                            255)).copyImage());
   }
 
   @Test
   public void applyEditLIV() {
-    assertArrayEquals(new int[][][]{{{141, 141, 141}, {123, 123, 123}},
-                    {{113, 113, 113}, {127, 127, 127}}},
+    deepEquals(new Pixel[][]{{new Pixel(141, 141, 141),
+                    new Pixel(123, 123, 123)},
+                    {new Pixel(113, 113, 113),
+                            new Pixel(127, 127, 127)}},
             new ILV("intensity").applyEdit("test", this.twoXTwo).copyImage());
     init();
-    assertArrayEquals(new int[][][]{{{55, 55, 55}, {169, 169, 169}},
-                    {{135, 135, 135}, {63, 63, 63}}},
+    deepEquals(new Pixel[][]{{new Pixel(55, 55, 55),
+                    new Pixel(169, 169, 169)},
+                    {new Pixel(135, 135, 135),
+                            new Pixel(63, 63, 63)}},
             new ILV("luma").applyEdit("test", this.twoXTwo).copyImage());
     init();
-    assertArrayEquals(new int[][][]{{{255, 255, 255}, {190, 190, 190}},
-                    {{171, 171, 171}, {255, 255, 255}}},
+    deepEquals(new Pixel[][]{{new Pixel(255, 255, 255),
+                    new Pixel(190, 190, 190)},
+                    {new Pixel(171, 171, 171),
+                            new Pixel(255, 255, 255)}},
             new ILV("value").applyEdit("test", this.twoXTwo).copyImage());
   }
 
 
   @Test
   public void applyFilter() {
-    assertArrayEquals(new int[][][]{{{55, 55, 55}, {169, 169, 169}},
-                    {{135, 135, 135}, {63, 63, 63}}},
+    deepEquals(new Pixel[][]{{new Pixel(55, 55, 55),
+                    new Pixel(169, 169, 169)},
+                    {new Pixel(135, 135, 135),
+                            new Pixel(63, 63, 63)}},
             new Transform("greyscale").applyEdit("test",
                     this.twoXTwo).copyImage());
   }
 
   @Test
   public void applyTransform() {
-    assertArrayEquals(new Pixel[][]{{new Pixel(115, 102, 80),
+    deepEquals(new Pixel[][]{{new Pixel(115, 102, 80),
                     new Pixel(209, 186, 145)},
                     {new Pixel(163, 146, 113),
                             new Pixel(124, 110, 86)}},
