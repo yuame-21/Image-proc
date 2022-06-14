@@ -1,12 +1,20 @@
 package model;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 import model.edit.Edit;
+
+import static javax.imageio.ImageIO.read;
 
 /**
  * Describes the behaviors of an image model and records log of model manipulations.
@@ -30,7 +38,73 @@ public class ImageModelImpl implements ImageModel {
    * @throws IllegalArgumentException if the file is invalid.
    */
   public void load(String path, String fileName) throws IllegalArgumentException {
-    this.log.put(fileName, new ImageModelStateImpl(path));
+    Scanner sc;
+
+    try {
+      sc = new Scanner(new FileInputStream(path));
+    } catch (FileNotFoundException e) {
+      throw new IllegalArgumentException("File not found");
+    }
+
+    StringBuilder noComment = new StringBuilder();
+
+    while (sc.hasNextLine()) {
+      String s = sc.nextLine();
+      if (s.charAt(0) != '#') {
+        noComment.append(s + System.lineSeparator());
+      }
+    }
+
+    sc = new Scanner(noComment.toString());
+    String token;
+    token = sc.next();
+
+    if (!token.equals("P3")) {
+      // moves to next load as this image is not a ppm
+      try {
+        load(read(new File(path)), fileName);
+      } catch (IOException e) {
+        throw new IllegalArgumentException("Transmission failed");
+      }
+    }
+    int height = sc.nextInt();
+    int width = sc.nextInt();
+    int maxNum = sc.nextInt();
+
+    Pixel[][] image = new Pixel[width][height];
+
+    for (int i = 0; i < width; i++) {
+      for (int j = 0; j < height; j++) {
+        image[i][j] = new Pixel( sc.nextInt(), sc.nextInt(), sc.nextInt());
+      }
+    }
+
+    sc.close();
+    this.log.put(fileName, new ImageModelStateImpl(image, maxNum));
+  }
+
+  /**
+   * Loads non-ppm image files into the program.
+   * @param imageFile The image to be loaded
+   * @param fileName The name the image will be saved under in the program
+   */
+  public void load(BufferedImage imageFile, String fileName) {
+
+    int height = imageFile.getHeight();
+    int width = imageFile.getWidth();
+
+    Pixel[][] image = new Pixel[width][height];
+
+    for(int i = imageFile.getMinX(); i < width; i++) {
+      for(int j = imageFile.getMinY(); j < height; j++) {
+        image[i][j] =
+            new Pixel(new Color(imageFile.getRGB(i,j)).getRed(),
+            new Color(imageFile.getRGB(i,j)).getGreen(),
+            new Color(imageFile.getRGB(i,j)).getBlue());
+      }
+    }
+
+    this.log.put(fileName, new ImageModelStateImpl(image, 255));
   }
 
   /**
