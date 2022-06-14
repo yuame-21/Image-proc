@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Arrays;
-
 public class Pixel {
   int[] rgb;
 
@@ -13,12 +11,13 @@ public class Pixel {
     return this.rgb[i];
   }
 
- public void set(int i, int set) {
+  public void set(int i, int set) {
     this.rgb[i] = set;
- }
+  }
 
- public int[] getChannel() {
+  public int[] getChannel() {
     return this.rgb.clone();
- }
+  }
 
 }
+
