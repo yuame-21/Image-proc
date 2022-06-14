@@ -12,7 +12,7 @@ public class Transform extends AEdit {
    * @param transformType type of transform (greyscale or sepia)
    * @throws IllegalArgumentException if transform type is invalid
    */
-  public Transform(String transformType) {
+  public Transform(String transformType) throws IllegalArgumentException{
 
     if (!(transformType.equals("greyscale") || transformType.equals("sepia"))) {
       throw new IllegalArgumentException("invalid transform type: must be greyscale or sepia");

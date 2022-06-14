@@ -5,6 +5,7 @@ import model.ImageModelStateImpl;
 import model.Pixel;
 import model.edit.BrightenDarken;
 import model.edit.ColorComponent;
+import model.edit.Filter;
 import model.edit.FlipHorizontal;
 import model.edit.FlipVertical;
 import model.edit.ILV;
@@ -164,17 +165,14 @@ public class EditTest {
 
 
   @Test
-  public void applyFilter() {
+  public void applyTransform() {
     deepEquals(new Pixel[][]{{new Pixel(55, 55, 55),
                     new Pixel(169, 169, 169)},
                     {new Pixel(135, 135, 135),
                             new Pixel(63, 63, 63)}},
             new Transform("greyscale").applyEdit("test",
                     this.twoXTwo).copyImage());
-  }
-
-  @Test
-  public void applyTransform() {
+    init();
     deepEquals(new Pixel[][]{{new Pixel(115, 102, 80),
                     new Pixel(209, 186, 145)},
                     {new Pixel(163, 146, 113),
@@ -183,6 +181,43 @@ public class EditTest {
                     this.twoXTwo).copyImage());
   }
 
+  @Test
+  public void TransformConstructor() {
+    try {
+      new Transform("oatmeal");
+    } catch (IllegalArgumentException e) {
+      if (!(e.getMessage().equals("invalid transform type: must be greyscale or sepia"))) {
+        fail("should have thrown illegal arg exc: invalid transform type");
+      }
+    }
+  }
+
+  @Test
+  public void testFilter() {
+    deepEquals(new Pixel[][]{{new Pixel(115, 102, 80),
+            new Pixel(209, 186, 145)},
+            {new Pixel(163, 146, 113),
+                    new Pixel(124, 110, 86)}},
+            new Filter("blur").applyEdit("test",
+                    this.twoXTwo).copyImage());
+    deepEquals(new Pixel[][]{{new Pixel(115, 102, 80),
+                    new Pixel(209, 186, 145)},
+                    {new Pixel(163, 146, 113),
+                            new Pixel(124, 110, 86)}},
+            new Filter("sharpen").applyEdit("test",
+                    this.twoXTwo).copyImage());
+  }
+
+  @Test
+  public void testFilterCons() {
+    try {
+      new Filter("oatmeal") ;
+    } catch (IllegalArgumentException e) {
+      if (!(e.getMessage().equals("invalid filter type"))) {
+        fail("should have thrown illegal arg exc: invalid filter type");
+      }
+    }
+  }
 
 }
 
