@@ -9,6 +9,7 @@ import java.util.function.Function;
 import controller.commands.ColorComponent;
 import controller.commands.Command;
 import controller.commands.DarkenBrighten;
+import controller.commands.Filter;
 import controller.commands.Flip;
 import controller.commands.IntensityLumaValue;
 import controller.commands.Load;
@@ -115,6 +116,12 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
     });
     this.knownCommands.put("greyscale", (Scanner s) -> {
       return new Transform(s.next(), s.next(), "greyscale");
+    });
+    this.knownCommands.put("blur", (Scanner s) -> {
+      return new Filter(s.next(), s.next(), "blur");
+    });
+    this.knownCommands.put("sharpen", (Scanner s) -> {
+      return new Filter(s.next(), s.next(), "sharpen");
     });
   }
 

@@ -34,15 +34,21 @@ public class Filter extends AEdit {
 
     Pixel[][] kernel = getKernel(r, c, image);
     int preClamp = 0;
+    int red = 0;
+    int gr =0;
+    int bl = 0;
+
 
     for (int i = 0; i < kernel[0].length; i++) {
       for (int j = 0; j < kernel[0].length; j++) {
-        for (int p = 0; p < 3; p++) {
-          preClamp = (int) Math.round(kernel[i][j].get(p) * this.getFilter()[i][j]);
-          image[r][c].set(p, clamp(preClamp, maxNum));
-        }
+        red =+ (int) Math.round(kernel[i][j].get(0) * this.getFilter()[i][j]);
+        gr =+ (int) Math.round(kernel[i][j].get(1) * this.getFilter()[i][j]);
+        bl =+ (int) Math.round(kernel[i][j].get(2) * this.getFilter()[i][j]);
       }
     }
+
+    image[r][c] = new Pixel(clamp(red, maxNum), clamp(gr, maxNum), clamp(bl, maxNum));
+
     return image;
   }
 
@@ -70,7 +76,7 @@ public class Filter extends AEdit {
   private Pixel[][] getKernel(int r, int c, Pixel[][] image) {
     double[][] matrix = this.getFilter();
     int matrixSize = matrix[0].length;
-    Pixel[][] kernel = new Pixel[][]{};
+    Pixel[][] kernel = new Pixel[matrixSize][matrixSize];
 
     for (int i = 0; i < matrixSize; i++) {
       for (int j = 0; j < matrixSize; j++) {
@@ -79,7 +85,7 @@ public class Filter extends AEdit {
         int halfMatrix = (int) (Math.floor(matrixSize / 2));
         try {
           kernel[i][j] = image[i + (r - halfMatrix)][j + (c - halfMatrix)];
-        } catch (IndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
           kernel[i][j] = new Pixel(0, 0, 0);
         }
       }

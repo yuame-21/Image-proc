@@ -194,10 +194,10 @@ public class EditTest {
 
   @Test
   public void testFilter() {
-    deepEquals(new Pixel[][]{{new Pixel(115, 102, 80),
-            new Pixel(209, 186, 145)},
-            {new Pixel(163, 146, 113),
-                    new Pixel(124, 110, 86)}},
+    deepEquals(new Pixel[][]{{new Pixel(58, 83, 74),
+            new Pixel(64, 92, 82)},
+            {new Pixel(75, 84, 58),
+                    new Pixel(85, 75, 59)}},
             new Filter("blur").applyEdit("test",
                     this.twoXTwo).copyImage());
     deepEquals(new Pixel[][]{{new Pixel(115, 102, 80),
