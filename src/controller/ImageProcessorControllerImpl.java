@@ -13,6 +13,7 @@ import controller.commands.Flip;
 import controller.commands.IntensityLumaValue;
 import controller.commands.Load;
 import controller.commands.Save;
+import controller.commands.Transform;
 import model.ImageModel;
 import view.ImageProcessorView;
 
@@ -54,34 +55,67 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
 
   /**
    * Adds all commands to the Map of commands that the user can call.
+   * <p>
+   * In A5, we edited this method to include the new functionalities:
+   * transform, filter, and the new load and saves
    */
   private void addCommands() {
     this.knownCommands.put("brighten",
-            (Scanner s) -> {return new DarkenBrighten(s.next(),
-                    s.next(), s.nextInt(), "brighten");});
+            (Scanner s) -> {
+              return new DarkenBrighten(s.next(),
+                      s.next(), s.nextInt(), "brighten");
+            });
     this.knownCommands.put("darken",
-            (Scanner s) -> {return new DarkenBrighten(s.next(),
-                    s.next(), s.nextInt(), "darken");});
+            (Scanner s) -> {
+              return new DarkenBrighten(s.next(),
+                      s.next(), s.nextInt(), "darken");
+            });
     this.knownCommands.put("red-component",
-            (Scanner s) -> {return new ColorComponent(s.next(), s.next(), "red");});
+            (Scanner s) -> {
+              return new ColorComponent(s.next(), s.next(), "red");
+            });
     this.knownCommands.put("green-component",
-            (Scanner s) -> {return new ColorComponent(s.next(), s.next(), "green");});
+            (Scanner s) -> {
+              return new ColorComponent(s.next(), s.next(), "green");
+            });
     this.knownCommands.put("blue-component",
-            (Scanner s) -> {return new ColorComponent(s.next(), s.next(), "blue");});
+            (Scanner s) -> {
+              return new ColorComponent(s.next(), s.next(), "blue");
+            });
     this.knownCommands.put("horizontal-flip",
-            (Scanner s) -> {return new Flip(s.next(), s.next(), "horizontal");});
+            (Scanner s) -> {
+              return new Flip(s.next(), s.next(), "horizontal");
+            });
     this.knownCommands.put("vertical-flip",
-            (Scanner s) -> {return new Flip(s.next(), s.next(), "vertical");});
+            (Scanner s) -> {
+              return new Flip(s.next(), s.next(), "vertical");
+            });
     this.knownCommands.put("value-component",
-            (Scanner s) -> {return new IntensityLumaValue(s.next(), s.next(), "value");});
+            (Scanner s) -> {
+              return new IntensityLumaValue(s.next(), s.next(), "value");
+            });
     this.knownCommands.put("luma-component",
-            (Scanner s) -> {return new IntensityLumaValue(s.next(), s.next(), "luma");});
+            (Scanner s) -> {
+              return new IntensityLumaValue(s.next(), s.next(), "luma");
+            });
     this.knownCommands.put("intensity-component",
-            (Scanner s) -> {return new IntensityLumaValue(s.next(), s.next(), "intensity");});
+            (Scanner s) -> {
+              return new IntensityLumaValue(s.next(), s.next(), "intensity");
+            });
     this.knownCommands.put("load",
-            (Scanner s) -> {return new Load(s.next(), s.next());});
+            (Scanner s) -> {
+              return new Load(s.next(), s.next());
+            });
     this.knownCommands.put("save",
-            (Scanner s) -> {return new Save(s.next(), s.next());});
+            (Scanner s) -> {
+              return new Save(s.next(), s.next());
+            });
+    this.knownCommands.put("sepia", (Scanner s) -> {
+      return new Transform(s.next(), s.next(), "sepia");
+    });
+    this.knownCommands.put("greyscale", (Scanner s) -> {
+      return new Transform(s.next(), s.next(), "greyscale");
+    });
   }
 
   /**

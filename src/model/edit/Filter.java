@@ -11,11 +11,10 @@ public class Filter extends AEdit {
    * @param filterType type of filter to apply
    * @throws IllegalArgumentException if the filterType is not blur or sharpen
    */
-  public Filter(String filterType) {
+  public Filter(String filterType) throws IllegalArgumentException {
     if (!(filterType.equals("blur") || (filterType.equals("sharpen")))) {
       throw new IllegalArgumentException("invalid filter type");
     }
-
 
     this.filterType = filterType;
   }
