@@ -24,15 +24,8 @@ public class ImageModelStateImpl implements ImageModelState {
     this.maxNum = maxNum;
   }
 
-  /**
-   * Constructs an {@code ImageModelState} using a given path of an image.
-   *
-   * @param path The path to an image in the system
-   */
-  public ImageModelStateImpl(String path) {
-
-  }
-
+  // We deleted our second constructor for this class as when we wrote our new load class it
+  // became redundant.
 
   /**
    * Returns the width of an image.

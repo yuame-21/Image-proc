@@ -93,5 +93,4 @@ public class Filter extends AEdit {
     return kernel;
   }
 
-
 }

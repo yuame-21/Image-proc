@@ -12,8 +12,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
+
 import model.edit.Edit;
 
+import static javax.imageio.ImageIO.getImageWriter;
 import static javax.imageio.ImageIO.read;
 
 /**
@@ -35,9 +38,13 @@ public class ImageModelImpl implements ImageModel {
    *
    * @param path     where to load the image from.
    * @param fileName name of image file.
-   * @throws IllegalArgumentException if the file is invalid.
+   * @throws IllegalArgumentException if the file is invalid or the inputs are null
    */
   public void load(String path, String fileName) throws IllegalArgumentException {
+    if(path == null || fileName == null) {
+      throw new IllegalArgumentException("Inputs cannot be null");
+    }
+
     Scanner sc;
 
     try {
@@ -87,8 +94,12 @@ public class ImageModelImpl implements ImageModel {
    * Loads non-ppm image files into the program.
    * @param imageFile The image to be loaded
    * @param fileName The name the image will be saved under in the program
+   * @throws IllegalArgumentException Thrown when inputs are null
    */
-  public void load(BufferedImage imageFile, String fileName) {
+  private void load(BufferedImage imageFile, String fileName) throws IllegalArgumentException {
+    if(imageFile == null || fileName == null) {
+      throw new IllegalArgumentException("Inputs cannot be null");
+    }
 
     int height = imageFile.getHeight();
     int width = imageFile.getWidth();
@@ -163,6 +174,29 @@ public class ImageModelImpl implements ImageModel {
     } catch (IOException e) {
       throw new IllegalArgumentException("File not found and could not be saved");
     }
+
+  }
+
+  private void save(String path, String fileName) throws IllegalArgumentException {
+
+    String type = path.substring(path.length() - 4);
+
+    if (!type.equals(".ppm") || !type.equals(".png") || !type.equals(".jpg") || !type.equals(
+        ".bpm")) {
+      throw new IllegalArgumentException("Invalid path format");
+    }
+
+    FileWriter savePath = null;
+    try {
+      savePath = new FileWriter(path);
+    } catch (IOException e) {
+      throw new IllegalArgumentException("Transmission failed");
+    }
+
+      BufferedWriter writer = new BufferedWriter();
+
+      ImageIO.write(bufferedImage, "type", savePath);
+
   }
 
   /**

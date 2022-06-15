@@ -98,13 +98,24 @@ public class ImageModelImplTest extends TestCase {
 
   @Test
   public void testLoad() {
+    ImageModelImpl modelNull = new ImageModelImpl();
     ImageModelImpl model1 = new ImageModelImpl();
     ImageModelImpl model2 = new ImageModelImpl();
 
     // test exceptions
     try {
+      modelNull.load("null", null);
+      fail("Inputs cannot be null");
+    }
+    catch (IllegalArgumentException e) {
+      if (!e.getMessage().equals("Inputs cannot be null")) {
+        fail("Input message should be correct");
+      }
+    }
+
+    try {
       model1.load("././res/mimi", "me");
-      fail("file is not real therefore should not be found");
+      fail("file is not real therefore should be null");
     } catch (IllegalArgumentException e) {
       if (!e.getMessage().equals("File not found")) {
         fail("File should be not found");
@@ -115,8 +126,8 @@ public class ImageModelImplTest extends TestCase {
       model1.load("././res/corrupt.ppm", "slay");
       fail("file is not a real ppm therefore should not be valid");
     } catch (IllegalArgumentException e) {
-      if (!e.getMessage().equals("Invalid file format")) {
-        fail("File should be not invalid");
+      if (!e.getMessage().equals("Inputs cannot be null")) {
+        fail("File should be returning null");
       }
     }
 
