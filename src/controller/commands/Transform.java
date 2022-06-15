@@ -1,7 +1,9 @@
 package controller.commands;
 
 import model.ImageModel;
+import model.edit.Transform;
 import model.edit.Edit;
+
 
 /**
  * Command to transform a given image based on String input.
@@ -34,7 +36,7 @@ public class Transform extends ACommand{
   @Override
   public void initCommand(ImageModel model) {
 
-    Edit editor = new model.edit.Transform(this.s);
+    Edit editor = new Transform(this.s);
 
     model.editImage(this.originalName, this.revisedName, editor);
 

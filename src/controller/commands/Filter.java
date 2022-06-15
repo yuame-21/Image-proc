@@ -2,6 +2,7 @@ package controller.commands;
 
 import model.ImageModel;
 import model.edit.Edit;
+import model.edit.Filter;
 
 /**
  * Command Filter can filter an image based on String input type.
@@ -33,7 +34,7 @@ public class Filter extends ACommand {
    */
   @Override
   public void initCommand(ImageModel model) {
-    Edit editor = new model.edit.Filter(this.s);
+    Edit editor = new Filter(this.s);
 
     model.editImage(this.originalName, this.revisedName, editor);
 
