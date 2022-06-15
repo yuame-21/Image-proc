@@ -6,6 +6,7 @@ import java.io.StringReader;
 
 import controller.ImageProcessorController;
 import controller.ImageProcessorControllerImpl;
+import controller.commands.Filter;
 import controller.commands.Transform;
 import model.ImageModel;
 import model.ImageModelImpl;
@@ -346,7 +347,7 @@ public class ImageProcessorControllerImplTest {
   @Test
   public void testFilterCons() {
     try {
-      new Transform("o", "n", "oatmeal");
+      new Filter("o", "n", "oatmeal");
     } catch (IllegalArgumentException e) {
       if (!e.getMessage().equals("valid filters are blur and sharpen")) {
         fail("should have thrown illegal arg exc:valid filters are blur and sharpen");

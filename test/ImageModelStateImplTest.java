@@ -54,11 +54,6 @@ public class ImageModelStateImplTest {
     assertEquals(255, mods1.getMaxNum());
     assertEquals(2, mods1.getHeight());
     assertEquals(2, mods1.getWidth());
-
-    ImageModelStateImpl mods2 = new ImageModelStateImpl("././res/2x2.ppm");
-    assertEquals(255, mods2.getMaxNum());
-    assertEquals(2, mods2.getWidth());
-    assertEquals(2, mods2.getHeight());
   }
 
   @Test

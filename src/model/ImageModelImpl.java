@@ -177,27 +177,27 @@ public class ImageModelImpl implements ImageModel {
 
   }
 
-  private void save(String path, String fileName) throws IllegalArgumentException {
-
-    String type = path.substring(path.length() - 4);
-
-    if (!type.equals(".ppm") || !type.equals(".png") || !type.equals(".jpg") || !type.equals(
-        ".bpm")) {
-      throw new IllegalArgumentException("Invalid path format");
-    }
-
-    FileWriter savePath = null;
-    try {
-      savePath = new FileWriter(path);
-    } catch (IOException e) {
-      throw new IllegalArgumentException("Transmission failed");
-    }
-
-      BufferedWriter writer = new BufferedWriter();
-
-      ImageIO.write(bufferedImage, "type", savePath);
-
-  }
+//  private void save(String path, String fileName) throws IllegalArgumentException {
+//
+//    String type = path.substring(path.length() - 4);
+//
+//    if (!type.equals(".ppm") || !type.equals(".png") || !type.equals(".jpg") || !type.equals(
+//        ".bpm")) {
+//      throw new IllegalArgumentException("Invalid path format");
+//    }
+//
+//    FileWriter savePath = null;
+//    try {
+//      savePath = new FileWriter(path);
+//    } catch (IOException e) {
+//      throw new IllegalArgumentException("Transmission failed");
+//    }
+//
+//      BufferedWriter writer = new BufferedWriter();
+//
+//      ImageIO.write(bufferedImage, "type", savePath);
+//
+//  }
 
   /**
    * Generates a String representing the RGB of an {@code ImageModelState}.
