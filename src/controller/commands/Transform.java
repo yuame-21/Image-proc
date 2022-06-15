@@ -1,8 +1,6 @@
 package controller.commands;
 
 import model.ImageModel;
-import model.edit.Transform;
-import model.edit.Edit;
 
 
 /**
@@ -21,12 +19,12 @@ public class Transform extends ACommand {
    * @param s            transform types are sepia and greyscale
    * @throws IllegalArgumentException if invalid transform type s
    */
-  public Transform(String originalName, String revisedName, String s) {
+  public Transform(String originalName, String revisedName, String string) {
     super(originalName, revisedName);
-    if (!(s.equals("sepia") || this.s.equals("greyscale"))) {
+    if (!(string.equals("sepia") || string.equals("greyscale"))) {
       throw new IllegalArgumentException("invalid transform type");
     }
-    this.s = s;
+    this.s = string;
   }
 
   /**
@@ -38,7 +36,7 @@ public class Transform extends ACommand {
   @Override
   public void initCommand(ImageModel model) {
 
-    model.editImage(this.originalName, this.revisedName, new Transform(this.s));
+    model.editImage(this.originalName, this.revisedName, new model.edit.Transform(this.s));
 
     this.updateCommandMessage("Transformed image, " + originalName + ", to "
             + this.s + ". Renamed edited image as " + revisedName + "\n");

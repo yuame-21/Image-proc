@@ -60,12 +60,16 @@ public class EditTest {
 
   @Test
   public void applyEditBrightenDarken() {
-    deepEquals(new Pixel[][]{{new Pixel(180, 10, 255), new Pixel(150, 200, 51)},
-                    {new Pixel(10, 181, 179), new Pixel(255, 10, 137)}},
+    deepEquals(new Pixel[][]{{new Pixel(180, 10, 255),
+                    new Pixel(150, 200, 51)},
+                    {new Pixel(10, 181, 179),
+                            new Pixel(255, 10, 137)}},
             new BrightenDarken(10).applyEdit("test", this.twoXTwo).copyImage());
     init();
-    deepEquals(new Pixel[][]{{new Pixel(160, 0, 245), new Pixel(130, 180, 31)},
-                    {new Pixel(0, 161, 159), new Pixel(245, 0, 117)}},
+    deepEquals(new Pixel[][]{{new Pixel(160, 0, 245),
+                    new Pixel(130, 180, 31)},
+                    {new Pixel(0, 161, 159),
+                            new Pixel(245, 0, 117)}},
             new BrightenDarken(-10).applyEdit("test", this.twoXTwo).copyImage());
   }
 
