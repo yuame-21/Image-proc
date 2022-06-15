@@ -1,5 +1,6 @@
 package controller.commands;
 import model.ImageModel;
+import model.edit.FilterSharpenBlur;
 
 
 /**
@@ -32,7 +33,7 @@ public class Filter extends ACommand {
    */
   @Override
   public void initCommand(ImageModel model) {
-    model.editImage(this.originalName, this.revisedName, new model.edit.Filter(this.s));
+    model.editImage(this.originalName, this.revisedName, new FilterSharpenBlur(this.s));
 
     this.updateCommandMessage("Filtered image, " + originalName + ", to "
             + this.s + ". Renamed edited image as " + revisedName + "\n");

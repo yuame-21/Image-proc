@@ -7,7 +7,7 @@ public class Transform extends AEdit {
   private String transformType;
 
   /**
-   * A Transform takes in a type of transform to apply to the model.
+   * A Transformation takes in a type of transform to apply to the model.
    *
    * @param transformType type of transform (greyscale or sepia)
    * @throws IllegalArgumentException if transform type is invalid

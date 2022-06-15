@@ -7,10 +7,12 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import model.ImageModelImpl;
-import model.Pixel;
 import model.edit.ColorComponent;
-import model.edit.Filter;
+import model.edit.Edit;
+import model.edit.FilterSharpenBlur;
 import model.edit.Transform;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Provides tests for the {@link ImageModelImpl} class.
@@ -253,6 +255,7 @@ public class ImageModelImplTest extends TestCase {
   }
 
 
+
   @Test
   public void testBlur() {
     ImageModelImpl mod1 = new ImageModelImpl();
@@ -261,6 +264,7 @@ public class ImageModelImplTest extends TestCase {
     String Blurred2x2 = "P3\n" +
             "2\n" +
             "2\n" +
+            "255\n" +
             "58\n" +
             "83\n" +
             "74\n" +
@@ -274,10 +278,11 @@ public class ImageModelImplTest extends TestCase {
             "75\n" +
             "59\n";
 
-    mod1.editImage("2by2", "Blur2", new Filter("blur"));
+    mod1.editImage("2by2", "Blur2", new FilterSharpenBlur("blur"));
     String s = mod1.generateString("Blur2");
     assertEquals(Blurred2x2, s);
   }
+
   @Test
   public void testSharpen() {
     ImageModelImpl mod1 = new ImageModelImpl();
@@ -286,6 +291,7 @@ public class ImageModelImplTest extends TestCase {
     String Sharpened2x2 = "P3\n" +
             "2\n" +
             "2\n" +
+            "255\n" +
             "115\n" +
             "102\n" +
             "80\n" +
@@ -299,7 +305,7 @@ public class ImageModelImplTest extends TestCase {
             "110\n" +
             "86\n";
 
-    mod1.editImage("2by2", "Sharpen2", new Filter("sharpen"));
+    mod1.editImage("2by2", "Sharpen2", new FilterSharpenBlur("sharpen"));
     assertEquals(Sharpened2x2, mod1.generateString("Sharpen2"));
   }
 
@@ -311,6 +317,7 @@ public class ImageModelImplTest extends TestCase {
     String Grey2x2 = "P3\n" +
             "2\n" +
             "2\n" +
+            "255\n" +
             "55\n" +
             "55\n" +
             "55\n" +
@@ -336,6 +343,7 @@ public class ImageModelImplTest extends TestCase {
     String Sepia2x2 = "P3\n" +
             "2\n" +
             "2\n" +
+            "255\n" +
             "115\n" +
             "102\n" +
             "80\n" +
@@ -351,8 +359,8 @@ public class ImageModelImplTest extends TestCase {
 
     mod1.editImage("2by2", "sepia2", new Transform("sepia"));
     assertEquals(Sepia2x2, mod1.generateString("sepia2"));
-  }
 
+  }
 
 
 }

@@ -1,5 +1,8 @@
 package controller.commands;
 
+import java.util.Scanner;
+import java.util.function.Function;
+
 import model.ImageModel;
 import view.ImageProcessorView;
 
@@ -8,7 +11,7 @@ import view.ImageProcessorView;
  * A command changes the image itself, and renders a message to
  * explain what action was performed.
  */
-public interface Command  {
+public interface Command {
 
   /**
    * Applies the commmand to a given model in order to manipulate an image.

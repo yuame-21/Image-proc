@@ -20,12 +20,13 @@ public abstract class AEdit implements Edit {
   @Override
   public ImageModelState applyEdit(String newName, ImageModelState image) {
     Pixel[][] filteredBoard = new Pixel[image.getHeight()][image.getWidth()];
+    Pixel[][] copy = image.copyImage();
 
     // goes through each row
     for (int r = 0; r < image.getHeight(); r++) {
       // goes through each column
       for (int c = 0; c < image.getWidth(); c++) {
-        filteredBoard = setRGB(image.copyImage(), r, c, image.getMaxNum());
+        filteredBoard = setRGB(copy, r, c, image.getMaxNum());
       }
     }
     return new ImageModelStateImpl(filteredBoard, image.getMaxNum());

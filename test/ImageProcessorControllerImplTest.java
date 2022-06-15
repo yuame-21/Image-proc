@@ -7,7 +7,7 @@ import java.io.StringReader;
 import controller.ImageProcessorController;
 import controller.ImageProcessorControllerImpl;
 import controller.commands.Filter;
-import controller.commands.Transform;
+import controller.commands.Transformation;
 import model.ImageModel;
 import model.ImageModelImpl;
 import model.ImageModelState;
@@ -319,7 +319,7 @@ public class ImageProcessorControllerImplTest {
   @Test
   public void testTransformCons() {
     try {
-      new Transform("o", "n", "oatmeal");
+      new Transformation("o", "n", "oatmeal");
     } catch (IllegalArgumentException e) {
       if (!e.getMessage().equals("invalid transform type")) {
         fail("should have thrown illegal arg exc: invalid transform type");
@@ -355,6 +355,5 @@ public class ImageProcessorControllerImplTest {
       }
     }
   }
-
 
 }

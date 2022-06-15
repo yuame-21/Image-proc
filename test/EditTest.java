@@ -5,7 +5,7 @@ import model.ImageModelStateImpl;
 import model.Pixel;
 import model.edit.BrightenDarken;
 import model.edit.ColorComponent;
-import model.edit.Filter;
+import model.edit.FilterSharpenBlur;
 import model.edit.FlipHorizontal;
 import model.edit.FlipVertical;
 import model.edit.ILV;
@@ -202,20 +202,20 @@ public class EditTest {
             new Pixel(64, 92, 82)},
             {new Pixel(75, 84, 58),
                     new Pixel(85, 75, 59)}},
-            new Filter("blur").applyEdit("test",
+            new FilterSharpenBlur("blur").applyEdit("test",
                     this.twoXTwo).copyImage());
     deepEquals(new Pixel[][]{{new Pixel(115, 102, 80),
                     new Pixel(209, 186, 145)},
                     {new Pixel(163, 146, 113),
                             new Pixel(124, 110, 86)}},
-            new Filter("sharpen").applyEdit("test",
+            new FilterSharpenBlur("sharpen").applyEdit("test",
                     this.twoXTwo).copyImage());
   }
 
   @Test
   public void testFilterCons() {
     try {
-      new Filter("oatmeal") ;
+      new FilterSharpenBlur("oatmeal") ;
     } catch (IllegalArgumentException e) {
       if (!(e.getMessage().equals("invalid filter type"))) {
         fail("should have thrown illegal arg exc: invalid filter type");

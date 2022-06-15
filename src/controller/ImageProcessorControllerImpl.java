@@ -14,7 +14,7 @@ import controller.commands.Flip;
 import controller.commands.IntensityLumaValue;
 import controller.commands.Load;
 import controller.commands.Save;
-import controller.commands.Transform;
+import controller.commands.Transformation;
 import model.ImageModel;
 import view.ImageProcessorView;
 
@@ -112,10 +112,10 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
               return new Save(s.next(), s.next());
             });
     this.knownCommands.put("sepia", (Scanner s) -> {
-      return new Transform(s.next(), s.next(), "sepia");
+      return new Transformation(s.next(), s.next(), "sepia");
     });
     this.knownCommands.put("greyscale", (Scanner s) -> {
-      return new Transform(s.next(), s.next(), "greyscale");
+      return new Transformation(s.next(), s.next(), "greyscale");
     });
     this.knownCommands.put("blur", (Scanner s) -> {
       return new Filter(s.next(), s.next(), "blur");
