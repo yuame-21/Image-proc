@@ -1,6 +1,5 @@
 package controller.commands;
 
-import controller.commands.ACommand;
 import model.ImageModel;
 import model.edit.BrightenDarken;
 

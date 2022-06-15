@@ -1,15 +1,14 @@
 package controller.commands;
-
 import model.ImageModel;
-import model.edit.Edit;
 import model.edit.Filter;
+
 
 /**
  * Command Filter can filter an image based on String input type.
  * This class accepts either "blur" or "greyscale" as valid filters.
  */
 public class Filter extends ACommand {
-  String s;
+  private final String s;
 
   /**
    * A Filter filters an image based on type s and renames appropriately.
@@ -18,7 +17,7 @@ public class Filter extends ACommand {
    * @param s filter type: blur or sharpen
    * @throws IllegalArgumentException if the filter type is invalid
    */
-  public Filter(String originalName, String revisedName, String s) {
+  public Filter(String originalName, String revisedName, String s) throws IllegalArgumentException{
     super(originalName, revisedName);
 
     if (!(s.equals("blur") || s.equals("sharpen"))) {
@@ -34,11 +33,9 @@ public class Filter extends ACommand {
    */
   @Override
   public void initCommand(ImageModel model) {
-    Edit editor = new Filter(this.s);
+    model.editImage(this.originalName, this.revisedName, new Transform(this.s));
 
-    model.editImage(this.originalName, this.revisedName, editor);
-
-    this.updateCommandMessage("Filtered image, " + originalName + ", for "
+    this.updateCommandMessage("Filtered image, " + originalName + ", to "
             + this.s + ". Renamed edited image as " + revisedName + "\n");
   }
 

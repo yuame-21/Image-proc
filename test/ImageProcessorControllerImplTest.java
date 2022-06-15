@@ -6,6 +6,7 @@ import java.io.StringReader;
 
 import controller.ImageProcessorController;
 import controller.ImageProcessorControllerImpl;
+import controller.commands.Transform;
 import model.ImageModel;
 import model.ImageModelImpl;
 import model.ImageModelState;
@@ -292,6 +293,65 @@ public class ImageProcessorControllerImplTest {
     assertEquals("method: load path: ././res/pink.ppm file name: pinkmethod: save path:" +
             " ././res/pink.ppm file name: pinkmethod: editImage old name: " +
             "pink new name: pink", log.toString());
+  }
+
+
+  @Test
+  public void testTransform() {
+
+    Readable r = new StringReader("load ././res/pink.ppm pink \n sepia pink " +
+            "pinkSepia \n greyscale pinkSepia pinkSG \n q \n");
+    this.c1 = new ImageProcessorControllerImpl(this.m1, this.v1, r);
+
+    this.c1.processImage();
+
+    String[] arr = app.toString().split("\n");
+
+    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[16]);
+    assertEquals("Transformed image, pink, to sepia. Renamed edited image as pinkSepia", arr[17]);
+    assertEquals("Transformed image, pinkSepia, to greyscale. " +
+            "Renamed edited image as pinkSG", arr[18]);
+
+  }
+
+  @Test
+  public void testTransformCons() {
+    try {
+      new Transform("o", "n", "oatmeal");
+    } catch (IllegalArgumentException e) {
+      if (!e.getMessage().equals("invalid transform type")) {
+        fail("should have thrown illegal arg exc: invalid transform type");
+      }
+    }
+  }
+
+
+  @Test
+  public void testFilter() {
+
+    Readable r = new StringReader("load ././res/pink.ppm pink \n blur pink " +
+            "pinkB \n sharpen pinkB pinkS \n q \n");
+    this.c1 = new ImageProcessorControllerImpl(this.m1, this.v1, r);
+
+    this.c1.processImage();
+
+    String[] arr = app.toString().split("\n");
+
+    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[16]);
+    assertEquals("Filtered image, pink, to blur. Renamed edited image as pinkB", arr[17]);
+    assertEquals("Filtered image, pinkB, to sharpen. " +
+            "Renamed edited image as pinkS", arr[18]);
+  }
+
+  @Test
+  public void testFilterCons() {
+    try {
+      new Transform("o", "n", "oatmeal");
+    } catch (IllegalArgumentException e) {
+      if (!e.getMessage().equals("valid filters are blur and sharpen")) {
+        fail("should have thrown illegal arg exc:valid filters are blur and sharpen");
+      }
+    }
   }
 
 
