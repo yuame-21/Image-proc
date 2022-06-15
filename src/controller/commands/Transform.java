@@ -16,7 +16,7 @@ public class Transform extends ACommand {
    *
    * @param originalName old name
    * @param revisedName  name to change to
-   * @param s            transform types are sepia and greyscale
+   * @param string            transform types are sepia and greyscale
    * @throws IllegalArgumentException if invalid transform type s
    */
   public Transform(String originalName, String revisedName, String string) {

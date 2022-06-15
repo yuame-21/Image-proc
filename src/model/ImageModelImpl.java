@@ -174,45 +174,44 @@ public class ImageModelImpl implements ImageModel {
     } catch (IOException e) {
       throw new IllegalArgumentException("File not found and could not be saved");
     }
-
   }
 
-  private void save(String path, String fileName) throws IllegalArgumentException {
-
-    String type = path.substring(path.length() - 4);
-
-    if (!type.equals(".ppm") || !type.equals(".png") || !type.equals(".jpg") || !type.equals(
-        ".bpm")) {
-      throw new IllegalArgumentException("Invalid path format");
-    }
-
-    FileWriter savePath;
-    try {
-      savePath = new FileWriter(path);
-    } catch (IOException e) {
-      throw new IllegalArgumentException("Transmission failed");
-    }
-
-    // saves ppm files
-    if(type.equals(".ppm")) {
-      try {
-        BufferedWriter writer = new BufferedWriter(savePath);
-        writer.write(generateString(fileName));
-        // end of file writing
-        writer.close();
-      } catch (IOException e) {
-        throw new IllegalArgumentException("File not found and could not be saved");
-      }
-    }
-    else {
-      ImageModelState saving = find (fileName);
-
-      BufferedImage image = new BufferedImage(saving.getWidth(), saving.getHeight(),
-          BufferedImage.TYPE_INT_RGB);
-
-      ImageIO.write(image, type, savePath);
-    }
-  }
+//  private void save(String path, String fileName) throws IllegalArgumentException {
+//
+//    String type = path.substring(path.length() - 4);
+//
+//    if (!type.equals(".ppm") || !type.equals(".png") || !type.equals(".jpg") || !type.equals(
+//        ".bpm")) {
+//      throw new IllegalArgumentException("Invalid path format");
+//    }
+//
+//    FileWriter savePath;
+//    try {
+//      savePath = new FileWriter(path);
+//    } catch (IOException e) {
+//      throw new IllegalArgumentException("Transmission failed");
+//    }
+//
+//    // saves ppm files
+//    if(type.equals(".ppm")) {
+//      try {
+//        BufferedWriter writer = new BufferedWriter(savePath);
+//        writer.write(generateString(fileName));
+//        // end of file writing
+//        writer.close();
+//      } catch (IOException e) {
+//        throw new IllegalArgumentException("File not found and could not be saved");
+//      }
+//    }
+//    else {
+//      ImageModelState saving = find (fileName);
+//
+//      BufferedImage image = new BufferedImage(saving.getWidth(), saving.getHeight(),
+//          BufferedImage.TYPE_INT_RGB);
+//
+//      ImageIO.write(image, type, savePath);
+//    }
+//  }
 
   /**
    * Generates a String representing the RGB of an {@code ImageModelState}.

@@ -7,7 +7,10 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import model.ImageModelImpl;
+import model.Pixel;
 import model.edit.ColorComponent;
+import model.edit.Filter;
+import model.edit.Transform;
 
 /**
  * Provides tests for the {@link ImageModelImpl} class.
@@ -106,8 +109,7 @@ public class ImageModelImplTest extends TestCase {
     try {
       modelNull.load("null", null);
       fail("Inputs cannot be null");
-    }
-    catch (IllegalArgumentException e) {
+    } catch (IllegalArgumentException e) {
       if (!e.getMessage().equals("Inputs cannot be null")) {
         fail("Input message should be correct");
       }
@@ -198,7 +200,7 @@ public class ImageModelImplTest extends TestCase {
       fail("This is an invalid file name");
     } catch (IllegalArgumentException e) {
       if (!e.getMessage().equals("Given file name is not found")) {
-        fail("Message should be \" IGiven file name is not found \"");
+        fail("Message should be \" Given file name is not found \"");
       }
     }
 
@@ -249,4 +251,108 @@ public class ImageModelImplTest extends TestCase {
     assertEquals(expectedValue2x2, model1.generateString("2b2"));
     assertEquals(expectedValuePink, model1.generateString("pink"));
   }
+
+
+  @Test
+  public void testBlur() {
+    ImageModelImpl mod1 = new ImageModelImpl();
+    mod1.load("././res/2x2.ppm", "2by2");
+
+    String Blurred2x2 = "P3\n" +
+            "2\n" +
+            "2\n" +
+            "58\n" +
+            "83\n" +
+            "74\n" +
+            "64\n" +
+            "92\n" +
+            "82\n" +
+            "75\n" +
+            "84\n" +
+            "58\n" +
+            "85\n" +
+            "75\n" +
+            "59\n";
+
+    mod1.editImage("2by2", "Blur2", new Filter("blur"));
+    String s = mod1.generateString("Blur2");
+    assertEquals(Blurred2x2, s);
+  }
+  @Test
+  public void testSharpen() {
+    ImageModelImpl mod1 = new ImageModelImpl();
+    mod1.load("././res/2x2.ppm", "2by2");
+
+    String Sharpened2x2 = "P3\n" +
+            "2\n" +
+            "2\n" +
+            "115\n" +
+            "102\n" +
+            "80\n" +
+            "209\n" +
+            "186\n" +
+            "145\n" +
+            "163\n" +
+            "146\n" +
+            "113\n" +
+            "124\n" +
+            "110\n" +
+            "86\n";
+
+    mod1.editImage("2by2", "Sharpen2", new Filter("sharpen"));
+    assertEquals(Sharpened2x2, mod1.generateString("Sharpen2"));
+  }
+
+  @Test
+  public void testGreyScale() {
+    ImageModelImpl mod1 = new ImageModelImpl();
+    mod1.load("././res/2x2.ppm", "2by2");
+
+    String Grey2x2 = "P3\n" +
+            "2\n" +
+            "2\n" +
+            "55\n" +
+            "55\n" +
+            "55\n" +
+            "169\n" +
+            "169\n" +
+            "169\n" +
+            "135\n" +
+            "135\n" +
+            "135\n" +
+            "63\n" +
+            "63\n" +
+            "63\n";
+
+    mod1.editImage("2by2", "Grey2", new Transform("greyscale"));
+    assertEquals(Grey2x2, mod1.generateString("Grey2"));
+  }
+
+  @Test
+  public void testSepia() {
+    ImageModelImpl mod1 = new ImageModelImpl();
+    mod1.load("././res/2x2.ppm", "2by2");
+
+    String Sepia2x2 = "P3\n" +
+            "2\n" +
+            "2\n" +
+            "115\n" +
+            "102\n" +
+            "80\n" +
+            "209\n" +
+            "186\n" +
+            "145\n" +
+            "163\n" +
+            "146\n" +
+            "113\n" +
+            "124\n" +
+            "110\n" +
+            "86\n";
+
+    mod1.editImage("2by2", "sepia2", new Transform("sepia"));
+    assertEquals(Sepia2x2, mod1.generateString("sepia2"));
+  }
+
+
+
 }

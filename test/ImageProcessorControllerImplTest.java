@@ -309,7 +309,8 @@ public class ImageProcessorControllerImplTest {
     String[] arr = app.toString().split("\n");
 
     assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[16]);
-    assertEquals("Transformed image, pink, to sepia. Renamed edited image as pinkSepia", arr[17]);
+    assertEquals("Transformed image, pink, to sepia. " +
+            "Renamed edited image as pinkSepia", arr[17]);
     assertEquals("Transformed image, pinkSepia, to greyscale. " +
             "Renamed edited image as pinkSG", arr[18]);
 
