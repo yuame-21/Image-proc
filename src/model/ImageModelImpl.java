@@ -2,6 +2,7 @@ package model;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -186,17 +187,32 @@ public class ImageModelImpl implements ImageModel {
       throw new IllegalArgumentException("Invalid path format");
     }
 
-    FileWriter savePath = null;
+    FileWriter savePath;
     try {
       savePath = new FileWriter(path);
     } catch (IOException e) {
       throw new IllegalArgumentException("Transmission failed");
     }
 
-      BufferedWriter writer = new BufferedWriter();
+    // saves ppm files
+    if(type.equals(".ppm")) {
+      try {
+        BufferedWriter writer = new BufferedWriter(savePath);
+        writer.write(generateString(fileName));
+        // end of file writing
+        writer.close();
+      } catch (IOException e) {
+        throw new IllegalArgumentException("File not found and could not be saved");
+      }
+    }
+    else {
+      ImageModelState saving = find (fileName);
 
-      ImageIO.write(bufferedImage, "type", savePath);
+      BufferedImage image = new BufferedImage(saving.getWidth(), saving.getHeight(),
+          BufferedImage.TYPE_INT_RGB);
 
+      ImageIO.write(image, type, savePath);
+    }
   }
 
   /**
