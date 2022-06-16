@@ -57,6 +57,11 @@
 
 - In the `ImageModelStateImpl`, we deleted the second constructor that used to hold code that helped load an image. This code became redundant as we added new functionality to load additional image types. As a replacement, we created an additional load method to process non-ppms and moved ppm-load functionality into the original load.
 
+- We changed the image we run the commands on from isec./// to juliet.///. The new image is an original. It is not from the internet (no citation needed)
+
+- We edited the private method `addCommands()` in `ImageProcessorControllerImpl` to include the new commands assigned for A5. We did not change the method design but merely added new `.put()` statements.
+
+
 **----------------------------------------------------------------------------------------------------**
 
 # Assignment 4: Image Processor

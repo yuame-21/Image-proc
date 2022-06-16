@@ -269,7 +269,7 @@ public class ImageProcessorControllerImplTest {
   public void testProcessImageExc() {
 
     Readable r = new StringReader("load ././bug/pink.ppm pink \n oatmeal\n " +
-            "load ././res/pink pink \n save ././red/pink pink");
+            "load ././bug/pink pink \n save ././red/pink pink");
     this.c1 = new ImageProcessorControllerImpl(this.m1, this.v1, r);
 
     this.c1.processImage();
@@ -380,6 +380,25 @@ public class ImageProcessorControllerImplTest {
     String[] arr = app.toString().split("\n");
     assertEquals("uploaded file, ././res/miniscript.txtand ran the " +
             "previous stream of commands.", arr[18]);
+  }
+
+  @Test
+  public void testLoad() {
+    Readable r = new StringReader("load ././res/pink.png png \n load ././res/22bmp.bmp bmp \n" +
+            "load ././res/22jpg.jpg jpg \n save ././res/png.png png \n save ././res/bmp.bmp bmp \n" +
+            "save ././res/jpg.jpg jpg \n");
+    this.c1 = new ImageProcessorControllerImpl(this.m1, this.v1, r);
+
+    this.c1.processImage();
+
+    String[] arr = app.toString().split("\n");
+    assertEquals("Loaded image, png. From path, ././res/pink.png", arr[18]);
+    assertEquals("Loaded image, bmp. From path, ././res/22bmp.bmp", arr[19]);
+    assertEquals("Loaded image, jpg. From path, ././res/22jpg.jpg", arr[20]);
+    assertEquals("Saved image, png to path, ././res/png.png", arr[21]);
+    assertEquals("Saved image, bmp to path, ././res/bmp.bmp", arr[22]);
+    assertEquals("Saved image, jpg to path, ././res/jpg.jpg", arr[23]);
+
   }
 
 }
