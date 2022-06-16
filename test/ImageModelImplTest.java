@@ -200,7 +200,7 @@ public class ImageModelImplTest extends TestCase {
       }
     }
 
-    String Red2x2 = "2\n" +
+    String red2x2 = "2\n" +
             "2\n" +
             "255\n" +
             "170\n" +
@@ -217,9 +217,9 @@ public class ImageModelImplTest extends TestCase {
             "255\n";
 
     mod1.editImage("2by2", "Red22", new ColorComponent("red"));
-    assertEquals(Red2x2, mod1.generateString("Red22"));
+    assertEquals(red2x2, mod1.generateString("Red22"));
     mod1.editImage("2by2", "2by2", new ColorComponent("red"));
-    assertEquals(Red2x2, mod1.generateString("2by2"));
+    assertEquals(red2x2, mod1.generateString("2by2"));
     mod1.editImage("BMP", "BEEP", new ColorComponent("red"));
   }
 

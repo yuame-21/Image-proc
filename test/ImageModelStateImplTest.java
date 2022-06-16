@@ -25,14 +25,14 @@ public class ImageModelStateImplTest {
   @Before
   public void init() {
     this.pinkBoard = new Pixel[][]{
-            {new Pixel(170, 0, 255), new Pixel(140, 190, 41),
-                    new Pixel(0, 171, 169), new Pixel(255, 0, 127)}, //r1
-            {new Pixel(0, 0, 0), new Pixel(255, 0, 127),
-                    new Pixel(239, 150, 8), new Pixel(0, 0, 0)},
-            {new Pixel(0, 171, 169), new Pixel(0, 0, 0),
-                    new Pixel(170, 0, 255), new Pixel(239, 150, 8)},
-            {new Pixel(170, 0, 255), new Pixel(0, 0, 0),
-                    new Pixel(140, 190, 41), new Pixel(0, 0, 0)}
+        {new Pixel(170, 0, 255), new Pixel(140, 190, 41),
+            new Pixel(0, 171, 169), new Pixel(255, 0, 127)}, //r1
+        {new Pixel(0, 0, 0), new Pixel(255, 0, 127),
+            new Pixel(239, 150, 8), new Pixel(0, 0, 0)},
+        {new Pixel(0, 171, 169), new Pixel(0, 0, 0),
+            new Pixel(170, 0, 255), new Pixel(239, 150, 8)},
+        {new Pixel(170, 0, 255), new Pixel(0, 0, 0),
+            new Pixel(140, 190, 41), new Pixel(0, 0, 0)}
     };
     this.pinkName = "pink";
     this.pinkMaxNum = 255;
@@ -40,8 +40,8 @@ public class ImageModelStateImplTest {
 
 
     this.twoBoard = new Pixel[][]{
-            {new Pixel(170, 0, 255), new Pixel(140, 190, 41)},
-            {new Pixel(0, 171, 169), new Pixel(255, 0, 127)}
+        {new Pixel(170, 0, 255), new Pixel(140, 190, 41)},
+        {new Pixel(0, 171, 169), new Pixel(255, 0, 127)}
     };
     this.twoName = "2x2";
     this.twoMaxNum = 255;

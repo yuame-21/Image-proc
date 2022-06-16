@@ -74,6 +74,8 @@ public class Pixel {
       case 2:
         this.blue = set;
         break;
+      default:
+        throw new IllegalArgumentException("Cannot set anything outside of RGB");
     }
   }
 
