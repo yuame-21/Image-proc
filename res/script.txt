@@ -29,16 +29,16 @@ sharpen pink pinkSharpen
 save ././res/pinkSharpen.png pinkSharpen
 save ././res/pink.ppm pink
 save ././res/pink.jpg pink
-save ././res/pink.bpm pink
+save ././res/pink.bmp pink
 load ././res/pink.ppm pinkpng
 blur pinkpng pinkpngblur
 save ././res/pinkpngblur.ppm pinkpngblur
 load ././res/pink.jpg pinkjpg
 sharpen pinkjpg pinkjpgsharp
 save ././res/pinkjpgsharp.jpg
-load ././res/pink.bpm pinkbpm
-sepia pinkbpm pinkbpmsepia
-save ././res/pinkbpmsepia.bpm pinkbpmsepia
+load ././res/pink.bmp pinkbmp
+sepia pinkbmp pinkbmpsepia
+save ././res/pinkbmpsepia.bmp pinkbmpsepia
 q
 
 

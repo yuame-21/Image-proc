@@ -121,9 +121,9 @@ public class ImageModelImpl implements ImageModel {
     for (int i = imageFile.getMinX(); i < width; i++) {
       for (int j = imageFile.getMinY(); j < height; j++) {
         image[i][j] =
-            new Pixel(new Color(imageFile.getRGB(i, j)).getRed(),
-                new Color(imageFile.getRGB(i, j)).getGreen(),
-                new Color(imageFile.getRGB(i, j)).getBlue());
+                new Pixel(new Color(imageFile.getRGB(i, j)).getRed(),
+                        new Color(imageFile.getRGB(i, j)).getGreen(),
+                        new Color(imageFile.getRGB(i, j)).getBlue());
       }
     }
 
@@ -172,22 +172,8 @@ public class ImageModelImpl implements ImageModel {
    * @param fileName name of image file
    * @throws IllegalArgumentException if the file is invalid or cannot be saved.
    */
-//  @Override
-//  public void save(String path, String fileName) throws IllegalArgumentException {
-//    if (!path.substring(path.length() - 4).equals(".ppm")) {
-//      throw new IllegalArgumentException("Invalid path format");
-//    }
-//
-//    try {
-//      // spits out whatever we write into the path
-//      BufferedWriter writer = new BufferedWriter((new FileWriter(path)));
-//      writer.write(generateString(fileName));
-//      // end of file writing
-//      writer.close();
-//    } catch (IOException e) {
-//      throw new IllegalArgumentException("File not found and could not be saved");
-//    }
-//  }
+
+
   @Override
   public void save(String path, String fileName) throws IllegalArgumentException {
 
@@ -220,7 +206,7 @@ public class ImageModelImpl implements ImageModel {
       }
     } else {
       BufferedImage image = new BufferedImage(saving.getWidth(), saving.getHeight(),
-          BufferedImage.TYPE_INT_RGB);
+              BufferedImage.TYPE_INT_RGB);
 
       // set the RGB of the file
       for (int i = 0; i < saving.getWidth(); i++) {
