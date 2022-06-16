@@ -2,8 +2,10 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Scanner;
 
 import model.ImageModel;
@@ -190,6 +192,7 @@ public class ImageModelImplTest extends TestCase {
     ImageModelImpl mod = new ImageModelImpl();
     mod.load("././res/TestSave.ppm", "Test");
     mod.load("././res/pink2.ppm", "pink2");
+    mod.load("././res/2by2.png", "22PNG");
 
     // test exceptions
     try {
@@ -209,6 +212,8 @@ public class ImageModelImplTest extends TestCase {
         fail("Message should be \" Given file name is not valid \"");
       }
     }
+
+    // test save
 
     mod.save("././res/Save.ppm", "Test");
     try {
@@ -235,6 +240,13 @@ public class ImageModelImplTest extends TestCase {
     } catch (IOException e) {
       fail("Transmission failed");
     }
+
+    mod.save("././res/22png.png", "22PNG");
+    assertTrue(new File("././res/22png.png").isFile());
+
+    mod.save("././res/22png.png", "22PNG");
+    assertTrue(new File("././res/22png.png").isFile());
+
 
   }
 
