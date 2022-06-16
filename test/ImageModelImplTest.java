@@ -33,6 +33,21 @@ public class ImageModelImplTest extends TestCase {
           "255\n" +
           "0\n" +
           "127\n";
+  String ExpectedValue2x2NotPNG = "2\n" +
+      "2\n" +
+      "255\n" +
+      "170\n" +
+      "0\n" +
+      "255\n" +
+      "0\n" +
+      "171\n" +
+      "169\n" +
+      "140\n" +
+      "190\n" +
+      "41\n" +
+      "255\n" +
+      "0\n" +
+      "127\n";
   String expectedValuePink = "4\n" +
           "4\n" +
           "255\n" +
@@ -235,7 +250,7 @@ public class ImageModelImplTest extends TestCase {
         c++;
       }
     } catch (IOException e) {
-      fail("Transmission failed");
+      fail("File not found");
     }
 
     mod.save("././res/pink2.ppm", "pink2");
@@ -248,7 +263,7 @@ public class ImageModelImplTest extends TestCase {
         c++;
       }
     } catch (IOException e) {
-      fail("Transmission failed");
+      fail("File not found");
     }
 
     mod.save("././res/22png.png", "22PNG");

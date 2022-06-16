@@ -118,8 +118,8 @@ public class ImageModelImpl implements ImageModel {
 
     Pixel[][] image = new Pixel[width][height];
 
-    for (int i = imageFile.getMinX(); i < width; i++) {
-      for (int j = imageFile.getMinY(); j < height; j++) {
+    for (int i = 0; i < width; i++) {
+      for (int j = 0; j < height; j++) {
         image[i][j] =
                 new Pixel(new Color(imageFile.getRGB(i, j)).getRed(),
                         new Color(imageFile.getRGB(i, j)).getGreen(),
@@ -177,9 +177,9 @@ public class ImageModelImpl implements ImageModel {
   @Override
   public void save(String path, String fileName) throws IllegalArgumentException {
 
-    String type = path.substring(path.length() - 4);
+    String type = path.substring(path.length() - 3);
 
-    if (!(type.equals(".ppm") || type.equals(".png") || type.equals(".jpg") || type.equals(".bmp"))) {
+    if (!(type.equals("ppm") || type.equals("png") || type.equals("jpg") || type.equals("bmp"))) {
       throw new IllegalArgumentException("Invalid path format");
     }
 
@@ -190,11 +190,11 @@ public class ImageModelImpl implements ImageModel {
     try {
       savePath = new FileWriter(path);
     } catch (IOException e) {
-      throw new IllegalArgumentException("Transmission failed");
+      throw new IllegalArgumentException("File not found");
     }
 
     // saves ppm files
-    if (type.equals(".ppm")) {
+    if (type.equals("ppm")) {
       try {
         BufferedWriter writer = new BufferedWriter(savePath);
         writer.write("P3" + "\n");
@@ -209,8 +209,8 @@ public class ImageModelImpl implements ImageModel {
               BufferedImage.TYPE_INT_RGB);
 
       // set the RGB of the file
-      for (int i = 0; i < saving.getWidth(); i++) {
-        for (int j = 0; j < saving.getHeight(); j++) {
+      for (int i = 0; i < image.getWidth(); i++) {
+        for (int j = 0; j < image.getHeight(); j++) {
           Pixel R = saving.getPixel(i, j);
           image.setRGB(i, j, new Color(R.get(0), R.get(1), R.get(2)).getRGB());
         }
