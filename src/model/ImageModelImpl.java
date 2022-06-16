@@ -205,13 +205,15 @@ public class ImageModelImpl implements ImageModel {
         throw new IllegalArgumentException("File not found and could not be saved");
       }
     } else {
-      BufferedImage image = new BufferedImage(saving.getWidth(), saving.getHeight(),
-              BufferedImage.TYPE_INT_RGB);
+      int width = saving.getWidth();
+      int height = saving.getHeight();
+
+      BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
       // set the RGB of the file
-      for (int i = 0; i < image.getWidth(); i++) {
-        for (int j = 0; j < image.getHeight(); j++) {
-          Pixel R = saving.getPixel(i, j);
+      for (int i = 0; i < width; i++) {
+        for (int j = 0; j < height; j++) {
+          Pixel R = saving.getPixel(j, i);
           image.setRGB(i, j, new Color(R.get(0), R.get(1), R.get(2)).getRGB());
         }
       }
