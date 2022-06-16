@@ -73,6 +73,8 @@ public class ImageModelImpl implements ImageModel {
         throw new IllegalArgumentException("Transmission failed");
       }
     }
+
+
     int height = sc.nextInt();
     int width = sc.nextInt();
     int maxNum = sc.nextInt();
@@ -251,6 +253,4 @@ public class ImageModelImpl implements ImageModel {
     }
     return ans.toString();
   }
-
-
 }

@@ -9,6 +9,7 @@ import java.util.function.Function;
 import controller.commands.ColorComponent;
 import controller.commands.Command;
 import controller.commands.DarkenBrighten;
+import controller.commands.File;
 import controller.commands.Filter;
 import controller.commands.Flip;
 import controller.commands.IntensityLumaValue;
@@ -123,6 +124,9 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
     this.knownCommands.put("sharpen", (Scanner s) -> {
       return new Filter(s.next(), s.next(), "sharpen");
     });
+    this.knownCommands.put("-file", (Scanner s) -> {
+      return new File(s.next());
+    });
   }
 
   /**
@@ -150,7 +154,6 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
         renderImageWithTryCatch("given command is invalid\n", "invalid command");
 
       } else {
-
         try {
           c = command.apply(scanner);
           c.initCommand(this.model);
@@ -161,6 +164,7 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
       }
 
     }
+
   }
 
   private void renderImageWithTryCatch(String message, String exc) {

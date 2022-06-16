@@ -33,17 +33,16 @@ public class FilterSharpenBlur extends AEdit {
   protected Pixel[][] setRGB(Pixel[][] image, int r, int c, int maxNum) {
 
     Pixel[][] kernel = getKernel(r, c, image);
-    int preClamp = 0;
     int red = 0;
-    int gr =0;
+    int gr = 0;
     int bl = 0;
-
+    double[][] filter = this.getFilter();
 
     for (int i = 0; i < kernel[0].length; i++) {
       for (int j = 0; j < kernel[0].length; j++) {
-        red =+ (int) Math.round(kernel[i][j].get(0) * this.getFilter()[i][j]);
-        gr =+ (int) Math.round(kernel[i][j].get(1) * this.getFilter()[i][j]);
-        bl =+ (int) Math.round(kernel[i][j].get(2) * this.getFilter()[i][j]);
+        red += (int) Math.round(kernel[i][j].get(0) * filter[i][j]);
+        gr += (int) Math.round(kernel[i][j].get(1) * filter[i][j]);
+        bl += (int) Math.round(kernel[i][j].get(2) * filter[i][j]);
       }
     }
 
@@ -58,19 +57,21 @@ public class FilterSharpenBlur extends AEdit {
    * @return matrix of filter values
    */
   private double[][] getFilter() {
-    double[][] filter = new double[][]{};
+
     if (this.filterType.equals("blur")) {
-      filter = new double[][]{{1 / 16, 1 / 8, 1 / 16},
-              {1 / 8, 1 / 4, 1 / 8},
-              {1 / 16, 1 / 8, 1 / 16}};
+     return new double[][]{{0.0625, 0.125, 0.0625},
+              {0.125, 0.25, 0.125},
+              {0.0625, 0.125, 0.0625}};
     } else if (this.filterType.equals("sharpen")) {
-      filter = new double[][]{{-1 / 8, -1 / 8, -1 / 8, -1 / 8, -1 / 8},
-              {-1 / 8, 1 / 4, 1 / 4, 1 / 4, - 1 / 8},
-              {-1 / 8, 1 / 4, 1, 1 / 4 ,- 1 / 8},
-              {-1 / 8, 1 / 4, 1 / 4, 1 / 4, - 1 / 8},
-              {-1 / 8, -1 / 8, -1 / 8, -1 / 8, -1 / 8}};
+      return new double[][]{{-0.125, -0.125, -0.125, -0.125, -0.125},
+              {-0.125, 0.25, 0.25, 0.25, -0.125},
+              {-0.125, 0.25, 1, 0.25,-0.125},
+              {-0.125, 0.25,0.25, 0.25, -0.125},
+              {-0.125, -0.125, -0.125, -0.125, -0.125}};
     }
-    return filter;
+    else {
+      return new double[][]{{1.0}};
+    }
   }
 
   private Pixel[][] getKernel(int r, int c, Pixel[][] image) {

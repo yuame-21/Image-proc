@@ -8,11 +8,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Scanner;
 
-import model.ImageModel;
 import model.ImageModelImpl;
 import model.edit.ColorComponent;
+import model.edit.Edit;
 import model.edit.FilterSharpenBlur;
 import model.edit.Transform;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Provides tests for the {@link ImageModelImpl} class.
@@ -20,71 +22,71 @@ import model.edit.Transform;
 public class ImageModelImplTest extends TestCase {
 
   String expectedValue2x2 = "2\n" +
-      "2\n" +
-      "255\n" +
-      "170\n" +
-      "0\n" +
-      "255\n" +
-      "140\n" +
-      "190\n" +
-      "41\n" +
-      "0\n" +
-      "171\n" +
-      "169\n" +
-      "255\n" +
-      "0\n" +
-      "127\n";
+          "2\n" +
+          "255\n" +
+          "170\n" +
+          "0\n" +
+          "255\n" +
+          "140\n" +
+          "190\n" +
+          "41\n" +
+          "0\n" +
+          "171\n" +
+          "169\n" +
+          "255\n" +
+          "0\n" +
+          "127\n";
   String expectedValuePink = "4\n" +
-      "4\n" +
-      "255\n" +
-      "170\n" +
-      "0\n" +
-      "255\n" +
-      "140\n" +
-      "190\n" +
-      "41\n" +
-      "0\n" +
-      "171\n" +
-      "169\n" +
-      "255\n" +
-      "0\n" +
-      "127\n" +
-      "0\n" +
-      "0\n" +
-      "0\n" +
-      "255\n" +
-      "0\n" +
-      "127\n" +
-      "239\n" +
-      "150\n" +
-      "8\n" +
-      "0\n" +
-      "0\n" +
-      "0\n" +
-      "0\n" +
-      "171\n" +
-      "169\n" +
-      "0\n" +
-      "0\n" +
-      "0\n" +
-      "170\n" +
-      "0\n" +
-      "255\n" +
-      "239\n" +
-      "150\n" +
-      "8\n" +
-      "170\n" +
-      "0\n" +
-      "255\n" +
-      "0\n" +
-      "0\n" +
-      "0\n" +
-      "140\n" +
-      "190\n" +
-      "41\n" +
-      "0\n" +
-      "0\n" +
-      "0\n";
+          "4\n" +
+          "255\n" +
+          "170\n" +
+          "0\n" +
+          "255\n" +
+          "140\n" +
+          "190\n" +
+          "41\n" +
+          "0\n" +
+          "171\n" +
+          "169\n" +
+          "255\n" +
+          "0\n" +
+          "127\n" +
+          "0\n" +
+          "0\n" +
+          "0\n" +
+          "255\n" +
+          "0\n" +
+          "127\n" +
+          "239\n" +
+          "150\n" +
+          "8\n" +
+          "0\n" +
+          "0\n" +
+          "0\n" +
+          "0\n" +
+          "171\n" +
+          "169\n" +
+          "0\n" +
+          "0\n" +
+          "0\n" +
+          "170\n" +
+          "0\n" +
+          "255\n" +
+          "239\n" +
+          "150\n" +
+          "8\n" +
+          "170\n" +
+          "0\n" +
+          "255\n" +
+          "0\n" +
+          "0\n" +
+          "0\n" +
+          "140\n" +
+          "190\n" +
+          "41\n" +
+          "0\n" +
+          "0\n" +
+          "0\n";
 
   @Test
   public void testConstructor() {
@@ -101,10 +103,9 @@ public class ImageModelImplTest extends TestCase {
 
   @Test
   public void testLoad() {
-    ImageModel modelNull = new ImageModelImpl();
-    ImageModel model1 = new ImageModelImpl();
-    ImageModel model2 = new ImageModelImpl();
-    ImageModel model3 = new ImageModelImpl();
+    ImageModelImpl modelNull = new ImageModelImpl();
+    ImageModelImpl model1 = new ImageModelImpl();
+    ImageModelImpl model2 = new ImageModelImpl();
 
     // test exceptions
     try {
@@ -127,7 +128,7 @@ public class ImageModelImplTest extends TestCase {
 
     try {
       model1.load("././res/corrupt.ppm", "slay");
-      fail("file is not a real ppm nor another valid image file therefore should not be valid");
+      fail("file is not a real ppm therefore should not be valid");
     } catch (IllegalArgumentException e) {
       if (!e.getMessage().equals("Inputs cannot be null")) {
         fail("File should be returning null");
@@ -140,13 +141,6 @@ public class ImageModelImplTest extends TestCase {
     model2.load("././res/2x2.ppm", "22");
     assertEquals(expectedValuePink, model2.generateString("pink"));
     assertEquals(expectedValue2x2, model2.generateString("22"));
-
-    model3.load("././res/2by2.png", "22png");
-    assertEquals(expectedValue2x2, model3.generateString("22png"));
-    model3.load("././res/2by2.jpg", "22jpg");
-    assertEquals(expectedValue2x2, model3.generateString("22jpg"));
-    model3.load("././res/2by2.bmp", "22bmp");
-    assertEquals(expectedValue2x2, model3.generateString("22bmp"));
   }
 
   @Test
@@ -164,22 +158,21 @@ public class ImageModelImplTest extends TestCase {
       }
     }
 
-    String Red2x2 = "P3\n" +
-        "2\n" +
-        "2\n" +
-        "255\n" +
-        "170\n" +
-        "170\n" +
-        "170\n" +
-        "140\n" +
-        "140\n" +
-        "140\n" +
-        "0\n" +
-        "0\n" +
-        "0\n" +
-        "255\n" +
-        "255\n" +
-        "255\n";
+    String Red2x2 = "2\n" +
+            "2\n" +
+            "255\n" +
+            "170\n" +
+            "170\n" +
+            "170\n" +
+            "140\n" +
+            "140\n" +
+            "140\n" +
+            "0\n" +
+            "0\n" +
+            "0\n" +
+            "255\n" +
+            "255\n" +
+            "255\n";
 
     mod1.editImage("2by2", "Red22", new ColorComponent("red"));
     assertEquals(Red2x2, mod1.generateString("Red22"));
@@ -208,8 +201,8 @@ public class ImageModelImplTest extends TestCase {
       mod.save("././res/Koala.ppm", "hello");
       fail("This is an invalid file name");
     } catch (IllegalArgumentException e) {
-      if (!e.getMessage().equals("Given file name is not valid")) {
-        fail("Message should be \" Given file name is not valid \"");
+      if (!e.getMessage().equals("Given file name is not found")) {
+        fail("Message should be \" Given file name is not found \"");
       }
     }
 
@@ -218,7 +211,7 @@ public class ImageModelImplTest extends TestCase {
     mod.save("././res/Save.ppm", "Test");
     try {
       Scanner data = new Scanner(new FileReader("././res/Save.ppm"));
-      String[] ar = ("P3\n" + mod.generateString("Test")).split("\n");
+      String[] ar = mod.generateString("Test").split("\n");
       int c = 0;
       while (data.hasNext()) {
         assertEquals(data.next(), ar[c]);
@@ -231,7 +224,7 @@ public class ImageModelImplTest extends TestCase {
     mod.save("././res/pink2.ppm", "pink2");
     try {
       Scanner data = new Scanner(new FileReader("././res/pink2.ppm"));
-      String[] ar = ("P3\n" + mod.generateString("pink2")).split("\n");
+      String[] ar = mod.generateString("pink2").split("\n");
       int c = 0;
       while (data.hasNext()) {
         assertEquals(data.next(), ar[c]);
@@ -276,22 +269,21 @@ public class ImageModelImplTest extends TestCase {
     ImageModelImpl mod1 = new ImageModelImpl();
     mod1.load("././res/2x2.ppm", "2by2");
 
-    String Blurred2x2 = "P3\n" +
-        "2\n" +
-        "2\n" +
-        "255\n" +
-        "58\n" +
-        "83\n" +
-        "74\n" +
-        "64\n" +
-        "92\n" +
-        "82\n" +
-        "75\n" +
-        "84\n" +
-        "58\n" +
-        "85\n" +
-        "75\n" +
-        "59\n";
+    String Blurred2x2 = "2\n" +
+            "2\n" +
+            "255\n" +
+            "77\n" +
+            "45\n" +
+            "98\n" +
+            "77\n" +
+            "65\n" +
+            "49\n" +
+            "47\n" +
+            "53\n" +
+            "73\n" +
+            "85\n" +
+            "18\n" +
+            "53\n";
 
     mod1.editImage("2by2", "Blur2", new FilterSharpenBlur("blur"));
     String s = mod1.generateString("Blur2");
@@ -303,22 +295,21 @@ public class ImageModelImplTest extends TestCase {
     ImageModelImpl mod1 = new ImageModelImpl();
     mod1.load("././res/2x2.ppm", "2by2");
 
-    String Sharpened2x2 = "P3\n" +
-        "2\n" +
-        "2\n" +
-        "255\n" +
-        "115\n" +
-        "102\n" +
-        "80\n" +
-        "209\n" +
-        "186\n" +
-        "145\n" +
-        "163\n" +
-        "146\n" +
-        "113\n" +
-        "124\n" +
-        "110\n" +
-        "86\n";
+    String Sharpened2x2 = "2\n" +
+            "2\n" +
+            "255\n" +
+            "255\n" +
+            "91\n" +
+            "255\n" +
+            "255\n" +
+            "255\n" +
+            "179\n" +
+            "192\n" +
+            "255\n" +
+            "255\n" +
+            "255\n" +
+            "151\n" +
+            "255\n";
 
     mod1.editImage("2by2", "Sharpen2", new FilterSharpenBlur("sharpen"));
     assertEquals(Sharpened2x2, mod1.generateString("Sharpen2"));
@@ -329,22 +320,21 @@ public class ImageModelImplTest extends TestCase {
     ImageModelImpl mod1 = new ImageModelImpl();
     mod1.load("././res/2x2.ppm", "2by2");
 
-    String Grey2x2 = "P3\n" +
-        "2\n" +
-        "2\n" +
-        "255\n" +
-        "55\n" +
-        "55\n" +
-        "55\n" +
-        "169\n" +
-        "169\n" +
-        "169\n" +
-        "135\n" +
-        "135\n" +
-        "135\n" +
-        "63\n" +
-        "63\n" +
-        "63\n";
+    String Grey2x2 = "2\n" +
+            "2\n" +
+            "255\n" +
+            "55\n" +
+            "55\n" +
+            "55\n" +
+            "169\n" +
+            "169\n" +
+            "169\n" +
+            "135\n" +
+            "135\n" +
+            "135\n" +
+            "63\n" +
+            "63\n" +
+            "63\n";
 
     mod1.editImage("2by2", "Grey2", new Transform("greyscale"));
     assertEquals(Grey2x2, mod1.generateString("Grey2"));
@@ -355,22 +345,21 @@ public class ImageModelImplTest extends TestCase {
     ImageModelImpl mod1 = new ImageModelImpl();
     mod1.load("././res/2x2.ppm", "2by2");
 
-    String Sepia2x2 = "P3\n" +
-        "2\n" +
-        "2\n" +
-        "255\n" +
-        "115\n" +
-        "102\n" +
-        "80\n" +
-        "209\n" +
-        "186\n" +
-        "145\n" +
-        "163\n" +
-        "146\n" +
-        "113\n" +
-        "124\n" +
-        "110\n" +
-        "86\n";
+    String Sepia2x2 = "2\n" +
+            "2\n" +
+            "255\n" +
+            "115\n" +
+            "102\n" +
+            "80\n" +
+            "209\n" +
+            "186\n" +
+            "145\n" +
+            "163\n" +
+            "146\n" +
+            "113\n" +
+            "124\n" +
+            "110\n" +
+            "86\n";
 
     mod1.editImage("2by2", "sepia2", new Transform("sepia"));
     assertEquals(Sepia2x2, mod1.generateString("sepia2"));
