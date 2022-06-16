@@ -54,6 +54,7 @@ public class ImageModelImpl implements ImageModel {
       // moves to next load as this image is not a ppm
       try {
         load(ImageIO.read(new FileInputStream(path)), fileName);
+        return;
       } catch (IOException e) {
         throw new IllegalArgumentException("Transmission failed");
       }

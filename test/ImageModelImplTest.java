@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Scanner;
 
+import model.ImageModel;
 import model.ImageModelImpl;
 import model.edit.ColorComponent;
 import model.edit.Edit;
@@ -103,9 +104,10 @@ public class ImageModelImplTest extends TestCase {
 
   @Test
   public void testLoad() {
-    ImageModelImpl modelNull = new ImageModelImpl();
-    ImageModelImpl model1 = new ImageModelImpl();
-    ImageModelImpl model2 = new ImageModelImpl();
+    ImageModel modelNull = new ImageModelImpl();
+    ImageModel model1 = new ImageModelImpl();
+    ImageModel model2 = new ImageModelImpl();
+    ImageModel model3 = new ImageModelImpl();
 
     // test exceptions
     try {
@@ -141,6 +143,9 @@ public class ImageModelImplTest extends TestCase {
     model2.load("././res/2x2.ppm", "22");
     assertEquals(expectedValuePink, model2.generateString("pink"));
     assertEquals(expectedValue2x2, model2.generateString("22"));
+
+    model3.load("././2by2.png", "22PNG");
+    assertEquals(expectedValue2x2, model3.generateString("22PNG"));
   }
 
   @Test
@@ -201,8 +206,8 @@ public class ImageModelImplTest extends TestCase {
       mod.save("././res/Koala.ppm", "hello");
       fail("This is an invalid file name");
     } catch (IllegalArgumentException e) {
-      if (!e.getMessage().equals("Given file name is not found")) {
-        fail("Message should be \" Given file name is not found \"");
+      if (!e.getMessage().equals("Given file name is not valid")) {
+        fail("Message should be \"Given file name is not valid\"");
       }
     }
 
@@ -211,7 +216,7 @@ public class ImageModelImplTest extends TestCase {
     mod.save("././res/Save.ppm", "Test");
     try {
       Scanner data = new Scanner(new FileReader("././res/Save.ppm"));
-      String[] ar = mod.generateString("Test").split("\n");
+      String[] ar = ("P3\n" + mod.generateString("Test")).split("\n");
       int c = 0;
       while (data.hasNext()) {
         assertEquals(data.next(), ar[c]);
@@ -224,7 +229,7 @@ public class ImageModelImplTest extends TestCase {
     mod.save("././res/pink2.ppm", "pink2");
     try {
       Scanner data = new Scanner(new FileReader("././res/pink2.ppm"));
-      String[] ar = mod.generateString("pink2").split("\n");
+      String[] ar = ("P3\n" + mod.generateString("pink2")).split("\n");
       int c = 0;
       while (data.hasNext()) {
         assertEquals(data.next(), ar[c]);
@@ -239,8 +244,6 @@ public class ImageModelImplTest extends TestCase {
 
     mod.save("././res/22png.png", "22PNG");
     assertTrue(new File("././res/22png.png").isFile());
-
-
   }
 
   @Test
