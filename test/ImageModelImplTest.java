@@ -95,7 +95,7 @@ public class ImageModelImplTest extends TestCase {
       modEmpty.generateString("noFiles");
       fail("There are no files");
     } catch (IllegalArgumentException e) {
-      if (!e.getMessage().equals("Given file name is not found")) {
+      if (!e.getMessage().equals("Given file name is not valid")) {
         fail("Wrong message");
       }
     }
@@ -119,10 +119,10 @@ public class ImageModelImplTest extends TestCase {
 
     try {
       model1.load("././res/mimi", "me");
-      fail("file is not real therefore should be null");
+      fail("file is not real therefore the path is incorrect");
     } catch (IllegalArgumentException e) {
-      if (!e.getMessage().equals("File not found")) {
-        fail("File should be not found");
+      if (!e.getMessage().equals("Invalid path format")) {
+        fail("the path is false");
       }
     }
 
@@ -130,8 +130,8 @@ public class ImageModelImplTest extends TestCase {
       model1.load("././res/corrupt.ppm", "slay");
       fail("file is not a real ppm therefore should not be valid");
     } catch (IllegalArgumentException e) {
-      if (!e.getMessage().equals("Inputs cannot be null")) {
-        fail("File should be returning null");
+      if (!e.getMessage().equals("Given file is not a real ppm")) {
+        fail("File is not a real ppm");
       }
     }
 
@@ -153,7 +153,7 @@ public class ImageModelImplTest extends TestCase {
     try {
       mod1.editImage("BY", "Red22", new ColorComponent("red"));
     } catch (IllegalArgumentException e) {
-      if (!e.getMessage().equals("Given file name is not found")) {
+      if (!e.getMessage().equals("Given file name is not valid")) {
         fail("File name is invalid");
       }
     }

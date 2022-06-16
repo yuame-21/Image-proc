@@ -44,6 +44,21 @@ public class ImageModelImpl implements ImageModel {
       throw new IllegalArgumentException("Inputs cannot be null");
     }
 
+    String type = path.substring(path.length() - 4);
+
+    if (!(type.equals(".ppm") || type.equals(".png") || type.equals(".jpg") || type.equals(".bpm"))) {
+      throw new IllegalArgumentException("Invalid path format");
+    }
+
+    if (!type.equals(".ppm")) {
+      // moves to next load as this image is not a ppm
+      try {
+        load(ImageIO.read(new FileInputStream(path)), fileName);
+      } catch (IOException e) {
+        throw new IllegalArgumentException("Transmission failed");
+      }
+    }
+
     Scanner sc;
 
     try {
@@ -66,14 +81,8 @@ public class ImageModelImpl implements ImageModel {
     token = sc.next();
 
     if (!token.equals("P3")) {
-      // moves to next load as this image is not a ppm
-      try {
-        load(read(new File(path)), fileName);
-      } catch (IOException e) {
-        throw new IllegalArgumentException("Transmission failed");
-      }
+      throw new IllegalArgumentException("Given file is not a real ppm");
     }
-
 
     int height = sc.nextInt();
     int width = sc.nextInt();
