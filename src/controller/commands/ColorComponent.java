@@ -23,7 +23,7 @@ public class ColorComponent extends ACommand {
 
     if (!(color.equals("red") || color.equals("green") || color.equals("blue"))) {
       throw new IllegalArgumentException("not a valid color component! " +
-              "enter either 'red,' 'green,'or 'blue'");
+          "enter either 'red,' 'green,'or 'blue'");
     }
 
     this.color = color;
@@ -41,7 +41,7 @@ public class ColorComponent extends ACommand {
   public void initCommand(ImageModel model) {
     model.editImage(this.originalName, this.revisedName, new model.edit.ColorComponent(this.color));
     this.updateCommandMessage("Greyscaled image, " + originalName + ", for color component, "
-            + this.color + ". Renamed edited image as " + revisedName + "\n");
+        + this.color + ". Renamed edited image as " + revisedName + "\n");
   }
 
 

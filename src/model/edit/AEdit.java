@@ -35,7 +35,7 @@ public abstract class AEdit implements Edit {
   /**
    * Ensures that the color values to not exceed the max number.
    *
-   * @param i number to check
+   * @param i      number to check
    * @param maxNum maximum number color value of image
    * @return given number if it is under the max, else, the number adjusted to fit the max.
    */

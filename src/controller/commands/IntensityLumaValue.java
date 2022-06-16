@@ -21,7 +21,7 @@ public class IntensityLumaValue extends ACommand {
    * @throws IllegalArgumentException if the String is not value, luma, or intensity
    */
   public IntensityLumaValue(String originalName, String revisedName, String type)
-          throws IllegalArgumentException {
+      throws IllegalArgumentException {
     super(originalName, revisedName);
     if (!(type.equals("luma") || type.equals("value") || type.equals("intensity"))) {
       throw new IllegalArgumentException("must enter value, luma, or intensity");
@@ -43,7 +43,7 @@ public class IntensityLumaValue extends ACommand {
     model.editImage(this.originalName, this.revisedName, editor);
 
     this.updateCommandMessage("Greyscaled image, " + originalName + ", for "
-            + this.type + ". Renamed edited image as " + revisedName + "\n");
+        + this.type + ". Renamed edited image as " + revisedName + "\n");
   }
 
 }

@@ -10,6 +10,7 @@ public interface ImageProcessorView {
 
   /**
    * Renders a given String for the user to view.
+   *
    * @param message text to render
    * @throws IOException if the transmission fails
    */

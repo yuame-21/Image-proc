@@ -42,7 +42,7 @@ public abstract class ACommand implements Command {
    */
   @Override
   public void renderCommandMessage(ImageProcessorView view) throws IllegalStateException,
-          IllegalArgumentException {
+      IllegalArgumentException {
     if (this.message == null) {
       throw new IllegalArgumentException("the command message is null");
     }

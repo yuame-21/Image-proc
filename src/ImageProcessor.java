@@ -23,7 +23,7 @@ public final class ImageProcessor {
     ImageProcessorView view = new ImageProcessorTextView();
 
     ImageProcessorController controller = new ImageProcessorControllerImpl(model,
-            view, new InputStreamReader(System.in));
+        view, new InputStreamReader(System.in));
 
     controller.processImage();
 

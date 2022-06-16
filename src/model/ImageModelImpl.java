@@ -119,9 +119,9 @@ public class ImageModelImpl implements ImageModel {
     for (int i = 0; i < width; i++) {
       for (int j = 0; j < height; j++) {
         image[i][j] =
-                new Pixel(new Color(imageFile.getRGB(i, j)).getRed(),
-                        new Color(imageFile.getRGB(i, j)).getGreen(),
-                        new Color(imageFile.getRGB(i, j)).getBlue());
+            new Pixel(new Color(imageFile.getRGB(i, j)).getRed(),
+                new Color(imageFile.getRGB(i, j)).getGreen(),
+                new Color(imageFile.getRGB(i, j)).getBlue());
       }
     }
 

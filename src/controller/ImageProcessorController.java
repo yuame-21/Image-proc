@@ -11,6 +11,7 @@ public interface ImageProcessorController {
    * Runs the image processor program, taking in command inputs from the user.
    * and delegating them where necessary.
    * Renders messages at start, and in response to the reader.
+   *
    * @throws IllegalStateException if message rendering fails
    */
   public void processImage() throws IllegalStateException;

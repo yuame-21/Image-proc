@@ -42,7 +42,7 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
    * @throws IllegalArgumentException if any of the parameters are null
    */
   public ImageProcessorControllerImpl(ImageModel model, ImageProcessorView view, Readable input)
-          throws IllegalArgumentException {
+      throws IllegalArgumentException {
     if (model == null || input == null || view == null) {
       throw new IllegalArgumentException("Model, view, and/or input cannot be null");
     }
@@ -63,55 +63,55 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
    */
   private void addCommands() {
     this.knownCommands.put("brighten",
-            (Scanner s) -> {
-              return new DarkenBrighten(s.next(),
-                      s.next(), s.nextInt(), "brighten");
-            });
+        (Scanner s) -> {
+          return new DarkenBrighten(s.next(),
+              s.next(), s.nextInt(), "brighten");
+        });
     this.knownCommands.put("darken",
-            (Scanner s) -> {
-              return new DarkenBrighten(s.next(),
-                      s.next(), s.nextInt(), "darken");
-            });
+        (Scanner s) -> {
+          return new DarkenBrighten(s.next(),
+              s.next(), s.nextInt(), "darken");
+        });
     this.knownCommands.put("red-component",
-            (Scanner s) -> {
-              return new ColorComponent(s.next(), s.next(), "red");
-            });
+        (Scanner s) -> {
+          return new ColorComponent(s.next(), s.next(), "red");
+        });
     this.knownCommands.put("green-component",
-            (Scanner s) -> {
-              return new ColorComponent(s.next(), s.next(), "green");
-            });
+        (Scanner s) -> {
+          return new ColorComponent(s.next(), s.next(), "green");
+        });
     this.knownCommands.put("blue-component",
-            (Scanner s) -> {
-              return new ColorComponent(s.next(), s.next(), "blue");
-            });
+        (Scanner s) -> {
+          return new ColorComponent(s.next(), s.next(), "blue");
+        });
     this.knownCommands.put("horizontal-flip",
-            (Scanner s) -> {
-              return new Flip(s.next(), s.next(), "horizontal");
-            });
+        (Scanner s) -> {
+          return new Flip(s.next(), s.next(), "horizontal");
+        });
     this.knownCommands.put("vertical-flip",
-            (Scanner s) -> {
-              return new Flip(s.next(), s.next(), "vertical");
-            });
+        (Scanner s) -> {
+          return new Flip(s.next(), s.next(), "vertical");
+        });
     this.knownCommands.put("value-component",
-            (Scanner s) -> {
-              return new IntensityLumaValue(s.next(), s.next(), "value");
-            });
+        (Scanner s) -> {
+          return new IntensityLumaValue(s.next(), s.next(), "value");
+        });
     this.knownCommands.put("luma-component",
-            (Scanner s) -> {
-              return new IntensityLumaValue(s.next(), s.next(), "luma");
-            });
+        (Scanner s) -> {
+          return new IntensityLumaValue(s.next(), s.next(), "luma");
+        });
     this.knownCommands.put("intensity-component",
-            (Scanner s) -> {
-              return new IntensityLumaValue(s.next(), s.next(), "intensity");
-            });
+        (Scanner s) -> {
+          return new IntensityLumaValue(s.next(), s.next(), "intensity");
+        });
     this.knownCommands.put("load",
-            (Scanner s) -> {
-              return new Load(s.next(), s.next());
-            });
+        (Scanner s) -> {
+          return new Load(s.next(), s.next());
+        });
     this.knownCommands.put("save",
-            (Scanner s) -> {
-              return new Save(s.next(), s.next());
-            });
+        (Scanner s) -> {
+          return new Save(s.next(), s.next());
+        });
     this.knownCommands.put("sepia", (Scanner s) -> {
       return new Transformation(s.next(), s.next(), "sepia");
     });
@@ -181,20 +181,20 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
    */
   private void welcome() {
     renderImageWithTryCatch("Welcome to Mimi and Ella's Image Processor <3\n\n"
-            + "To use this program, first load a file with the command:\n"
-            + "load + file + name\n"
-            + "Or, use a .txt script with:\n"
-            + "-file + file.txt\n\n"
-            + "Then, you can edit the image in the following ways:\n"
-            + "brighten + degree, darken + degree\n"
-            + "red-component, green-component, blue-component\n"
-            + "horizontal-flip, vertical-flip\n"
-            + "value-component, luma-component, intensity-component\n"
-            + "greyscale, sepia, blur, sharpen\n"
-            + "To save your image, type:\n"
-            + "save + file + name\n\n"
-            + "To quit, type:\n"
-            + "q or Q\n", "rendering the welcome message");
+        + "To use this program, first load a file with the command:\n"
+        + "load + file + name\n"
+        + "Or, use a .txt script with:\n"
+        + "-file + file.txt\n\n"
+        + "Then, you can edit the image in the following ways:\n"
+        + "brighten + degree, darken + degree\n"
+        + "red-component, green-component, blue-component\n"
+        + "horizontal-flip, vertical-flip\n"
+        + "value-component, luma-component, intensity-component\n"
+        + "greyscale, sepia, blur, sharpen\n"
+        + "To save your image, type:\n"
+        + "save + file + name\n\n"
+        + "To quit, type:\n"
+        + "q or Q\n", "rendering the welcome message");
   }
 
   /**
@@ -202,7 +202,7 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
    */
   private void quit() {
     renderImageWithTryCatch("Program quit.\n\n"
-            + "bye! <3", "rendering the quit message");
+        + "bye! <3", "rendering the quit message");
   }
 
 

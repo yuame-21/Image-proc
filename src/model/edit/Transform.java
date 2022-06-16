@@ -12,7 +12,7 @@ public class Transform extends AEdit {
    * @param transformType type of transform (greyscale or sepia)
    * @throws IllegalArgumentException if transform type is invalid
    */
-  public Transform(String transformType) throws IllegalArgumentException{
+  public Transform(String transformType) throws IllegalArgumentException {
     if (!(transformType.equals("greyscale") || transformType.equals("sepia"))) {
       throw new IllegalArgumentException("invalid transform type: must be greyscale or sepia");
     }
@@ -31,11 +31,11 @@ public class Transform extends AEdit {
   @Override
   protected Pixel[][] setRGB(Pixel[][] image, int r, int c, int maxNum) {
     double[][] transform = this.getTransform();
-    Pixel pixel = new Pixel(0,0,0);
+    Pixel pixel = new Pixel(0, 0, 0);
 
     for (int i = 0; i < 3; i++) {
       int preClamp = (int) Math.round(image[r][c].get(0) * transform[i][0]
-              + image[r][c].get(1) * transform[i][1] + image[r][c].get(2) * transform[i][2]);
+          + image[r][c].get(1) * transform[i][1] + image[r][c].get(2) * transform[i][2]);
 
       pixel.set(i, clamp(preClamp, maxNum));
     }
@@ -53,12 +53,12 @@ public class Transform extends AEdit {
 
     if (this.transformType.equals("greyscale")) {
       transform = new double[][]{{0.2126, 0.7152, 0.0722},
-              {0.2126, 0.7152, 0.0722},
-              {0.2126, 0.7152, 0.0722}};
+          {0.2126, 0.7152, 0.0722},
+          {0.2126, 0.7152, 0.0722}};
     } else if (this.transformType.equals("sepia")) {
       transform = new double[][]{{0.393, 0.769, 0.189},
-              {0.349, 0.686, 0.168},
-              {0.272, 0.534, 0.131}};
+          {0.349, 0.686, 0.168},
+          {0.272, 0.534, 0.131}};
     }
     return transform;
   }

@@ -10,6 +10,7 @@ public class FlipHZ extends AEdit {
 
   /**
    * A FlipHZ is either a horizontal flip or vertical flip, based on the string input.
+   *
    * @param s valid flip types are 'horizontal' or 'vertical'
    * @throws IllegalArgumentException if invalid flip type is entered
    */

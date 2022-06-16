@@ -46,7 +46,7 @@ public class ILV extends AEdit {
         newNum = Math.round(sum / 3);
         break;
       case "luma":
-        newNum = (int) Math.round(0.2126 * pixel.get(0)+ .7152 * pixel.get(1) + 0.0722 * pixel.get(2));
+        newNum = (int) Math.round(0.2126 * pixel.get(0) + .7152 * pixel.get(1) + 0.0722 * pixel.get(2));
         break;
       case "value":
         Arrays.sort(pixel.getChannel());

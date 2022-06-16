@@ -24,7 +24,7 @@ public class DarkenBrighten extends ACommand {
    *                                  degree is negative.
    */
   public DarkenBrighten(String originalName, String revisedName, int degree, String direction)
-          throws IllegalArgumentException {
+      throws IllegalArgumentException {
     super(originalName, revisedName);
     if ((!(direction.equals("brighten") || direction.equals("darken"))) || (degree < 0)) {
       throw new IllegalArgumentException("invalid brighten/darken direction");
@@ -48,7 +48,7 @@ public class DarkenBrighten extends ACommand {
   public void initCommand(ImageModel model) {
     model.editImage(this.originalName, this.revisedName, new BrightenDarken(this.degree));
     this.updateCommandMessage(this.direction + "ed image, " + originalName + ", by "
-            + Math.abs(this.degree) + ". Renamed edited image as " + revisedName + "\n");
+        + Math.abs(this.degree) + ". Renamed edited image as " + revisedName + "\n");
   }
 
 }

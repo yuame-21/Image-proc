@@ -1,9 +1,5 @@
 package model;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 /**
  * Represents the implementation of an {@code ImageModelState}.
  * this holds the 3-d array of colors that make up an image,

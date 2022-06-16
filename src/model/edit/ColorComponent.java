@@ -18,7 +18,7 @@ public class ColorComponent extends AEdit {
   public ColorComponent(String color) {
     if (!(color.equals("red") || color.equals("green") || color.equals("blue"))) {
       throw new IllegalArgumentException("not a valid color component! " +
-              "enter either 'red,' 'green,'or 'blue'");
+          "enter either 'red,' 'green,'or 'blue'");
     }
 
     this.color = color;
@@ -50,7 +50,6 @@ public class ColorComponent extends AEdit {
       default:
         throw new IllegalStateException("must enter red, green, or blue");
     }
-
 
     for (int rgb = 0; rgb < 3; rgb++) {
 

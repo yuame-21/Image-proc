@@ -1,8 +1,5 @@
 package controller.commands;
 
-import java.util.Scanner;
-import java.util.function.Function;
-
 import model.ImageModel;
 import view.ImageProcessorView;
 
@@ -15,15 +12,17 @@ public interface Command {
 
   /**
    * Applies the commmand to a given model in order to manipulate an image.
+   *
    * @param model what to perform the command on
    */
   void initCommand(ImageModel model);
 
   /**
    * Renders a message specific to the command to describe to the user.
+   *
    * @param view where to render the message
    * @throws IllegalStateException if the transmission fails.
    */
-  void renderCommandMessage(ImageProcessorView view ) throws IllegalStateException;
+  void renderCommandMessage(ImageProcessorView view) throws IllegalStateException;
 
 }

@@ -19,7 +19,7 @@ public class Flip extends ACommand {
    * @throws IllegalArgumentException if the direction is not vertical or horizontal
    */
   public Flip(String originalName, String revisedName, String direction)
-          throws IllegalArgumentException {
+      throws IllegalArgumentException {
     super(originalName, revisedName);
 
     if (!(direction.equals("horizontal") || direction.equals("vertical"))) {
@@ -38,9 +38,9 @@ public class Flip extends ACommand {
    */
   @Override
   public void initCommand(ImageModel model) {
-      model.editImage(this.originalName, this.revisedName, new FlipHZ(this.flipDirection));
-      this.updateCommandMessage(this.flipDirection + "ly flipped image, " + originalName + ". " +
-              "Renamed edited image as " + revisedName + "\n");
+    model.editImage(this.originalName, this.revisedName, new FlipHZ(this.flipDirection));
+    this.updateCommandMessage(this.flipDirection + "ly flipped image, " + originalName + ". " +
+        "Renamed edited image as " + revisedName + "\n");
 
   }
 

@@ -17,7 +17,7 @@ public class Transformation extends ACommand {
    *
    * @param originalName old name
    * @param revisedName  name to change to
-   * @param string            transform types are sepia and greyscale
+   * @param string       transform types are sepia and greyscale
    * @throws IllegalArgumentException if invalid transform type s
    */
   public Transformation(String originalName, String revisedName, String string) {
@@ -40,7 +40,7 @@ public class Transformation extends ACommand {
     model.editImage(this.originalName, this.revisedName, new Transform(this.s));
 
     this.updateCommandMessage("Transformed image, " + originalName + ", to "
-            + this.s + ". Renamed edited image as " + revisedName + "\n");
+        + this.s + ". Renamed edited image as " + revisedName + "\n");
   }
 
 
