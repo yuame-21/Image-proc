@@ -84,8 +84,8 @@ public class EditTest {
     new BrightenDarken(-30)
             .applyEdit("test", this.twoXTwo);
     deepEquals(new Pixel[][]{{new Pixel(160, 0, 225),
-            new Pixel(130, 180, 31)},
-            {new Pixel(0, 161, 159), new Pixel(225, 0, 117)}},
+                    new Pixel(130, 180, 31)},
+                    {new Pixel(0, 161, 159), new Pixel(225, 0, 117)}},
             this.twoXTwo.copyImage());
   }
 
@@ -146,6 +146,18 @@ public class EditTest {
   }
 
   @Test
+  public void FlipConsExc() {
+    try {
+      new FlipHZ("oatmeal");
+    } catch (IllegalArgumentException e) {
+      if (!e.getMessage().equals("only valid flip types are horizontal and vertical")) {
+        fail("should have thrown illegal arg exc: only valid flip" +
+                " types are horizontal and vertical");
+      }
+    }
+  }
+
+  @Test
   public void applyEditLIV() {
     deepEquals(new Pixel[][]{{new Pixel(141, 141, 141),
                     new Pixel(123, 123, 123)},
@@ -198,9 +210,9 @@ public class EditTest {
   @Test
   public void testFilter() {
     deepEquals(new Pixel[][]{{new Pixel(58, 83, 74),
-            new Pixel(64, 92, 82)},
-            {new Pixel(75, 84, 58),
-                    new Pixel(85, 75, 59)}},
+                    new Pixel(64, 92, 82)},
+                    {new Pixel(75, 84, 58),
+                            new Pixel(85, 75, 59)}},
             new FilterSharpenBlur("blur").applyEdit("test",
                     this.twoXTwo).copyImage());
     deepEquals(new Pixel[][]{{new Pixel(115, 102, 80),
@@ -214,7 +226,7 @@ public class EditTest {
   @Test
   public void testFilterCons() {
     try {
-      new FilterSharpenBlur("oatmeal") ;
+      new FilterSharpenBlur("oatmeal");
     } catch (IllegalArgumentException e) {
       if (!(e.getMessage().equals("invalid filter type"))) {
         fail("should have thrown illegal arg exc: invalid filter type");
