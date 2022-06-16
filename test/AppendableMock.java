@@ -1,7 +1,7 @@
 import java.io.IOException;
 
 /**
- * Mock class.
+ * Mock class for an Appendable.
  */
 public class AppendableMock implements Appendable {
   @Override

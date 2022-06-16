@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.nio.CharBuffer;
 
 /**
- * mock.
+ * Mock class for the Readable.
  */
 public class ReadableMock implements Readable {
   @Override

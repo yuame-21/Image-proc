@@ -19,104 +19,104 @@ import model.edit.Transform;
 public class ImageModelImplTest extends TestCase {
 
   String expectedValue2x2 = "2\n" +
-      "2\n" +
-      "255\n" +
-      "170\n" +
-      "0\n" +
-      "255\n" +
-      "140\n" +
-      "190\n" +
-      "41\n" +
-      "0\n" +
-      "171\n" +
-      "169\n" +
-      "255\n" +
-      "0\n" +
-      "127\n";
+          "2\n" +
+          "255\n" +
+          "170\n" +
+          "0\n" +
+          "255\n" +
+          "140\n" +
+          "190\n" +
+          "41\n" +
+          "0\n" +
+          "171\n" +
+          "169\n" +
+          "255\n" +
+          "0\n" +
+          "127\n";
 
   String expectedValue2x2PNGBMP = "2\n" +
-      "2\n" +
-      "255\n" +
-      "170\n" +
-      "0\n" +
-      "255\n" +
-      "0\n" +
-      "171\n" +
-      "169\n" +
-      "140\n" +
-      "190\n" +
-      "41\n" +
-      "255\n" +
-      "0\n" +
-      "127\n";
+          "2\n" +
+          "255\n" +
+          "170\n" +
+          "0\n" +
+          "255\n" +
+          "0\n" +
+          "171\n" +
+          "169\n" +
+          "140\n" +
+          "190\n" +
+          "41\n" +
+          "255\n" +
+          "0\n" +
+          "127\n";
 
   String expectedValue2x2JPG = "2\n" +
-      "2\n" +
-      "255\n" +
-      "163\n" +
-      "8\n" +
-      "250\n" +
-      "0\n" +
-      "167\n" +
-      "167\n" +
-      "134\n" +
-      "183\n" +
-      "32\n" +
-      "255\n" +
-      "5\n" +
-      "143\n";
+          "2\n" +
+          "255\n" +
+          "163\n" +
+          "8\n" +
+          "250\n" +
+          "0\n" +
+          "167\n" +
+          "167\n" +
+          "134\n" +
+          "183\n" +
+          "32\n" +
+          "255\n" +
+          "5\n" +
+          "143\n";
 
   String expectedValuePink = "4\n" +
-      "4\n" +
-      "255\n" +
-      "170\n" +
-      "0\n" +
-      "255\n" +
-      "140\n" +
-      "190\n" +
-      "41\n" +
-      "0\n" +
-      "171\n" +
-      "169\n" +
-      "255\n" +
-      "0\n" +
-      "127\n" +
-      "0\n" +
-      "0\n" +
-      "0\n" +
-      "255\n" +
-      "0\n" +
-      "127\n" +
-      "239\n" +
-      "150\n" +
-      "8\n" +
-      "0\n" +
-      "0\n" +
-      "0\n" +
-      "0\n" +
-      "171\n" +
-      "169\n" +
-      "0\n" +
-      "0\n" +
-      "0\n" +
-      "170\n" +
-      "0\n" +
-      "255\n" +
-      "239\n" +
-      "150\n" +
-      "8\n" +
-      "170\n" +
-      "0\n" +
-      "255\n" +
-      "0\n" +
-      "0\n" +
-      "0\n" +
-      "140\n" +
-      "190\n" +
-      "41\n" +
-      "0\n" +
-      "0\n" +
-      "0\n";
+          "4\n" +
+          "255\n" +
+          "170\n" +
+          "0\n" +
+          "255\n" +
+          "140\n" +
+          "190\n" +
+          "41\n" +
+          "0\n" +
+          "171\n" +
+          "169\n" +
+          "255\n" +
+          "0\n" +
+          "127\n" +
+          "0\n" +
+          "0\n" +
+          "0\n" +
+          "255\n" +
+          "0\n" +
+          "127\n" +
+          "239\n" +
+          "150\n" +
+          "8\n" +
+          "0\n" +
+          "0\n" +
+          "0\n" +
+          "0\n" +
+          "171\n" +
+          "169\n" +
+          "0\n" +
+          "0\n" +
+          "0\n" +
+          "170\n" +
+          "0\n" +
+          "255\n" +
+          "239\n" +
+          "150\n" +
+          "8\n" +
+          "170\n" +
+          "0\n" +
+          "255\n" +
+          "0\n" +
+          "0\n" +
+          "0\n" +
+          "140\n" +
+          "190\n" +
+          "41\n" +
+          "0\n" +
+          "0\n" +
+          "0\n";
 
   @Test
   public void testConstructor() {
@@ -201,20 +201,20 @@ public class ImageModelImplTest extends TestCase {
     }
 
     String Red2x2 = "2\n" +
-        "2\n" +
-        "255\n" +
-        "170\n" +
-        "170\n" +
-        "170\n" +
-        "140\n" +
-        "140\n" +
-        "140\n" +
-        "0\n" +
-        "0\n" +
-        "0\n" +
-        "255\n" +
-        "255\n" +
-        "255\n";
+            "2\n" +
+            "255\n" +
+            "170\n" +
+            "170\n" +
+            "170\n" +
+            "140\n" +
+            "140\n" +
+            "140\n" +
+            "0\n" +
+            "0\n" +
+            "0\n" +
+            "255\n" +
+            "255\n" +
+            "255\n";
 
     mod1.editImage("2by2", "Red22", new ColorComponent("red"));
     assertEquals(Red2x2, mod1.generateString("Red22"));
@@ -317,25 +317,25 @@ public class ImageModelImplTest extends TestCase {
     ImageModelImpl mod1 = new ImageModelImpl();
     mod1.load("././res/2x2.ppm", "2by2");
 
-    String Blurred2x2 = "2\n" +
-        "2\n" +
-        "255\n" +
-        "77\n" +
-        "45\n" +
-        "98\n" +
-        "77\n" +
-        "65\n" +
-        "49\n" +
-        "47\n" +
-        "53\n" +
-        "73\n" +
-        "85\n" +
-        "18\n" +
-        "53\n";
+    String blurred2x2 = "2\n" +
+            "2\n" +
+            "255\n" +
+            "77\n" +
+            "45\n" +
+            "98\n" +
+            "77\n" +
+            "65\n" +
+            "49\n" +
+            "47\n" +
+            "53\n" +
+            "73\n" +
+            "85\n" +
+            "18\n" +
+            "53\n";
 
     mod1.editImage("2by2", "Blur2", new FilterSharpenBlur("blur"));
     String s = mod1.generateString("Blur2");
-    assertEquals(Blurred2x2, s);
+    assertEquals(blurred2x2, s);
   }
 
   @Test
@@ -343,24 +343,24 @@ public class ImageModelImplTest extends TestCase {
     ImageModelImpl mod1 = new ImageModelImpl();
     mod1.load("././res/2x2.ppm", "2by2");
 
-    String Sharpened2x2 = "2\n" +
-        "2\n" +
-        "255\n" +
-        "255\n" +
-        "91\n" +
-        "255\n" +
-        "255\n" +
-        "255\n" +
-        "179\n" +
-        "192\n" +
-        "255\n" +
-        "255\n" +
-        "255\n" +
-        "151\n" +
-        "255\n";
+    String sharpened2x2 = "2\n" +
+            "2\n" +
+            "255\n" +
+            "255\n" +
+            "91\n" +
+            "255\n" +
+            "255\n" +
+            "255\n" +
+            "179\n" +
+            "192\n" +
+            "255\n" +
+            "255\n" +
+            "255\n" +
+            "151\n" +
+            "255\n";
 
     mod1.editImage("2by2", "Sharpen2", new FilterSharpenBlur("sharpen"));
-    assertEquals(Sharpened2x2, mod1.generateString("Sharpen2"));
+    assertEquals(sharpened2x2, mod1.generateString("Sharpen2"));
   }
 
   @Test
@@ -368,24 +368,24 @@ public class ImageModelImplTest extends TestCase {
     ImageModelImpl mod1 = new ImageModelImpl();
     mod1.load("././res/2x2.ppm", "2by2");
 
-    String Grey2x2 = "2\n" +
-        "2\n" +
-        "255\n" +
-        "55\n" +
-        "55\n" +
-        "55\n" +
-        "169\n" +
-        "169\n" +
-        "169\n" +
-        "135\n" +
-        "135\n" +
-        "135\n" +
-        "63\n" +
-        "63\n" +
-        "63\n";
+    String grey2x2 = "2\n" +
+            "2\n" +
+            "255\n" +
+            "55\n" +
+            "55\n" +
+            "55\n" +
+            "169\n" +
+            "169\n" +
+            "169\n" +
+            "135\n" +
+            "135\n" +
+            "135\n" +
+            "63\n" +
+            "63\n" +
+            "63\n";
 
     mod1.editImage("2by2", "Grey2", new Transform("greyscale"));
-    assertEquals(Grey2x2, mod1.generateString("Grey2"));
+    assertEquals(grey2x2, mod1.generateString("Grey2"));
   }
 
   @Test
@@ -393,24 +393,24 @@ public class ImageModelImplTest extends TestCase {
     ImageModelImpl mod1 = new ImageModelImpl();
     mod1.load("././res/2x2.ppm", "2by2");
 
-    String Sepia2x2 = "2\n" +
-        "2\n" +
-        "255\n" +
-        "115\n" +
-        "102\n" +
-        "80\n" +
-        "209\n" +
-        "186\n" +
-        "145\n" +
-        "163\n" +
-        "146\n" +
-        "113\n" +
-        "124\n" +
-        "110\n" +
-        "86\n";
+    String sepia2x2 = "2\n" +
+            "2\n" +
+            "255\n" +
+            "115\n" +
+            "102\n" +
+            "80\n" +
+            "209\n" +
+            "186\n" +
+            "145\n" +
+            "163\n" +
+            "146\n" +
+            "113\n" +
+            "124\n" +
+            "110\n" +
+            "86\n";
 
     mod1.editImage("2by2", "sepia2", new Transform("sepia"));
-    assertEquals(Sepia2x2, mod1.generateString("sepia2"));
+    assertEquals(sepia2x2, mod1.generateString("sepia2"));
   }
 
 

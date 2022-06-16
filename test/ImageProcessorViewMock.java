@@ -2,6 +2,9 @@ import java.io.IOException;
 
 import view.ImageProcessorView;
 
+/**
+ * Mock class of the ImageProcessorView used to test for transmission exceptions.
+ */
 public class ImageProcessorViewMock implements ImageProcessorView {
   StringBuilder log;
 

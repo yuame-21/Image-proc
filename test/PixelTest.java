@@ -3,8 +3,14 @@ import org.junit.Test;
 
 import model.Pixel;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
+
+/**
+ * Testing class to test class, Pixel, and its methods.
+ */
 public class PixelTest {
   Pixel p1;
   Pixel p2;

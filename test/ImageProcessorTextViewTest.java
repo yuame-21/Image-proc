@@ -7,7 +7,9 @@ import view.ImageProcessorView;
 
 import static org.junit.Assert.fail;
 
-
+/**
+ * Testing class for the Text View class.
+ */
 public class ImageProcessorTextViewTest {
 
   ImageProcessorView v1;
@@ -20,7 +22,7 @@ public class ImageProcessorTextViewTest {
       this.v1 = new ImageProcessorTextView(null);
       fail("should have thrown illegal arg exc");
     } catch (IllegalArgumentException e) {
-      if (! e.getMessage().equals("provided destination is null!")) {
+      if (!e.getMessage().equals("provided destination is null!")) {
         fail();
       }
     }
@@ -39,7 +41,7 @@ public class ImageProcessorTextViewTest {
       this.v1.renderMessage("hi");
       fail("should have thrown io exc");
     } catch (IOException e) {
-      if (! e.getMessage().equals("appendable mock always throws IO")) {
+      if (!e.getMessage().equals("appendable mock always throws IO")) {
         fail("the appendable mock should have thrown an io");
       }
     }

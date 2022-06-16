@@ -11,10 +11,11 @@ import model.edit.ILV;
 import model.edit.Transform;
 
 import static java.util.Arrays.deepEquals;
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.fail;
 
-
+/**
+ * Testing class for Edit classes within model.
+ */
 public class EditTest {
   ImageModelStateImpl twoXTwo;
   Pixel[][] twoBoard;

@@ -76,7 +76,7 @@ public class ImageModelStateImplTest {
     assertEquals(p0.get(0), this.pink.getPixel(0, 0).get(0));
     assertEquals(p0.get(1), this.pink.getPixel(0, 0).get(1));
     assertEquals(p0.get(2), this.pink.getPixel(0, 0).get(2));
-    assertArrayEquals(p0.getChannel(), this.pink.getPixel(0,0).getChannel());
+    assertArrayEquals(p0.getChannel(), this.pink.getPixel(0, 0).getChannel());
 
     assertArrayEquals(pp4.getChannel(), this.pink.getPixel(0, 3).getChannel());
     assertArrayEquals(pp16.getChannel(), this.pink.getPixel(3, 3).getChannel());
@@ -89,7 +89,9 @@ public class ImageModelStateImplTest {
   @Test
   public void copyImage() {
     deepEquals(this.pinkBoard, this.pink.copyImage());
+    assertEquals(this.pinkBoard.length, this.pink.copyImage().length);
     deepEquals(this.twoBoard, this.twoXTwo.copyImage());
+    assertEquals(this.twoBoard.length, this.twoXTwo.copyImage().length);
   }
 
   @Test
