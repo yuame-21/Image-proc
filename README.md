@@ -55,6 +55,10 @@
   - the replacement class, again extending `AEdit`, is `FlipHZ`, which takes in a String to dictate flip direction. 
   - We also refactored any uses of this class in the test and other classes to fit the change. 
 
+- In the `ImageModelStateImpl`, we deleted the second constructor that used to hold code that 
+  helped load an image. This code became redundant as we added new functionality to load 
+  additional image types.
+
 **----------------------------------------------------------------------------------------------------**
 
 # Assignment 4: Image Processor

@@ -278,7 +278,7 @@ public class ImageProcessorControllerImplTest {
 
     assertEquals("File not found", arr[18]);
     assertEquals("given command is invalid", arr[19]);
-    assertEquals("File not found", arr[20]);
+    assertEquals("Invalid path format", arr[20]);
     assertEquals("Invalid path format", arr[20]);
 
   }
