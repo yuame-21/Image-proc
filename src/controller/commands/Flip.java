@@ -1,8 +1,7 @@
 package controller.commands;
 
 import model.ImageModel;
-import model.edit.FlipHorizontal;
-import model.edit.FlipVertical;
+import model.edit.FlipHZ;
 
 /**
  * Command to flip the image either vertically or horizontally based on the input.
@@ -39,15 +38,9 @@ public class Flip extends ACommand {
    */
   @Override
   public void initCommand(ImageModel model) {
-    if (this.flipDirection.equals("horizontal")) {
-      model.editImage(this.originalName, this.revisedName, new FlipHorizontal());
-      this.updateCommandMessage("Horizontally flipped image, " + originalName + ". " +
+      model.editImage(this.originalName, this.revisedName, new FlipHZ(this.flipDirection));
+      this.updateCommandMessage(this.flipDirection + "ly flipped image, " + originalName + ". " +
               "Renamed edited image as " + revisedName + "\n");
-    } else if (this.flipDirection.equals("vertical")) {
-      model.editImage(this.originalName, this.revisedName, new FlipVertical());
-      this.updateCommandMessage("Vertically flipped image, " + originalName + ". " +
-              "Renamed edited image as " + revisedName + "\n");
-    }
 
   }
 

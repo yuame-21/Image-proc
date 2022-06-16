@@ -6,8 +6,7 @@ import model.Pixel;
 import model.edit.BrightenDarken;
 import model.edit.ColorComponent;
 import model.edit.FilterSharpenBlur;
-import model.edit.FlipHorizontal;
-import model.edit.FlipVertical;
+import model.edit.FlipHZ;
 import model.edit.ILV;
 import model.edit.Transform;
 
@@ -117,13 +116,13 @@ public class EditTest {
                     new Pixel(170, 0, 255)},
                     {new Pixel(255, 0, 127),
                             new Pixel(0, 171, 169)}},
-            new FlipHorizontal().applyEdit("test", this.twoXTwo).copyImage());
+            new FlipHZ("horizontal").applyEdit("test", this.twoXTwo).copyImage());
     init();
     deepEquals(new Pixel[][]{{new Pixel(0, 171, 169),
                     new Pixel(255, 0, 127)},
                     {new Pixel(170, 0, 255),
                             new Pixel(140, 190, 41)}},
-            new FlipVertical().applyEdit("test", this.twoXTwo).copyImage());
+            new FlipHZ("vertical").applyEdit("test", this.twoXTwo).copyImage());
   }
 
   @Test
@@ -133,12 +132,12 @@ public class EditTest {
                     new Pixel(170, 0, 255)},
                     {new Pixel(255, 0, 127),
                             new Pixel(0, 171, 169)}},
-            new FlipHorizontal().applyEdit("test", this.twoXTwo).copyImage());
+            new FlipHZ("horizontal").applyEdit("test", this.twoXTwo).copyImage());
     deepEquals(new Pixel[][]{{new Pixel(255, 0, 127),
                     new Pixel(0, 171, 169)},
                     {new Pixel(140, 190, 41),
                             new Pixel(170, 0, 255)}},
-            new FlipVertical().applyEdit("test",
+            new FlipHZ("vertical").applyEdit("test",
                     new ImageModelStateImpl(new Pixel[][]{{new Pixel(140, 190, 41),
                             new Pixel(170, 0, 255)},
                             {new Pixel(255, 0, 127),

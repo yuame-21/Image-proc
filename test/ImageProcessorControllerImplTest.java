@@ -198,9 +198,9 @@ public class ImageProcessorControllerImplTest {
     String[] arr = app.toString().split("\n");
 
     assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
-    assertEquals("Horizontally flipped image, pink. " +
+    assertEquals("horizontally flipped image, pink. " +
             "Renamed edited image as pinkhoriz", arr[19]);
-    assertEquals("Vertically flipped image, pinkhoriz." +
+    assertEquals("vertically flipped image, pinkhoriz." +
             " Renamed edited image as pinkhv", arr[20]);
   }
 
@@ -238,7 +238,7 @@ public class ImageProcessorControllerImplTest {
 
     assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
     assertEquals("given command is invalid", arr[19]);
-    assertEquals("Horizontally flipped image, pink. Renamed edited" +
+    assertEquals("horizontally flipped image, pink. Renamed edited" +
             " image as pinkH", arr[20]);
 
   }
@@ -260,7 +260,7 @@ public class ImageProcessorControllerImplTest {
     assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
 
     for (int i = 19; i < 117; i++) {
-      assertEquals("Horizontally flipped image, pink. " +
+      assertEquals("horizontally flipped image, pink. " +
               "Renamed edited image as pink", arr[i]);
     }
   }
@@ -279,7 +279,7 @@ public class ImageProcessorControllerImplTest {
     assertEquals("File not found", arr[18]);
     assertEquals("given command is invalid", arr[19]);
     assertEquals("File not found", arr[20]);
-    assertEquals("Invalid path format", arr[21]);
+    assertEquals("Invalid path format", arr[20]);
 
   }
 
@@ -334,7 +334,6 @@ public class ImageProcessorControllerImplTest {
 
   @Test
   public void testFilter() {
-
     Readable r = new StringReader("load ././res/pink.ppm pink \n blur pink " +
             "pinkB \n sharpen pinkB pinkS \n q \n");
     this.c1 = new ImageProcessorControllerImpl(this.m1, this.v1, r);

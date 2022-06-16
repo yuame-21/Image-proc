@@ -5,7 +5,15 @@ import model.Pixel;
 /**
  * Edits an image by flipping it vertically.
  */
-public class FlipVertical extends AEdit {
+public class FlipHZ extends AEdit {
+  private String s;
+
+  public FlipHZ(String s) {
+    if (! ((s.equals("horizontal")) || s.equals("vertical"))) {
+      throw new IllegalArgumentException("only valid flip types are horizontal and vertical");
+    }
+    this.s = s;
+  }
 
   /**
    * Rearranges the pixels in an image to flip the image vertically.
@@ -20,7 +28,17 @@ public class FlipVertical extends AEdit {
     Pixel[][] flipped = new Pixel[image.length][image[0].length];
 
     for (int i = 0; i < image.length; i++) {
-      flipped[image.length - 1 - i] = image[i];
+
+
+      if (this.s.equals("vertical")) {
+        flipped[image.length - 1 - i] = image[i];
+      }
+
+      if (this.s.equals("horizontal")) {
+        for (int j = 0; j < image[i].length; j++) {
+          flipped[i][image[i].length - 1 - j] = image[i][j];
+        }
+      }
     }
     return flipped;
   }
