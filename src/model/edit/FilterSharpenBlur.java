@@ -2,6 +2,9 @@ package model.edit;
 
 import model.Pixel;
 
+/**
+ * Filters an image based on what kind of filter is requested.
+ */
 public class FilterSharpenBlur extends AEdit {
   private String filterType;
 
@@ -26,8 +29,8 @@ public class FilterSharpenBlur extends AEdit {
    * @param image  array of colors that make up an imgae
    * @param r      row location
    * @param c      column location
-   * @param maxNum
-   * @return
+   * @param maxNum The maximum RGB of an image
+   * @return The newly set array of the {@code Pixel} with the RGB adjusted
    */
   @Override
   protected Pixel[][] setRGB(Pixel[][] image, int r, int c, int maxNum) {

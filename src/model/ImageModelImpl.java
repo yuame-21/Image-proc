@@ -44,7 +44,8 @@ public class ImageModelImpl implements ImageModel {
 
     String type = path.substring(path.length() - 4);
 
-    if (!(type.equals(".ppm") || type.equals(".png") || type.equals(".jpg") || type.equals(".bmp"))) {
+    if (!(type.equals(".ppm") || type.equals(".png") || type.equals(".jpg")
+        || type.equals(".bmp"))) {
       throw new IllegalArgumentException("Invalid path format");
     }
 
@@ -211,8 +212,8 @@ public class ImageModelImpl implements ImageModel {
       // set the RGB of the file
       for (int i = 0; i < width; i++) {
         for (int j = 0; j < height; j++) {
-          Pixel R = saving.getPixel(j, i);
-          image.setRGB(i, j, new Color(R.get(0), R.get(1), R.get(2)).getRGB());
+          Pixel r = saving.getPixel(j, i);
+          image.setRGB(i, j, new Color(r.get(0), r.get(1), r.get(2)).getRGB());
         }
       }
 
@@ -241,9 +242,9 @@ public class ImageModelImpl implements ImageModel {
 
     for (int r = 0; r < saving.getHeight(); r++) {
       for (int c = 0; c < saving.getWidth(); c++) {
-        Pixel RGB = saving.getPixel(r, c);
+        Pixel rgb = saving.getPixel(r, c);
         for (int i = 0; i < 3; i++) {
-          ans.append(RGB.get(i) + "\n");
+          ans.append(rgb.get(i) + "\n");
         }
       }
     }

@@ -18,12 +18,13 @@ public class ColorComponent extends ACommand {
    * @param color        color to visualize in greyscale
    * @throws IllegalArgumentException if an invalid color is given
    */
-  public ColorComponent(String originalName, String revisedName, String color) throws IllegalArgumentException {
+  public ColorComponent(String originalName, String revisedName, String color)
+      throws IllegalArgumentException {
     super(originalName, revisedName);
 
     if (!(color.equals("red") || color.equals("green") || color.equals("blue"))) {
-      throw new IllegalArgumentException("not a valid color component! " +
-          "enter either 'red,' 'green,'or 'blue'");
+      throw new IllegalArgumentException("not a valid color component! "
+          + "enter either 'red,' 'green,'or 'blue'");
     }
 
     this.color = color;

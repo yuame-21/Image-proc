@@ -2,6 +2,9 @@ package model.edit;
 
 import model.Pixel;
 
+/**
+ * Transforms an image into grayscale or sepia based on which one is requested.
+ */
 public class Transform extends AEdit {
 
   private String transformType;
@@ -44,7 +47,7 @@ public class Transform extends AEdit {
   }
 
   /**
-   * returns transform value matrix based on transformType
+   * returns transform value matrix based on transformType.
    *
    * @return matrix of values to apply to pixels
    */

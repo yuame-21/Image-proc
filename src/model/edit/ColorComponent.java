@@ -17,8 +17,8 @@ public class ColorComponent extends AEdit {
    */
   public ColorComponent(String color) {
     if (!(color.equals("red") || color.equals("green") || color.equals("blue"))) {
-      throw new IllegalArgumentException("not a valid color component! " +
-          "enter either 'red,' 'green,'or 'blue'");
+      throw new IllegalArgumentException("not a valid color component! "
+          + "enter either 'red,' 'green,'or 'blue'");
     }
 
     this.color = color;

@@ -46,7 +46,7 @@ public class ImageModelStateImpl implements ImageModelState {
   }
 
   /**
-   * Returns the RGB pixel at the given location
+   * Returns the RGB pixel at the given location.
    *
    * @param row x coordinate
    * @param col y coordinate

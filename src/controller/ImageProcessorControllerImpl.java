@@ -30,7 +30,6 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
   private ImageProcessorView view;
   private final Map<String, Function<Scanner, Command>> knownCommands;
   private final Scanner scanner;
-  private final Readable input;
 
   /**
    * The controller takes in a given model, view, and input. It adds all known.
@@ -49,7 +48,6 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
 
     this.model = model;
     this.view = view;
-    this.input = input;
     this.scanner = new Scanner(input);
     this.knownCommands = new HashMap<>();
     this.addCommands();
