@@ -13,7 +13,7 @@
 - `Edit` interface, implementing abstract class, `AEdit`, and all extending concrete classes
   - concrete classes: 
     - `BrightenDarken`, `ColorComponent`, `FilterSharpenBlur`, `FlipHorizontal`, `FlipVertical`, `ILV`, `Transform`
-- `Pixel` class
+- `Pixel` class **SEE DESIGN CHANGES**
 
 ### View: 
 
@@ -29,7 +29,7 @@
     - JUST implementing `Command` --- not extending `ACommand`
       - `File`, `Load`, `Save`
 
-### Testing :
+### Testing:
 - Testing classes:
   - `ImageModelImplTest`, `ImageModelStateImplTest`, `EditTest`, `ImageProcessorControllerImplTest`, `ImageProcessorTextViewTest`
 - Mocks used:
@@ -40,6 +40,10 @@
 - sample script that showcases all commands/functionality, `script.txt`
 - updated class diagram 
 - pink . png, jpg, bmp, and ppm as its original, blur, sharpen, greyscale, and sepia versions
+
+### other: 
+- README.md
+- USEME.md
 
 ## Design Changes: 
 
