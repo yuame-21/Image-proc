@@ -16,7 +16,6 @@ import javax.imageio.ImageIO;
 
 import model.edit.Edit;
 
-import static javax.imageio.ImageIO.getImageWriter;
 import static javax.imageio.ImageIO.read;
 
 /**
@@ -41,7 +40,7 @@ public class ImageModelImpl implements ImageModel {
    * @throws IllegalArgumentException if the file is invalid or the inputs are null
    */
   public void load(String path, String fileName) throws IllegalArgumentException {
-    if(path == null || fileName == null) {
+    if (path == null || fileName == null) {
       throw new IllegalArgumentException("Inputs cannot be null");
     }
 
@@ -82,7 +81,7 @@ public class ImageModelImpl implements ImageModel {
 
     for (int i = 0; i < width; i++) {
       for (int j = 0; j < height; j++) {
-        image[i][j] = new Pixel( sc.nextInt(), sc.nextInt(), sc.nextInt());
+        image[i][j] = new Pixel(sc.nextInt(), sc.nextInt(), sc.nextInt());
       }
     }
 
@@ -92,12 +91,13 @@ public class ImageModelImpl implements ImageModel {
 
   /**
    * Loads non-ppm image files into the program.
+   *
    * @param imageFile The image to be loaded
-   * @param fileName The name the image will be saved under in the program
+   * @param fileName  The name the image will be saved under in the program
    * @throws IllegalArgumentException Thrown when inputs are null
    */
   private void load(BufferedImage imageFile, String fileName) throws IllegalArgumentException {
-    if(imageFile == null || fileName == null) {
+    if (imageFile == null || fileName == null) {
       throw new IllegalArgumentException("Inputs cannot be null");
     }
 
@@ -106,12 +106,12 @@ public class ImageModelImpl implements ImageModel {
 
     Pixel[][] image = new Pixel[width][height];
 
-    for(int i = imageFile.getMinX(); i < width; i++) {
-      for(int j = imageFile.getMinY(); j < height; j++) {
+    for (int i = imageFile.getMinX(); i < width; i++) {
+      for (int j = imageFile.getMinY(); j < height; j++) {
         image[i][j] =
-            new Pixel(new Color(imageFile.getRGB(i,j)).getRed(),
-            new Color(imageFile.getRGB(i,j)).getGreen(),
-            new Color(imageFile.getRGB(i,j)).getBlue());
+            new Pixel(new Color(imageFile.getRGB(i, j)).getRed(),
+                new Color(imageFile.getRGB(i, j)).getGreen(),
+                new Color(imageFile.getRGB(i, j)).getBlue());
       }
     }
 
@@ -160,58 +160,71 @@ public class ImageModelImpl implements ImageModel {
    * @param fileName name of image file
    * @throws IllegalArgumentException if the file is invalid or cannot be saved.
    */
-  @Override
-  public void save(String path, String fileName) throws IllegalArgumentException {
-    if (!path.substring(path.length() - 4).equals(".ppm")) {
-      throw new IllegalArgumentException("Invalid path format");
-    }
-
-    try {
-      BufferedWriter writer = new BufferedWriter((new FileWriter(path)));
-      writer.write(generateString(fileName));
-      // end of file writing
-      writer.close();
-    } catch (IOException e) {
-      throw new IllegalArgumentException("File not found and could not be saved");
-    }
-  }
-
-//  private void save(String path, String fileName) throws IllegalArgumentException {
-//
-//    String type = path.substring(path.length() - 4);
-//
-//    if (!type.equals(".ppm") || !type.equals(".png") || !type.equals(".jpg") || !type.equals(
-//        ".bpm")) {
+//  @Override
+//  public void save(String path, String fileName) throws IllegalArgumentException {
+//    if (!path.substring(path.length() - 4).equals(".ppm")) {
 //      throw new IllegalArgumentException("Invalid path format");
 //    }
 //
-//    FileWriter savePath;
 //    try {
-//      savePath = new FileWriter(path);
+//      // spits out whatever we write into the path
+//      BufferedWriter writer = new BufferedWriter((new FileWriter(path)));
+//      writer.write(generateString(fileName));
+//      // end of file writing
+//      writer.close();
 //    } catch (IOException e) {
-//      throw new IllegalArgumentException("Transmission failed");
-//    }
-//
-//    // saves ppm files
-//    if(type.equals(".ppm")) {
-//      try {
-//        BufferedWriter writer = new BufferedWriter(savePath);
-//        writer.write(generateString(fileName));
-//        // end of file writing
-//        writer.close();
-//      } catch (IOException e) {
-//        throw new IllegalArgumentException("File not found and could not be saved");
-//      }
-//    }
-//    else {
-//      ImageModelState saving = find (fileName);
-//
-//      BufferedImage image = new BufferedImage(saving.getWidth(), saving.getHeight(),
-//          BufferedImage.TYPE_INT_RGB);
-//
-//      ImageIO.write(image, type, savePath);
+//      throw new IllegalArgumentException("File not found and could not be saved");
 //    }
 //  }
+  @Override
+  public void save(String path, String fileName) throws IllegalArgumentException {
+
+    String type = path.substring(path.length() - 4);
+
+    if (!(type.equals(".ppm") || type.equals(".png") || type.equals(".jpg") || type.equals(".bpm"))) {
+      throw new IllegalArgumentException("Invalid path format");
+    }
+
+    ImageModelState saving = find(fileName);
+
+    // creates or locates the file to save to
+    FileWriter savePath;
+    try {
+      savePath = new FileWriter(path);
+    } catch (IOException e) {
+      throw new IllegalArgumentException("Transmission failed");
+    }
+
+    // saves ppm files
+    if (type.equals(".ppm")) {
+      try {
+        BufferedWriter writer = new BufferedWriter(savePath);
+        writer.write("P3" + "\n");
+        writer.write(generateString(fileName));
+        // end of file writing
+        writer.close();
+      } catch (IOException e) {
+        throw new IllegalArgumentException("File not found and could not be saved");
+      }
+    } else {
+      BufferedImage image = new BufferedImage(saving.getWidth(), saving.getHeight(),
+          BufferedImage.TYPE_INT_RGB);
+
+      // set the RGB of the file
+      for (int i = 0; i < saving.getWidth(); i++) {
+        for (int j = 0; j < saving.getHeight(); j++) {
+          Pixel R = saving.getPixel(i, j);
+          image.setRGB(i, j, new Color(R.get(0), R.get(1), R.get(2)).getRGB());
+        }
+      }
+
+      try {
+        ImageIO.write(image, type, new File(path));
+      } catch (IOException e) {
+        throw new IllegalArgumentException("Save failed");
+      }
+    }
+  }
 
   /**
    * Generates a String representing the RGB of an {@code ImageModelState}.
@@ -224,7 +237,6 @@ public class ImageModelImpl implements ImageModel {
     ImageModelState saving = find(name);
 
     StringBuilder ans = new StringBuilder();
-    ans.append("P3" + "\n");
     ans.append(saving.getWidth() + "\n");
     ans.append(saving.getHeight() + "\n");
     ans.append(saving.getMaxNum() + "\n");
