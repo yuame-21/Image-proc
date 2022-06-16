@@ -8,8 +8,13 @@ import model.Pixel;
 public class FlipHZ extends AEdit {
   private String s;
 
-  public FlipHZ(String s) {
-    if (! ((s.equals("horizontal")) || s.equals("vertical"))) {
+  /**
+   * A FlipHZ is either a horizontal flip or vertical flip, based on the string input.
+   * @param s valid flip types are 'horizontal' or 'vertical'
+   * @throws IllegalArgumentException if invalid flip type is entered
+   */
+  public FlipHZ(String s) throws IllegalArgumentException {
+    if (!((s.equals("horizontal")) || s.equals("vertical"))) {
       throw new IllegalArgumentException("only valid flip types are horizontal and vertical");
     }
     this.s = s;
