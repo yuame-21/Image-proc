@@ -3,7 +3,6 @@ import org.junit.Test;
 
 import java.io.StringReader;
 
-
 import controller.ImageProcessorController;
 import controller.ImageProcessorControllerImpl;
 import controller.commands.File;
@@ -38,14 +37,14 @@ public class ImageProcessorControllerImplTest {
   public void init() {
 
     this.pinkBoard = new Pixel[][]{
-            {new Pixel(170, 0, 255), new Pixel(140, 190, 41),
-                    new Pixel(0, 171, 169), new Pixel(255, 0, 127)}, //r1
-            {new Pixel(0, 0, 0), new Pixel(255, 0, 127),
-                    new Pixel(239, 150, 8), new Pixel(0, 0, 0)},
-            {new Pixel(0, 171, 169), new Pixel(0, 0, 0),
-                    new Pixel(170, 0, 255), new Pixel(239, 150, 8)},
-            {new Pixel(170, 0, 255), new Pixel(0, 0, 0),
-                    new Pixel(140, 190, 41), new Pixel(0, 0, 0)}
+        {new Pixel(170, 0, 255), new Pixel(140, 190, 41),
+            new Pixel(0, 171, 169), new Pixel(255, 0, 127)}, //r1
+        {new Pixel(0, 0, 0), new Pixel(255, 0, 127),
+            new Pixel(239, 150, 8), new Pixel(0, 0, 0)},
+        {new Pixel(0, 171, 169), new Pixel(0, 0, 0),
+            new Pixel(170, 0, 255), new Pixel(239, 150, 8)},
+        {new Pixel(170, 0, 255), new Pixel(0, 0, 0),
+            new Pixel(140, 190, 41), new Pixel(0, 0, 0)}
     };
     this.pinkName = "pink";
     this.pinkMaxNum = 255;
@@ -134,7 +133,7 @@ public class ImageProcessorControllerImplTest {
   public void processImageLoadSave() {
 
     Readable r = new StringReader("load  ././res/pink.ppm pink \n save " +
-            "././res/pink.ppm pink \n q \n");
+        "././res/pink.ppm pink \n q \n");
     this.c1 = new ImageProcessorControllerImpl(this.m1, this.v1, r);
 
     this.c1.processImage();
@@ -150,7 +149,7 @@ public class ImageProcessorControllerImplTest {
   public void processImageBrightenDarken() {
 
     Readable r = new StringReader("load ././res/pink.ppm pink \n  brighten pink" +
-            " pinkBrighten 10 \n darken pinkBrighten pinkDarken 30 \n");
+        " pinkBrighten 10 \n darken pinkBrighten pinkDarken 30 \n");
     this.c1 = new ImageProcessorControllerImpl(this.m1, this.v1, r);
 
     this.c1.processImage();
@@ -159,9 +158,9 @@ public class ImageProcessorControllerImplTest {
 
     assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
     assertEquals("brightened image, pink, by 10. Renamed edited image as" +
-            " pinkBrighten", arr[19]);
+        " pinkBrighten", arr[19]);
     assertEquals("darkened image, pinkBrighten, by 30. Renamed edited image " +
-            "as pinkDarken", arr[20]);
+        "as pinkDarken", arr[20]);
   }
 
 
@@ -169,7 +168,7 @@ public class ImageProcessorControllerImplTest {
   public void processImageColorComponent() {
 
     Readable r = new StringReader("load ././res/pink.ppm pink \n red-component pink pinkRed " +
-            "\n green-component pinkRed pinkGreen \n blue-component pinkGreen pinkRed\n q\n");
+        "\n green-component pinkRed pinkGreen \n blue-component pinkGreen pinkRed\n q\n");
     this.c1 = new ImageProcessorControllerImpl(this.m1, this.v1, r);
 
     this.c1.processImage();
@@ -178,11 +177,11 @@ public class ImageProcessorControllerImplTest {
 
     assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
     assertEquals("Greyscaled image, pink, for color component, red. " +
-            "Renamed edited image as pinkRed", arr[19]);
+        "Renamed edited image as pinkRed", arr[19]);
     assertEquals("Greyscaled image, pinkRed, for color component, green. " +
-            "Renamed edited image as pinkGreen", arr[20]);
+        "Renamed edited image as pinkGreen", arr[20]);
     assertEquals("Greyscaled image, pinkGreen, for color component, blue. " +
-            "Renamed edited image as pinkRed", arr[21]);
+        "Renamed edited image as pinkRed", arr[21]);
   }
 
 
@@ -190,7 +189,7 @@ public class ImageProcessorControllerImplTest {
   public void processImageFlip() {
 
     Readable r = new StringReader("load ././res/pink.ppm pink \n horizontal-flip " +
-            "pink pinkhoriz \n vertical-flip pinkhoriz pinkhv \n q\n");
+        "pink pinkhoriz \n vertical-flip pinkhoriz pinkhv \n q\n");
     this.c1 = new ImageProcessorControllerImpl(this.m1, this.v1, r);
 
     this.c1.processImage();
@@ -199,17 +198,17 @@ public class ImageProcessorControllerImplTest {
 
     assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
     assertEquals("horizontally flipped image, pink. " +
-            "Renamed edited image as pinkhoriz", arr[19]);
+        "Renamed edited image as pinkhoriz", arr[19]);
     assertEquals("vertically flipped image, pinkhoriz." +
-            " Renamed edited image as pinkhv", arr[20]);
+        " Renamed edited image as pinkhv", arr[20]);
   }
 
   @Test
   public void processImageIntensityLumaValue() {
 
     Readable r = new StringReader("load ././res/pink.ppm pink \n luma-component pink " +
-            "pinkluma \n intensity-component pinkluma pinkli \n value-component " +
-            "pinkli pinkliv\n q \n");
+        "pinkluma \n intensity-component pinkluma pinkli \n value-component " +
+        "pinkli pinkliv\n q \n");
     this.c1 = new ImageProcessorControllerImpl(this.m1, this.v1, r);
 
     this.c1.processImage();
@@ -218,18 +217,18 @@ public class ImageProcessorControllerImplTest {
 
     assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
     assertEquals("Greyscaled image, pink, for luma." +
-            " Renamed edited image as pinkluma", arr[19]);
+        " Renamed edited image as pinkluma", arr[19]);
     assertEquals("Greyscaled image, pinkluma, for intensity. " +
-            "Renamed edited image as pinkli", arr[20]);
+        "Renamed edited image as pinkli", arr[20]);
     assertEquals("Greyscaled image, pinkli, for value. " +
-            "Renamed edited image as pinkliv", arr[21]);
+        "Renamed edited image as pinkliv", arr[21]);
   }
 
   @Test
   public void processImageMixedInputs() {
 
     Readable r = new StringReader("load ././res/pink.ppm pink \n oatmeal\n " +
-            "horizontal-flip pink pinkH \n q \n ");
+        "horizontal-flip pink pinkH \n q \n ");
     this.c1 = new ImageProcessorControllerImpl(this.m1, this.v1, r);
 
     this.c1.processImage();
@@ -239,7 +238,7 @@ public class ImageProcessorControllerImplTest {
     assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
     assertEquals("given command is invalid", arr[19]);
     assertEquals("horizontally flipped image, pink. Renamed edited" +
-            " image as pinkH", arr[20]);
+        " image as pinkH", arr[20]);
 
   }
 
@@ -261,7 +260,7 @@ public class ImageProcessorControllerImplTest {
 
     for (int i = 19; i < 117; i++) {
       assertEquals("horizontally flipped image, pink. " +
-              "Renamed edited image as pink", arr[i]);
+          "Renamed edited image as pink", arr[i]);
     }
   }
 
@@ -269,7 +268,7 @@ public class ImageProcessorControllerImplTest {
   public void testProcessImageExc() {
 
     Readable r = new StringReader("load ././bug/pink.ppm pink \n oatmeal\n " +
-            "load ././bug/pink pink \n save ././red/pink pink");
+        "load ././bug/pink pink \n save ././red/pink pink");
     this.c1 = new ImageProcessorControllerImpl(this.m1, this.v1, r);
 
     this.c1.processImage();
@@ -288,7 +287,7 @@ public class ImageProcessorControllerImplTest {
   public void testInputsMock() {
 
     Readable r = new StringReader("load ././res/pink.ppm pink \n save " +
-            "././res/pink.ppm pink \n horizontal-flip pink pink \n");
+        "././res/pink.ppm pink \n horizontal-flip pink pink \n");
     StringBuilder log = new StringBuilder();
     this.m1 = new ImageModelMock(log);
     this.c1 = new ImageProcessorControllerImpl(this.m1, this.v1, r);
@@ -296,8 +295,8 @@ public class ImageProcessorControllerImplTest {
     this.c1.processImage();
 
     assertEquals("method: load path: ././res/pink.ppm file name: pinkmethod: save path:" +
-            " ././res/pink.ppm file name: pinkmethod: editImage old name: " +
-            "pink new name: pink", log.toString());
+        " ././res/pink.ppm file name: pinkmethod: editImage old name: " +
+        "pink new name: pink", log.toString());
   }
 
 
@@ -305,7 +304,7 @@ public class ImageProcessorControllerImplTest {
   public void testTransform() {
 
     Readable r = new StringReader("load ././res/pink.ppm pink \n sepia pink " +
-            "pinkSepia \n greyscale pinkSepia pinkSG \n q \n");
+        "pinkSepia \n greyscale pinkSepia pinkSG \n q \n");
     this.c1 = new ImageProcessorControllerImpl(this.m1, this.v1, r);
 
     this.c1.processImage();
@@ -314,9 +313,9 @@ public class ImageProcessorControllerImplTest {
 
     assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
     assertEquals("Transformed image, pink, to sepia. " +
-            "Renamed edited image as pinkSepia", arr[19]);
+        "Renamed edited image as pinkSepia", arr[19]);
     assertEquals("Transformed image, pinkSepia, to greyscale. " +
-            "Renamed edited image as pinkSG", arr[20]);
+        "Renamed edited image as pinkSG", arr[20]);
 
   }
 
@@ -335,7 +334,7 @@ public class ImageProcessorControllerImplTest {
   @Test
   public void testFilter() {
     Readable r = new StringReader("load ././res/pink.ppm pink \n blur pink " +
-            "pinkB \n sharpen pinkB pinkS \n q \n");
+        "pinkB \n sharpen pinkB pinkS \n q \n");
     this.c1 = new ImageProcessorControllerImpl(this.m1, this.v1, r);
 
     this.c1.processImage();
@@ -345,7 +344,7 @@ public class ImageProcessorControllerImplTest {
     assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
     assertEquals("Filtered image, pink, to blur. Renamed edited image as pinkB", arr[19]);
     assertEquals("Filtered image, pinkB, to sharpen. " +
-            "Renamed edited image as pinkS", arr[20]);
+        "Renamed edited image as pinkS", arr[20]);
   }
 
   @Test
@@ -379,25 +378,28 @@ public class ImageProcessorControllerImplTest {
 
     String[] arr = app.toString().split("\n");
     assertEquals("uploaded file, ././res/miniscript.txtand ran the " +
-            "previous stream of commands.", arr[18]);
+        "previous stream of commands.", arr[18]);
   }
 
   @Test
   public void testLoad() {
-    Readable r = new StringReader("load ././res/pink.png png \n load ././res/22bmp.bmp bmp \n" +
-            "load ././res/22jpg.jpg jpg \n save ././res/png.png png \n save ././res/bmp.bmp bmp \n" +
-            "save ././res/jpg.jpg jpg \n");
+    Readable r = new StringReader("load ././res/pink.png png \n load ././res/2by2.bmp bmp \n" +
+        "load ././res/2by2.jpg jpg \n save ././res/png.png png \n save ././res/bmp.bmp bmp \n" +
+        "save ././res/jpg.jpg jpg \n");
     this.c1 = new ImageProcessorControllerImpl(this.m1, this.v1, r);
 
     this.c1.processImage();
 
     String[] arr = app.toString().split("\n");
     assertEquals("Loaded image, png. From path, ././res/pink.png", arr[18]);
-    assertEquals("Loaded image, bmp. From path, ././res/22bmp.bmp", arr[19]);
-    assertEquals("Loaded image, jpg. From path, ././res/22jpg.jpg", arr[20]);
+    assertEquals("Loaded image, bmp. From path, ././res/2by2.bmp", arr[19]);
+    assertEquals("Loaded image, jpg. From path, ././res/2by2.jpg", arr[20]);
     assertEquals("Saved image, png to path, ././res/png.png", arr[21]);
     assertEquals("Saved image, bmp to path, ././res/bmp.bmp", arr[22]);
     assertEquals("Saved image, jpg to path, ././res/jpg.jpg", arr[23]);
+    new java.io.File("././res/png.png").delete();
+    new java.io.File(".././res/bmp.bmp").delete();
+    new java.io.File("././res/jpg.jpg").delete();
 
   }
 

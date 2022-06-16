@@ -16,8 +16,6 @@ import javax.imageio.ImageIO;
 
 import model.edit.Edit;
 
-import static javax.imageio.ImageIO.read;
-
 /**
  * Describes the behaviors of an image model and records log of model manipulations.
  * Logs in a map of named {@code ImageModelState}s.
