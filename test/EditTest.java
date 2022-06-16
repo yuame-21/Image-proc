@@ -11,6 +11,7 @@ import model.edit.ILV;
 import model.edit.Transform;
 
 import static java.util.Arrays.deepEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 /**
@@ -60,55 +61,53 @@ public class EditTest {
 
   @Test
   public void applyEditBrightenDarken() {
-    deepEquals(new Pixel[][]{{new Pixel(180, 10, 255),
-                    new Pixel(150, 200, 51)},
-                    {new Pixel(10, 181, 179),
-                            new Pixel(255, 10, 137)}},
+    deepEquals(new Pixel[][]{{new Pixel(180, 10, 255), new Pixel(150,
+                    200, 51)}, {new Pixel(10, 181, 179),
+                    new Pixel(255, 10, 137)}},
             new BrightenDarken(10).applyEdit("test", this.twoXTwo).copyImage());
     init();
-    deepEquals(new Pixel[][]{{new Pixel(160, 0, 245),
-                    new Pixel(130, 180, 31)},
-                    {new Pixel(0, 161, 159),
-                            new Pixel(245, 0, 117)}},
+    deepEquals(new Pixel[][]{{new Pixel(160, 0, 245), new Pixel(130,
+                    180, 31)}, {new Pixel(0, 161, 159),
+                    new Pixel(245, 0, 117)}},
             new BrightenDarken(-10).applyEdit("test", this.twoXTwo).copyImage());
+    init();
+    assertEquals(4, new BrightenDarken(-10).applyEdit("t",
+            this.twoXTwo).copyImage().length);
   }
 
   @Test
   public void applyEditBrightenDarkenTogether() {
 
-    deepEquals(new Pixel[][]{{new Pixel(180, 10, 255),
-                    new Pixel(150, 200, 51)},
-                    {new Pixel(10, 181, 179),
-                            new Pixel(255, 10, 137)}},
+    deepEquals(new Pixel[][]{{new Pixel(180, 10, 255), new Pixel(150,
+                    200, 51)}, {new Pixel(10, 181, 179),
+                    new Pixel(255, 10, 137)}},
             new BrightenDarken(10).applyEdit("test", this.twoXTwo).copyImage());
     new BrightenDarken(10).applyEdit("test", this.twoXTwo);
-    new BrightenDarken(-30)
-            .applyEdit("test", this.twoXTwo);
-    deepEquals(new Pixel[][]{{new Pixel(160, 0, 225),
-                    new Pixel(130, 180, 31)},
-                    {new Pixel(0, 161, 159), new Pixel(225, 0, 117)}},
-            this.twoXTwo.copyImage());
+    new BrightenDarken(-30).applyEdit("test", this.twoXTwo);
+    deepEquals(new Pixel[][]{{new Pixel(160, 0, 225), new Pixel(130,
+            180, 31)}, {new Pixel(0, 161, 159),
+            new Pixel(225, 0, 117)}}, this.twoXTwo.copyImage());
+    assertEquals(4, this.twoXTwo.copyImage().length);
   }
 
   @Test
   public void applyEditColor() {
     deepEquals(new Pixel[][]{{new Pixel(170, 170, 170),
-                    new Pixel(140, 140, 140)},
-                    {new Pixel(0, 0, 0),
-                            new Pixel(255, 255, 255)}},
+                    new Pixel(140, 140, 140)}, {new Pixel(0, 0, 0),
+                    new Pixel(255, 255, 255)}},
             new ColorComponent("red").applyEdit("test", this.twoXTwo).copyImage());
     init();
     deepEquals(new Pixel[][]{{new Pixel(255, 255, 255),
-                    new Pixel(41, 41, 41)},
-                    {new Pixel(169, 169, 169),
-                            new Pixel(127, 127, 127)}},
+                    new Pixel(41, 41, 41)}, {new Pixel(169,
+                    169, 169), new Pixel(127, 127, 127)}},
             new ColorComponent("blue").applyEdit("test", this.twoXTwo).copyImage());
     init();
     deepEquals(new Pixel[][]{{new Pixel(0, 0, 0),
-                    new Pixel(190, 190, 190)},
-                    {new Pixel(171, 171, 171),
-                            new Pixel(0, 0, 0)}},
+                    new Pixel(190, 190, 190)}, {new Pixel(171,
+                    171, 171), new Pixel(0, 0, 0)}},
             new ColorComponent("green").applyEdit("test", this.twoXTwo).copyImage());
+    assertEquals(4, this.twoXTwo.copyImage().length);
+
   }
 
   @Test
@@ -124,6 +123,7 @@ public class EditTest {
                     {new Pixel(170, 0, 255),
                             new Pixel(140, 190, 41)}},
             new FlipHZ("vertical").applyEdit("test", this.twoXTwo).copyImage());
+    assertEquals(4, this.twoXTwo.copyImage().length);
   }
 
   @Test
@@ -144,6 +144,8 @@ public class EditTest {
                             {new Pixel(255, 0, 127),
                                     new Pixel(0, 171, 169)}},
                             255)).copyImage());
+    assertEquals(4, this.twoXTwo.copyImage().length);
+
   }
 
   @Test
@@ -177,6 +179,8 @@ public class EditTest {
                     {new Pixel(171, 171, 171),
                             new Pixel(255, 255, 255)}},
             new ILV("value").applyEdit("test", this.twoXTwo).copyImage());
+    assertEquals(4, this.twoXTwo.copyImage().length);
+
   }
 
 
@@ -195,6 +199,8 @@ public class EditTest {
                             new Pixel(124, 110, 86)}},
             new Transform("sepia").applyEdit("test",
                     this.twoXTwo).copyImage());
+    assertEquals(4, this.twoXTwo.copyImage().length);
+
   }
 
   @Test
@@ -222,6 +228,8 @@ public class EditTest {
                             new Pixel(124, 110, 86)}},
             new FilterSharpenBlur("sharpen").applyEdit("test",
                     this.twoXTwo).copyImage());
+    assertEquals(4, this.twoXTwo.copyImage().length);
+
   }
 
   @Test
