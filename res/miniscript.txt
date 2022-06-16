@@ -1,0 +1,3 @@
+load ././res/pink.ppm pink
+sepia pink pinksepia
+save ././res/pinksepia.ppm pinksepia

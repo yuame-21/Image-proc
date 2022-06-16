@@ -6,6 +6,7 @@ import java.io.StringReader;
 
 import controller.ImageProcessorController;
 import controller.ImageProcessorControllerImpl;
+import controller.commands.File;
 import controller.commands.Filter;
 import controller.commands.Transformation;
 import model.ImageModel;
@@ -98,19 +99,22 @@ public class ImageProcessorControllerImplTest {
     String[] arr = app.toString().split("\n");
 
     assertEquals("Welcome to Mimi and Ella's Image Processor <3", arr[0]);
-    assertEquals("To use this program, first load a ppm with the command:", arr[2]);
+    assertEquals("To use this program, first load a file with the command:", arr[2]);
     assertEquals("load + file + name", arr[3]);
-    assertEquals("Then, you can edit the image in the following ways:", arr[5]);
-    assertEquals("brighten + degree, darken + degree", arr[6]);
-    assertEquals("red-component, green-component, blue-component", arr[7]);
-    assertEquals("horizontal-flip, vertical-flip", arr[8]);
-    assertEquals("value-component, luma-component, intensity-component", arr[9]);
-    assertEquals("To save your image, type:", arr[11]);
-    assertEquals("save + file + name", arr[12]);
-    assertEquals("To quit, type:", arr[14]);
-    assertEquals("q or Q", arr[15]);
-    assertEquals("Program quit.", arr[16]);
-    assertEquals("bye! <3", arr[18]);
+    assertEquals("Or, use a .txt script with:", arr[4]);
+    assertEquals("-file + file.txt", arr[5]);
+    assertEquals("Then, you can edit the image in the following ways:", arr[7]);
+    assertEquals("brighten + degree, darken + degree", arr[8]);
+    assertEquals("red-component, green-component, blue-component", arr[9]);
+    assertEquals("horizontal-flip, vertical-flip", arr[10]);
+    assertEquals("value-component, luma-component, intensity-component", arr[11]);
+    assertEquals("greyscale, sepia, blur, sharpen", arr[12]);
+    assertEquals("To save your image, type:", arr[13]);
+    assertEquals("save + file + name", arr[14]);
+    assertEquals("To quit, type:", arr[16]);
+    assertEquals("q or Q", arr[17]);
+    assertEquals("Program quit.", arr[18]);
+    assertEquals("bye! <3", arr[20]);
   }
 
   @Test
@@ -123,7 +127,7 @@ public class ImageProcessorControllerImplTest {
 
     String[] arr = app.toString().split("\n");
 
-    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[16]);
+    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
   }
 
   @Test
@@ -137,8 +141,8 @@ public class ImageProcessorControllerImplTest {
 
     String[] arr = app.toString().split("\n");
 
-    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[16]);
-    assertEquals("Saved image, pink to path, ././res/pink.ppm", arr[17]);
+    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
+    assertEquals("Saved image, pink to path, ././res/pink.ppm", arr[19]);
   }
 
 
@@ -153,11 +157,11 @@ public class ImageProcessorControllerImplTest {
 
     String[] arr = app.toString().split("\n");
 
-    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[16]);
+    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
     assertEquals("brightened image, pink, by 10. Renamed edited image as" +
-            " pinkBrighten", arr[17]);
+            " pinkBrighten", arr[19]);
     assertEquals("darkened image, pinkBrighten, by 30. Renamed edited image " +
-            "as pinkDarken", arr[18]);
+            "as pinkDarken", arr[20]);
   }
 
 
@@ -172,13 +176,13 @@ public class ImageProcessorControllerImplTest {
 
     String[] arr = app.toString().split("\n");
 
-    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[16]);
+    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
     assertEquals("Greyscaled image, pink, for color component, red. " +
-            "Renamed edited image as pinkRed", arr[17]);
-    assertEquals("Greyscaled image, pinkRed, for color component, green. " +
-            "Renamed edited image as pinkGreen", arr[18]);
-    assertEquals("Greyscaled image, pinkGreen, for color component, blue. " +
             "Renamed edited image as pinkRed", arr[19]);
+    assertEquals("Greyscaled image, pinkRed, for color component, green. " +
+            "Renamed edited image as pinkGreen", arr[20]);
+    assertEquals("Greyscaled image, pinkGreen, for color component, blue. " +
+            "Renamed edited image as pinkRed", arr[21]);
   }
 
 
@@ -193,11 +197,11 @@ public class ImageProcessorControllerImplTest {
 
     String[] arr = app.toString().split("\n");
 
-    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[16]);
+    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
     assertEquals("Horizontally flipped image, pink. " +
-            "Renamed edited image as pinkhoriz", arr[17]);
+            "Renamed edited image as pinkhoriz", arr[19]);
     assertEquals("Vertically flipped image, pinkhoriz." +
-            " Renamed edited image as pinkhv", arr[18]);
+            " Renamed edited image as pinkhv", arr[20]);
   }
 
   @Test
@@ -212,13 +216,13 @@ public class ImageProcessorControllerImplTest {
 
     String[] arr = app.toString().split("\n");
 
-    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[16]);
+    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
     assertEquals("Greyscaled image, pink, for luma." +
-            " Renamed edited image as pinkluma", arr[17]);
+            " Renamed edited image as pinkluma", arr[19]);
     assertEquals("Greyscaled image, pinkluma, for intensity. " +
-            "Renamed edited image as pinkli", arr[18]);
+            "Renamed edited image as pinkli", arr[20]);
     assertEquals("Greyscaled image, pinkli, for value. " +
-            "Renamed edited image as pinkliv", arr[19]);
+            "Renamed edited image as pinkliv", arr[21]);
   }
 
   @Test
@@ -232,10 +236,10 @@ public class ImageProcessorControllerImplTest {
 
     String[] arr = app.toString().split("\n");
 
-    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[16]);
-    assertEquals("given command is invalid", arr[17]);
+    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
+    assertEquals("given command is invalid", arr[19]);
     assertEquals("Horizontally flipped image, pink. Renamed edited" +
-            " image as pinkH", arr[18]);
+            " image as pinkH", arr[20]);
 
   }
 
@@ -253,9 +257,9 @@ public class ImageProcessorControllerImplTest {
 
     String[] arr = app.toString().split("\n");
 
-    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[16]);
+    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
 
-    for (int i = 17; i < 117; i++) {
+    for (int i = 19; i < 117; i++) {
       assertEquals("Horizontally flipped image, pink. " +
               "Renamed edited image as pink", arr[i]);
     }
@@ -272,10 +276,10 @@ public class ImageProcessorControllerImplTest {
 
     String[] arr = app.toString().split("\n");
 
-    assertEquals("File not found", arr[16]);
-    assertEquals("given command is invalid", arr[17]);
     assertEquals("File not found", arr[18]);
-    assertEquals("Invalid path format", arr[19]);
+    assertEquals("given command is invalid", arr[19]);
+    assertEquals("File not found", arr[20]);
+    assertEquals("Invalid path format", arr[21]);
 
   }
 
@@ -308,11 +312,11 @@ public class ImageProcessorControllerImplTest {
 
     String[] arr = app.toString().split("\n");
 
-    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[16]);
+    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
     assertEquals("Transformed image, pink, to sepia. " +
-            "Renamed edited image as pinkSepia", arr[17]);
+            "Renamed edited image as pinkSepia", arr[19]);
     assertEquals("Transformed image, pinkSepia, to greyscale. " +
-            "Renamed edited image as pinkSG", arr[18]);
+            "Renamed edited image as pinkSG", arr[20]);
 
   }
 
@@ -339,10 +343,10 @@ public class ImageProcessorControllerImplTest {
 
     String[] arr = app.toString().split("\n");
 
-    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[16]);
-    assertEquals("Filtered image, pink, to blur. Renamed edited image as pinkB", arr[17]);
+    assertEquals("Loaded image, pink. From path, ././res/pink.ppm", arr[18]);
+    assertEquals("Filtered image, pink, to blur. Renamed edited image as pinkB", arr[19]);
     assertEquals("Filtered image, pinkB, to sharpen. " +
-            "Renamed edited image as pinkS", arr[18]);
+            "Renamed edited image as pinkS", arr[20]);
   }
 
   @Test
@@ -354,6 +358,29 @@ public class ImageProcessorControllerImplTest {
         fail("should have thrown illegal arg exc:valid filters are blur and sharpen");
       }
     }
+  }
+
+  @Test
+  public void testFileCons() {
+    try {
+      new File("pink.ppm");
+    } catch (IllegalArgumentException e) {
+      if (!e.getMessage().equals("invalid file")) {
+        fail("should have thrown illegal arg exc: invalid file");
+      }
+    }
+  }
+
+  @Test
+  public void testFile() {
+    Readable r = new StringReader("-file ././res/miniscript.txt");
+    this.c1 = new ImageProcessorControllerImpl(this.m1, this.v1, r);
+
+    this.c1.processImage();
+
+    String[] arr = app.toString().split("\n");
+    assertEquals("uploaded file, ././res/miniscript.txtand ran the " +
+            "previous stream of commands.", arr[18]);
   }
 
 }

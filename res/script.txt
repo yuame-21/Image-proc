@@ -1,63 +1,44 @@
-load ././res/pink.png pink \n
-
-brighten pink pinkBrighter 20 \n
-save ././res/pinkBrighter.png pinkBrighter \n
-
-darken pink pinkDarker 20 \n
-save ././res/pinkDarker.png pinkDarker \n
-
-red-component pink pinkRedC \n
-save ././res/pinkRedC.png pinkRedC \n
-
-green-component pink pinkGreenC \n
-save ././res/pinkGreenC.png pinkGreenC \n
-
-blue-component pink pinkBlueC \n
-save ././res/pinkBlueC.png pinkBlueC \n
-
-horizontal-flip pink pinkHoriz \n
-save ././res/pinkHoriz.png pinkHoriz \n
-
-vertical-flip pink pinkVert \n
-save ././res/pinkVert.png pinkVert \n
-
-value-component pink pinkValue \n
-save ././res/pinkValue.png pinkValue \n
-
-luma-component pink pinkLuma \n
-save ././res/pinkLuma.png pinkLuma \n
-
-intensity-component pink pinkIntensity \n
-save ././res/pinkIntensity.png pinkIntensity \n
-
-sepia pink pinkSepia \n
-save ././res/pinkSepia.png pinkSepia \n
-
-greyscale pink pinkGreyscale \n
-save ././res/pinkGreyscale.png pinkGreyscale \n
-
-blur pink pinkBlur \n
-save ././res/pinkBlur.png pinkBlur \n
-
-sharpen pink pinkSharpen \n
-save ././res/pinkSharpen.png pinkSharpen \n
-
-save ././res/pink.ppm pink \n
-save ././res/pink.jpg pink \n
-save ././res/pink.bpm pink \n
-
-load ././res/pink.ppm pinkpng \n
-blur pinkpng pinkpngblur \n
-save ././res/pinkpngblur.ppm pinkpngblur \n
-
-load ././res/pink.jpg pinkjpg \n
-sharpen pinkjpg pinkjpgsharp \n
-save ././res/pinkjpgsharp.jpg \n
-
-load ././res/pink.bpm pinkbpm \n
-sepia pinkbpm pinkbpmsepia \n
-save ././res/pinkbpmsepia.bpm pinkbpmsepia \n
-
-q \n
+load ././res/pink.png pink
+brighten pink pinkBrighter 20
+save ././res/pinkBrighter.png pinkBrighter
+darken pink pinkDarker 20
+save ././res/pinkDarker.png pinkDarker
+red-component pink pinkRedC
+save ././res/pinkRedC.png pinkRedC
+green-component pink pinkGreenC
+save ././res/pinkGreenC.png pinkGreenC
+blue-component pink pinkBlueC
+save ././res/pinkBlueC.png pinkBlueC
+horizontal-flip pink pinkHoriz
+save ././res/pinkHoriz.png pinkHoriz
+vertical-flip pink pinkVert
+save ././res/pinkVert.png pinkVert
+value-component pink pinkValue
+save ././res/pinkValue.png pinkValue
+luma-component pink pinkLuma
+save ././res/pinkLuma.png pinkLuma
+intensity-component pink pinkIntensity
+save ././res/pinkIntensity.png pinkIntensity
+sepia pink pinkSepia
+save ././res/pinkSepia.png pinkSepia
+greyscale pink pinkGreyscale
+save ././res/pinkGreyscale.png pinkGreyscale
+blur pink pinkBlur
+save ././res/pinkBlur.png pinkBlur
+sharpen pink pinkSharpen
+save ././res/pinkSharpen.png pinkSharpen
+save ././res/pink.ppm pink
+save ././res/pink.jpg pink
+save ././res/pink.bpm pink
+load ././res/pink.ppm pinkpng
+blur pinkpng pinkpngblur
+save ././res/pinkpngblur.ppm pinkpngblur
+load ././res/pink.jpg pinkjpg
+sharpen pinkjpg pinkjpgsharp
+save ././res/pinkjpgsharp.jpg
+load ././res/pink.bpm pinkbpm
+sepia pinkbpm pinkbpmsepia
+save ././res/pinkbpmsepia.bpm pinkbpmsepia
+q
 
 
