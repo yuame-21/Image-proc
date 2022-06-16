@@ -46,7 +46,7 @@ public class ImageModelImpl implements ImageModel {
 
     String type = path.substring(path.length() - 4);
 
-    if (!(type.equals(".ppm") || type.equals(".png") || type.equals(".jpg") || type.equals(".bpm"))) {
+    if (!(type.equals(".ppm") || type.equals(".png") || type.equals(".jpg") || type.equals(".bmp"))) {
       throw new IllegalArgumentException("Invalid path format");
     }
 
@@ -193,7 +193,7 @@ public class ImageModelImpl implements ImageModel {
 
     String type = path.substring(path.length() - 4);
 
-    if (!(type.equals(".ppm") || type.equals(".png") || type.equals(".jpg") || type.equals(".bpm"))) {
+    if (!(type.equals(".ppm") || type.equals(".png") || type.equals(".jpg") || type.equals(".bmp"))) {
       throw new IllegalArgumentException("Invalid path format");
     }
 

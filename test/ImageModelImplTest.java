@@ -5,17 +5,13 @@ import org.junit.Test;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.Scanner;
 
 import model.ImageModel;
 import model.ImageModelImpl;
 import model.edit.ColorComponent;
-import model.edit.Edit;
 import model.edit.FilterSharpenBlur;
 import model.edit.Transform;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * Provides tests for the {@link ImageModelImpl} class.
@@ -144,8 +140,12 @@ public class ImageModelImplTest extends TestCase {
     assertEquals(expectedValuePink, model2.generateString("pink"));
     assertEquals(expectedValue2x2, model2.generateString("22"));
 
-    model3.load("././2by2.png", "22PNG");
+    model3.load("././res/2by2.png", "22PNG");
     assertEquals(expectedValue2x2, model3.generateString("22PNG"));
+    model3.load("././res/2by2.bmp", "22BMP");
+    assertEquals(expectedValue2x2, model3.generateString("22BMP"));
+    model3.load("././res/2by2.jpg", "22JPG");
+    assertEquals(expectedValue2x2, model3.generateString("22JPG"));
   }
 
   @Test
@@ -153,6 +153,10 @@ public class ImageModelImplTest extends TestCase {
     ImageModelImpl mod1 = new ImageModelImpl();
     mod1.load("././res/2x2.ppm", "2by2");
     mod1.load("././res/pink.ppm", "Koko");
+    mod1.load("././res/2by2.bmp", "BMP");
+    mod1.load("././res/2by2.png", "PNG");
+    mod1.load("././res/2by2.jpg", "JPG");
+
 
     // test exceptions
     try {
@@ -183,6 +187,12 @@ public class ImageModelImplTest extends TestCase {
     assertEquals(Red2x2, mod1.generateString("Red22"));
     mod1.editImage("2by2", "2by2", new ColorComponent("red"));
     assertEquals(Red2x2, mod1.generateString("2by2"));
+    mod1.editImage("BMP", "BEEP", new ColorComponent("red"));
+    assertEquals(Red2x2, mod1.generateString("BEEP"));
+    mod1.editImage("PNG", "PEEP", new ColorComponent("red"));
+    assertEquals(Red2x2, mod1.generateString("PEEP"));
+    mod1.editImage("JPG", "JEEP", new ColorComponent("red"));
+    assertEquals(Red2x2, mod1.generateString("JEEP"));
   }
 
   @Test
@@ -191,6 +201,8 @@ public class ImageModelImplTest extends TestCase {
     mod.load("././res/TestSave.ppm", "Test");
     mod.load("././res/pink2.ppm", "pink2");
     mod.load("././res/2by2.png", "22PNG");
+    mod.load("././res/2by2.bmp", "22BMP");
+    mod.load("././res/2by2.jpg", "22JPG");
 
     // test exceptions
     try {
@@ -241,9 +253,10 @@ public class ImageModelImplTest extends TestCase {
 
     mod.save("././res/22png.png", "22PNG");
     assertTrue(new File("././res/22png.png").isFile());
-
-    mod.save("././res/22png.png", "22PNG");
-    assertTrue(new File("././res/22png.png").isFile());
+    mod.save("././res/22bmp.bmp", "22BMP");
+    assertTrue(new File("././res/22bmp.bmp").isFile());
+    mod.save("././res/22jpg.jpg", "22JPG");
+    assertTrue(new File("././res/22jpg.jpg").isFile());
   }
 
   @Test
@@ -257,7 +270,7 @@ public class ImageModelImplTest extends TestCase {
       model1.generateString("oops");
       fail("A file with this name does not exist");
     } catch (IllegalArgumentException e) {
-      if (!e.getMessage().equals("Given file name is not found")) {
+      if (!e.getMessage().equals("Given file name is not valid")) {
         fail("Should be returning message - Given file name is not found");
       }
     }
