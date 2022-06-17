@@ -1,44 +1,44 @@
-load ././res/pink.png pink
+load pink.png pink
 brighten pink pinkBrighter 20
-save ././res/pinkBrighter.png pinkBrighter
+save pinkBrighter.png pinkBrighter
 darken pink pinkDarker 20
-save ././res/pinkDarker.png pinkDarker
+save pinkDarker.png pinkDarker
 red-component pink pinkRedC
-save ././res/pinkRedC.png pinkRedC
+save pinkRedC.png pinkRedC
 green-component pink pinkGreenC
-save ././res/pinkGreenC.png pinkGreenC
+save pinkGreenC.png pinkGreenC
 blue-component pink pinkBlueC
-save ././res/pinkBlueC.png pinkBlueC
+save pinkBlueC.png pinkBlueC
 horizontal-flip pink pinkHoriz
-save ././res/pinkHoriz.png pinkHoriz
+save pinkHoriz.png pinkHoriz
 vertical-flip pink pinkVert
-save ././res/pinkVert.png pinkVert
+save pinkVert.png pinkVert
 value-component pink pinkValue
-save ././res/pinkValue.png pinkValue
+save pinkValue.png pinkValue
 luma-component pink pinkLuma
-save ././res/pinkLuma.png pinkLuma
+save pinkLuma.png pinkLuma
 intensity-component pink pinkIntensity
-save ././res/pinkIntensity.png pinkIntensity
+save pinkIntensity.png pinkIntensity
 sepia pink pinkSepia
-save ././res/pinkSepia.png pinkSepia
+save pinkSepia.png pinkSepia
 greyscale pink pinkGreyscale
-save ././res/pinkGreyscale.png pinkGreyscale
+save pinkGreyscale.png pinkGreyscale
 blur pink pinkBlur
-save ././res/pinkBlur.png pinkBlur
+save pinkBlur.png pinkBlur
 sharpen pink pinkSharpen
-save ././res/pinkSharpen.png pinkSharpen
-save ././res/pink.ppm pink
-save ././res/pink.jpg pink
-save ././res/pink.bmp pink
-load ././res/pink.ppm pinkpng
+save pinkSharpen.png pinkSharpen
+save pink.ppm pink
+save pink.jpg pink
+save pink.bmp pink
+load pink.ppm pinkpng
 blur pinkpng pinkpngblur
-save ././res/pinkpngblur.ppm pinkpngblur
-load ././res/pink.jpg pinkjpg
+save pinkpngblur.ppm pinkpngblur
+load pink.jpg pinkjpg
 sharpen pinkjpg pinkjpgsharp
-save ././res/pinkjpgsharp.jpg
-load ././res/pink.bmp pinkbmp
+save pinkjpgsharp.jpg pinkjpgsharp
+load pink.bmp pinkbmp
 sepia pinkbmp pinkbmpsepia
-save ././res/pinkbmpsepia.bmp pinkbmpsepia
+save pinkbmpsepia.bmp pinkbmpsepia
 q
 
 
