@@ -3,6 +3,8 @@
 First, you must run the` main()` method in `ImageProcessor` to instantiate the program. 
 Then, you can use the Image Processor with either a .txt or a series of command line inputs 
 
+Alternatively, you can initiate the program by running its jar, `Group.jar`.
+
 ## .txt script 
 
 To run the program using a .txt file, enter the following in the console : 
