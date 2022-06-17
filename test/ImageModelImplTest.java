@@ -168,7 +168,7 @@ public class ImageModelImplTest extends TestCase {
 
     model1.load("././res/2x2.ppm", "2by2");
     assertEquals(expectedValue2x2, model1.generateString("2by2"));
-    model2.load("././res/pink.ppm", "pink");
+    model2.load("././res/pink2.ppm", "pink");
     model2.load("././res/2x2.ppm", "22");
     assertEquals(expectedValuePink, model2.generateString("pink"));
     assertEquals(expectedValue2x2, model2.generateString("22"));
@@ -295,7 +295,7 @@ public class ImageModelImplTest extends TestCase {
   @Test
   public void testGenerateString() {
     ImageModelImpl model1 = new ImageModelImpl();
-    model1.load("././res/pink.ppm", "pink");
+    model1.load("././res/pink2.ppm", "pink");
     model1.load("././res/2x2.ppm", "2b2");
 
     // test exceptions
