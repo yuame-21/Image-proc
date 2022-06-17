@@ -200,7 +200,7 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
    */
   private void quit() {
     renderImageWithTryCatch("Program quit.\n\n"
-        + "bye! <3", "rendering the quit message");
+        + "bye! <3\n", "rendering the quit message");
   }
 
 
