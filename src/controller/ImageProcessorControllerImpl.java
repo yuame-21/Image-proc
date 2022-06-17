@@ -55,8 +55,8 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
 
   /**
    * Adds all commands to the Map of commands that the user can call.
-   * <p>
-   * In A5, we edited this method to include the new functionalities:
+   *
+   * <p>In A5, we edited this method to include the new functionalities:
    * transform, filter, and the new load and saves
    */
   private void addCommands() {
