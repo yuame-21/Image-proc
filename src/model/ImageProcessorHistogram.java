@@ -20,7 +20,7 @@ public class ImageProcessorHistogram {
   public ImageProcessorHistogram(ImageModelState image) {
     this.image = image;
     this.reds = this.histogram("red");
-    this.greens = this.histogram("blue");
+    this.greens = this.histogram("green");
     this.blues = this.histogram("blue");
     this.intensities = this.histogram("intensity");
   }
@@ -28,7 +28,7 @@ public class ImageProcessorHistogram {
   /**
    * Creates a single histogram array of a given type,
    * either reds, greens, blues, or intensities
-   * All color values are integers --- intensity is rounded as needed.
+   * All color values are integers --- intensity is rounded as needed using {@codeMath.round()}.
    *
    * @param type String type of histogram to make
    * @return int array of histogram values of given type
@@ -37,38 +37,36 @@ public class ImageProcessorHistogram {
   private int[] histogram(String type) throws IllegalArgumentException {
     int arrSize = this.image.getWidth() * this.image.getHeight();
     int[] histogram = new int[arrSize];
+    int a = 0;
 
     for (int i = 0; i < this.image.getHeight(); i++) {
       for (int j = 0; j < this.image.getWidth(); j++) {
-        for (int a = 0; a < arrSize; a++) {
-
-          switch (type) {
-            case "red":
-              histogram[a] = this.image.getPixel(i, j).get(0);
-              break;
-            case "green":
-              histogram[a] = this.image.getPixel(i, j).get(1);
-              break;
-            case "blue":
-              histogram[a] = this.image.getPixel(i, j).get(2);
-              break;
-            case "intensity":
-              int[] channel = this.image.getPixel(i, j).getChannel();
-              int sum = 0;
-              for (int c = 0; c < 3; c++) {
-                sum += channel[c];
-              }
-              int intensity = (int) Math.round(sum / 3);
-
-              histogram[a] = intensity;
-              break;
-            default:
-              throw new IllegalArgumentException("Invalid histogram value: " +
-                      "must be red, green, blue, or intensity");
-          }
+        switch (type) {
+          case "red":
+            histogram[a] = this.image.getPixel(i, j).get(0);
+            break;
+          case "green":
+            histogram[a] = this.image.getPixel(i, j).get(1);
+            break;
+          case "blue":
+            histogram[a] = this.image.getPixel(i, j).get(2);
+            break;
+          case "intensity":
+            int[] channel = this.image.getPixel(i, j).getChannel();
+            int sum = 0;
+            for (int c = 0; c < 3; c++) {
+              sum += channel[c];
+            }
+            int intensity = (int) Math.round(sum / 3);
+            histogram[a] = intensity;
+            break;
+          default:
+            throw new IllegalArgumentException("Invalid histogram value: " +
+                    "must be red, green, blue, or intensity");
         }
-
+        a++;
       }
+
     }
     return histogram;
   }
