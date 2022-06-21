@@ -29,7 +29,7 @@ public class Transform extends AEdit {
    * @param r      row location
    * @param c      column location
    * @param maxNum max value for RGB
-   * @return 3-d array representing an image
+   * @return 2-d array representing an image
    */
   @Override
   protected Pixel[][] setRGB(Pixel[][] image, int r, int c, int maxNum) {
@@ -37,8 +37,10 @@ public class Transform extends AEdit {
     Pixel pixel = new Pixel(0, 0, 0);
 
     for (int i = 0; i < 3; i++) {
-      int preClamp = (int) Math.round(image[r][c].get(0) * transform[i][0]
-          + image[r][c].get(1) * transform[i][1] + image[r][c].get(2) * transform[i][2]);
+      int preClamp =
+          (int) Math.round(image[r][c].get(0) * transform[i][0]
+          + image[r][c].get(1) * transform[i][1]
+              + image[r][c].get(2) * transform[i][2]);
 
       pixel.set(i, clamp(preClamp, maxNum));
     }

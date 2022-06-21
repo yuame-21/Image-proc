@@ -1,6 +1,9 @@
 package view;
 
+import java.awt.event.ActionListener;
 import java.io.IOException;
+
+import javax.swing.*;
 
 /**
  * {@code ImageProcessorTextView} implements {@code ImageProcessorView} to render text to the user.
@@ -44,6 +47,5 @@ public class ImageProcessorTextView implements ImageProcessorView {
     }
     this.destination.append(message);
   }
-
 
 }

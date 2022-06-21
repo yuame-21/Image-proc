@@ -6,7 +6,7 @@ import javax.swing.*;
 
 import controller.Features;
 
-public interface ImageProcessorGUIView extends ImageProcessorView{
+public interface ImageProcessorGUIView extends ImageProcessorView {
 
   /**
    * Signal the view to draw itself.

@@ -15,4 +15,5 @@ public interface ImageProcessorView {
    * @throws IOException if the transmission fails
    */
   void renderMessage(String message) throws IOException;
+
 }

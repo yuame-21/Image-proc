@@ -11,7 +11,7 @@ import view.ImageProcessorView;
 public interface Command {
 
   /**
-   * Applies the commmand to a given model in order to manipulate an image.
+   * Applies the command to a given model in order to manipulate an image.
    *
    * @param model what to perform the command on
    */
