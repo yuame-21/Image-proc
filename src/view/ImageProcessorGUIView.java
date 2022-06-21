@@ -4,7 +4,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public interface ImageProcessorGUI extends ImageProcessorView{
+import controller.Features;
+
+public interface ImageProcessorGUIView extends ImageProcessorView{
 
   /**
    * Signal the view to draw itself.
@@ -35,5 +37,9 @@ public interface ImageProcessorGUI extends ImageProcessorView{
    * @param error error message to render
    */
   void showErrorMessage(String error);
+
+  void addFeatures(Features features);
+
+  void renderImage();
 
 }

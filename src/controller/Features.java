@@ -7,7 +7,6 @@ public interface Features {
   void blueComponent();
   void darken(int degree);
   void brighten(int degree);
-  void filter();
   void horizontalFlip();
   void verticalFlip();
   void intensity();
@@ -18,8 +17,8 @@ public interface Features {
   void sharpen();
   void blur();
 
-  void load();
-  void save();
+  void load(String path);
+  void save(String path);
 
 
 }
