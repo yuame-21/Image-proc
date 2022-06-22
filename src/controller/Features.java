@@ -1,5 +1,6 @@
 package controller;
 
+
 public interface Features {
 
   void redComponent();
@@ -20,6 +21,5 @@ public interface Features {
   void load(String path);
   void save(String path);
   void exitProgram();
-
 
 }

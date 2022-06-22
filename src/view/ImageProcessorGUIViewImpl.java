@@ -12,6 +12,12 @@ import javax.swing.filechooser.FileSystemView;
 
 import controller.Features;
 
+import static java.awt.BorderLayout.CENTER;
+import static java.awt.BorderLayout.LINE_END;
+import static java.awt.BorderLayout.LINE_START;
+import static java.awt.BorderLayout.PAGE_END;
+import static java.awt.BorderLayout.PAGE_START;
+
 public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorGUIView {
 
   public static Color VIOLET = new Color(204, 153, 255);
@@ -23,7 +29,7 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   private JScrollPane mainScrollPane, mainImageScroll;
   private JPanel histogram;
   private JLabel mainImage, feedback, fileName;
-  private JPanel featuresButtonPanel, loadSaveExitPanel;
+  private JPanel featuresButtonPanel, loadSaveExitPanel, imagePanel;
 
   private JButton loadButton, saveButton, exitButton, redButton, greenButton, blueButton,
           horizFlipButton, vertFlipButton, intensityButton, valueButton, sepiaButton, lumaButton,
@@ -42,7 +48,7 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.setSize(500, 500);
     this.setLocation(200, 200);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setLayout(new FlowLayout());
+    this.setLayout(new BorderLayout());
 
     // constructs the base panel
     JPanel mainPanel = new JPanel();
@@ -52,29 +58,15 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     mainScrollPane = new JScrollPane(mainPanel);
     add(mainScrollPane); // adds to the GUI
 
-    // adds image panel with scrollbars
-    this.mainImage = new JLabel();// starts blank - then mutates to be actual image somehow
-    this.mainImage.setText("Load an Image!");
-    mainImageScroll = new JScrollPane(this.mainImage);
-    this.mainImageScroll.setSize(200, 200);
-    mainImageScroll = new JScrollPane(mainImage);
-    mainPanel.add(mainImageScroll);
-
     // add label with name of file
     this.fileName = new JLabel();
-    mainPanel.add(this.fileName);
-
-    // makes feedback message label
-    feedback = new JLabel();
-    mainPanel.add(feedback);
+    mainPanel.add(this.fileName, PAGE_START);
 
     // makes a panel for load and save buttons
     loadSaveExitPanel = new JPanel();
     loadSaveExitPanel.setLayout(new FlowLayout());
     loadSaveExitPanel.setBackground(VIOLET);
     mainPanel.add(loadSaveExitPanel);
-
-    // meserve 335
 
     // load Button
     // set the button properly
@@ -88,6 +80,22 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     // exit button
     exitButton = new JButton("Exit");
     this.makeButton(exitButton, "Exit", loadSaveExitPanel);
+
+    // adds image panel with scrollbars
+    this.imagePanel = new JPanel();
+    this.imagePanel.setBackground(TEAL);
+    mainPanel.add(imagePanel, CENTER);
+
+    this.mainImage = new JLabel();// starts blank - then mutates to be actual image somehow
+//    this.mainImage.setText("Load an Image!");
+    mainImageScroll = new JScrollPane(this.mainImage);
+    this.mainImageScroll.setSize(200, 200);
+    mainImageScroll = new JScrollPane(mainImage);
+    this.imagePanel.add(mainImageScroll);
+
+    // makes feedback message label
+    feedback = new JLabel();
+    imagePanel.add(feedback);
 
     // makes a button panel
     featuresButtonPanel = new JPanel();
@@ -130,7 +138,12 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     featuresButtonPanel.add(brightenInput);
 
     // histogram
-//    mainPanel.add();
+    this.histogram = new JPanel();
+    this.histogram.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
+    this.histogram = new ImageProcessorHistogramView(  , this.histogram);
+    mainPanel.add(this.histogram);
+
+    // set up histrogram after loading in controller
 
     pack();
     this.makeVisible();
@@ -144,6 +157,8 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   @Override
   public void refresh() {
     this.repaint();
+
+    // contorller calls when load /// commadn to refresh
   }
 
   @Override
@@ -201,6 +216,7 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     darkenButton.addActionListener(evt -> features.darken(Integer.valueOf(darkenInput.getText())));
     brightenButton.addActionListener(evt ->
             features.brighten(Integer.valueOf(brightenInput.getText())));
+
   }
 
   @Override
