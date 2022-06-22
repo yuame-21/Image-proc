@@ -29,13 +29,11 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   private JButton loadButton, saveButton, exitButton, redButton, greenButton, blueButton,
           horizFlipButton, vertFlipButton, intensityButton, valueButton, sepiaButton, lumaButton,
           greyscaleButton, sharpenButton, blurButton, darkenButton, brightenButton;
-  private JTextField loadInput, saveInput;
   private JTextField darkenInput, brightenInput;
-//  private JLabel featuresCheckbox;
 
   private String[] featuresList = new String[]{"Red Component", "Green Component", "Blue " +
           "Component", "Horizontal Flip", "Vertical Flip", "Intensity", "Value", "Sepia", "Luma",
-          "Greyscale", "Sharpen", "Blur", "Darken", "Brighten"}; // Darken? Brighten?
+          "Greyscale", "Sharpen", "Blur", "Darken", "Brighten"};
 
   public ImageProcessorGUIViewImpl() {
     super();
@@ -64,20 +62,8 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     loadSaveExitPanel.setBackground(VIOLET);
     mainPanel.add(loadSaveExitPanel);
 
-    // load text box
-//    loadInput = new JTextField(10); // dont know what columns means lol
-//    mainPanel.add(loadInput);
-    loadInput = new JTextField(10); // dont know what columns means lol
-    loadSaveExitPanel.add(loadInput);
-
     // load Button
     this.makeButton(loadButton, "Load", loadSaveExitPanel);
-
-    // save text box
-//    saveInput = new JTextField(10); // dont know what columns means lol
-//    mainPanel.add(saveInput);
-    saveInput = new JTextField(10); // dont know what columns means lol
-    loadSaveExitPanel.add(saveInput);
 
     // save button
     this.makeButton(saveButton, "Save", loadSaveExitPanel);
@@ -111,47 +97,11 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     brightenInput = new JTextField(10);
     featuresButtonPanel.add(brightenInput);
 
-//    // features check boxes
-//    JPanel checkBox = new JPanel();
-//    checkBox.setBorder(BorderFactory.createTitledBorder("Edit Image:"));
-//    checkBox.setLayout(new BoxLayout(checkBox, BoxLayout.PAGE_AXIS));
-//
-//    JCheckBox[] checkBoxes = new JCheckBox[16];
-//    for (int i = 0; i < featuresList.length; i++) {
-//      checkBoxes[i] = new JCheckBox(featuresList[i]);
-//      checkBoxes[i].setSelected(false);
-//      checkBoxes[i].setActionCommand("CB" + (i + 1)); // dont know
-//      checkBox.add(checkBoxes[i]);
-//    }
-//    mainScrollPane.add(checkBox);
-    // I think we should make a pop up box or something for darken and brighten
-
     // histogram
 //    mainPanel.add();
 
     pack();
-   // this.makeVisible();
-  }
-
-  private void makeFileChooserLoad(Features features){
-    // create the choosing
-    JFileChooser chooser =
-        new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-
-    // connecting button with choosing menu
-    loadButton.addActionListener((ActionEvent a) -> {
-      // filters the file endings
-      FileNameExtensionFilter imageEnds = new FileNameExtensionFilter("Valid types"
-          , "png", "jpg", "bmp", "ppm");
-      chooser.setFileFilter(imageEnds);
-      // opens the actual file thing
-      int yes = chooser.showOpenDialog(null);
-      // is this chosen file good?
-      if(yes == JFileChooser.APPROVE_OPTION) {
-        File imageReq = chooser.getSelectedFile();
-        features.load(imageReq.getAbsolutePath());
-      }
-    });
+    this.makeVisible();
   }
 
   private void makeButton(JButton button, String s, JPanel panel) {
@@ -182,8 +132,26 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
 
   @Override
   public void addFeatures(Features features) {
+    // connecting button with choosing menu
+    loadButton.addActionListener((ActionEvent a) -> {
+      final JFileChooser chooser =
+          new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+
+      // filters the file endings
+      FileNameExtensionFilter imageEnds = new FileNameExtensionFilter("Valid types"
+          , "png", "jpg", "bmp", "ppm");
+      chooser.setFileFilter(imageEnds);
+      // opens the actual file thing
+      int yes = chooser.showOpenDialog(null);
+      // is this chosen file good?
+      if(yes == JFileChooser.APPROVE_OPTION) {
+        File imageReq = chooser.getSelectedFile();
+        features.load(imageReq.getAbsolutePath());
+      }
+    });
+
     saveButton.addActionListener(evt -> {
-      JFileChooser saveHere = new JFileChooser(".");
+      final JFileChooser saveHere = new JFileChooser(".");
         int yesSave = saveHere.showSaveDialog(this);
         if(yesSave == JFileChooser.APPROVE_OPTION) {
           File saveImage = saveHere.getSelectedFile();
