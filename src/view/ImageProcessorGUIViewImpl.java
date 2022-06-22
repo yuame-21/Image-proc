@@ -10,15 +10,21 @@ import javax.swing.*;
 
 import controller.Features;
 
-
 public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorGUIView {
 
-  private JScrollPane mainScrollPane;
-  private JPanel histogram, mainImage;
+  private JScrollPane mainScrollPane, mainImageScroll;
+  private JPanel histogram;
 
-  private JButton loadButton, saveButton, exitButton;
-  private JTextField loadInput;
-  private JLabel featuresCheckbox;
+  private JButton loadButton, saveButton, exitButton, redButton, greenButton, blueButton,
+      horizFlipButton, vertFlipButton, intensityButton, valueButton, sepiaButton, lumaButton,
+      greyscaleButton, sharpenButton, blurButton, darkenButton, brightenButton;
+  private JTextField loadInput, saveInput;
+  private JTextField darkenInput, brightenInput;
+//  private JLabel featuresCheckbox;
+
+  private String[] featuresList = new String[]{"Red Component", "Green Component", "Blue " +
+      "Component", "Horizontal Flip", "Vertical Flip", "Intensity", "Value", "Sepia", "Luma",
+      "Greyscale", "Sharpen", "Blur", "Darken", "Brighten"}; // Darken? Brighten?
 
   public ImageProcessorGUIViewImpl() {
     super();
@@ -28,31 +34,72 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLayout(new FlowLayout());
 
-    // constructs the image - blank at firstor we can display welcome
-    mainImage = new JPanel();
+    // constructs the base image
+    JPanel baseImage = new JPanel();
 
     // puts that image into a scroll pane
-    mainScrollPane = new JScrollPane(mainImage);
+    mainScrollPane = new JScrollPane(baseImage);
     add(mainScrollPane); // adds to the GUI
+
+    // adds image panel with scrollbars
+    JPanel mainImage = new JPanel(); // starts blank - then mutates to be actual image somehow
+    mainImageScroll = new JScrollPane(mainImage);
+    mainScrollPane.add(mainImage);
 
     // load text box
     loadInput = new JTextField(10); // dont know what columns means lol
-    this.add(loadInput);
+    mainScrollPane.add(loadInput);
 
     // load Button
-    loadButton = new JButton("Load");
-    loadButton.setActionCommand("Load Button");
-    this.add(loadButton);
+    this.makeButton(loadButton, "Load");
+
+    // save text box
+    saveInput = new JTextField(10); // dont know what columns means lol
+    mainScrollPane.add(saveInput);
 
     // save button
-    saveButton = new JButton("Save");
-    saveButton.setActionCommand("Save Button");
-    this.add(saveButton);
+    this.makeButton(saveButton, "Save");
 
     // exit button
-    exitButton = new JButton("Exit");
-    exitButton.setActionCommand("Exit Button");
-    this.add(exitButton);
+    this.makeButton(exitButton, "Exit");
+
+    // features bottons
+    this.makeButton(redButton, "Red Component");
+    this.makeButton(greenButton, "Green Component");
+    this.makeButton(blueButton, "Blue Component");
+    this.makeButton(horizFlipButton, "Horizontal Flip");
+    this.makeButton(vertFlipButton, "Vertical Flip");
+    this.makeButton(intensityButton, "Intensity");
+    this.makeButton(valueButton, "Value");
+    this.makeButton(lumaButton, "Luma");
+    this.makeButton(sepiaButton, "Sepia");
+    this.makeButton(greyscaleButton, "Greyscale");
+    this.makeButton(sharpenButton, "Sharpen");
+    this.makeButton(blurButton, "Blur");
+    this.makeButton(darkenButton, "Darken");
+    darkenInput = new JTextField(10);
+    mainImageScroll.add(darkenInput);
+    this.makeButton(brightenButton, "Brighten");
+    brightenInput = new JTextField(10);
+    mainImageScroll.add(brightenInput);
+
+//    // features check boxes
+//    JPanel checkBox = new JPanel();
+//    checkBox.setBorder(BorderFactory.createTitledBorder("Edit Image:"));
+//    checkBox.setLayout(new BoxLayout(checkBox, BoxLayout.PAGE_AXIS));
+//
+//    JCheckBox[] checkBoxes = new JCheckBox[16];
+//    for (int i = 0; i < featuresList.length; i++) {
+//      checkBoxes[i] = new JCheckBox(featuresList[i]);
+//      checkBoxes[i].setSelected(false);
+//      checkBoxes[i].setActionCommand("CB" + (i + 1)); // dont know
+//      checkBox.add(checkBoxes[i]);
+//    }
+//    mainScrollPane.add(checkBox);
+    // I think we should make a pop up box or something for darken and brighten
+
+    // histogram
+    mainImageScroll.add();
 
     pack();
     setVisible(true); // is this always true?
