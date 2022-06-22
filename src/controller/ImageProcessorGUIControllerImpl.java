@@ -130,4 +130,9 @@ public class ImageProcessorGUIControllerImpl implements Features {
     this.initAndRender();
   }
 
+  @Override
+  public void exitProgram() {
+    System.exit(0);
+  }
+
 }

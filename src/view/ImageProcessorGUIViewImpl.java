@@ -2,8 +2,6 @@ package view;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.IOException;
 
 import javax.swing.*;
@@ -30,7 +28,7 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     super();
     this.setTitle("Image Processor");
     this.setSize(500, 500);
-    this.setLocation(200,200);
+    this.setLocation(200, 200);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLayout(new FlowLayout());
 
@@ -102,7 +100,13 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     mainImageScroll.add();
 
     pack();
-    setVisible(true); // is this always true?
+    this.makeVisible();
+  }
+
+  private void makeButton(JButton button, String s) {
+    button = new JButton(s);
+    button.setActionCommand(s + " Button");
+    mainScrollPane.add(button);
   }
 
   @Override
@@ -127,6 +131,25 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
 
   @Override
   public void addFeatures(Features features) {
+    loadButton.addActionListener(evt -> features.load(loadInput.getText()));
+  saveButton.addActionListener(evt -> features.save(saveInput.getText())); // fix save and load
+    // -- hsouldnt be taking in text
+    exitButton.addActionListener(evt -> features.exitProgram());
+    redButton.addActionListener(evt -> features.redComponent());
+    greenButton.addActionListener(evt -> features.greenComponent());
+    blueButton.addActionListener(evt -> features.blueComponent());
+    horizFlipButton.addActionListener(evt -> features.horizontalFlip());
+    vertFlipButton.addActionListener(evt -> features.verticalFlip());
+
+///    loadButton, saveButton,
+// exitButton,
+// redButton,
+// greenButton,
+// blueButton,
+//        horizFlipButton, vertFlipButton, intensityButton, valueButton, sepiaButton, lumaButton,
+//        greyscaleButton, sharpenButton, blurButton, darkenButton, brightenButton;
+    private JTextField loadInput, saveInput;
+
 
   }
 
@@ -139,33 +162,6 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   public void renderMessage(String message) throws IOException {
 
   }
-//    echoButton.addActionListener(evt -> features.echoOutput(input.getText()));
-//    toggleButton.addActionListener(evt -> features.toggleColor());
-//    exitButton.addActionListener(evt -> features.exitProgram());
-//    this.addKeyListener(new KeyListener() {
-//      @Override
-//      public void keyTyped(KeyEvent e) {
-//        if (e.getKeyChar() == 't') {
-//          features.toggleColor();
-//        }
-//      }
-//
-//      @Override
-//      public void keyPressed(KeyEvent e) {
-//        if (e.getKeyCode() == KeyEvent.VK_C) {
-//          features.makeUppercase();
-//        }
-//      }
-//
-//      @Override
-//      public void keyReleased(KeyEvent e) {
-//        if (e.getKeyCode() == KeyEvent.VK_C) {
-//          features.restoreLowercase();
-//        }
-//      }
-//    });
-//  }
-
 
 }
 
