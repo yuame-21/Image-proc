@@ -1,9 +1,16 @@
 package view;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 
 import controller.Features;
 
@@ -58,6 +65,8 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     mainPanel.add(loadSaveExitPanel);
 
     // load text box
+//    loadInput = new JTextField(10); // dont know what columns means lol
+//    mainPanel.add(loadInput);
     loadInput = new JTextField(10); // dont know what columns means lol
     loadSaveExitPanel.add(loadInput);
 
@@ -65,6 +74,8 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.makeButton(loadButton, "Load", loadSaveExitPanel);
 
     // save text box
+//    saveInput = new JTextField(10); // dont know what columns means lol
+//    mainPanel.add(saveInput);
     saveInput = new JTextField(10); // dont know what columns means lol
     loadSaveExitPanel.add(saveInput);
 
@@ -119,7 +130,28 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
 //    mainPanel.add();
 
     pack();
-    this.makeVisible();
+   // this.makeVisible();
+  }
+
+  private void makeFileChooserLoad(Features features){
+    // create the choosing
+    JFileChooser chooser =
+        new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+
+    // connecting button with choosing menu
+    loadButton.addActionListener((ActionEvent a) -> {
+      // filters the file endings
+      FileNameExtensionFilter imageEnds = new FileNameExtensionFilter("Valid types"
+          , "png", "jpg", "bmp", "ppm");
+      chooser.setFileFilter(imageEnds);
+      // opens the actual file thing
+      int yes = chooser.showOpenDialog(null);
+      // is this chosen file good?
+      if(yes == JFileChooser.APPROVE_OPTION) {
+        File imageReq = chooser.getSelectedFile();
+        features.load(imageReq.getAbsolutePath());
+      }
+    });
   }
 
   private void makeButton(JButton button, String s, JPanel panel) {
@@ -150,9 +182,14 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
 
   @Override
   public void addFeatures(Features features) {
-    loadButton.addActionListener(evt -> features.load(loadInput.getText()));
-    saveButton.addActionListener(evt -> features.save(saveInput.getText())); // fix save and load
-    // -- hsouldnt be taking in text
+    saveButton.addActionListener(evt -> {
+      JFileChooser saveHere = new JFileChooser(".");
+        int yesSave = saveHere.showSaveDialog(this);
+        if(yesSave == JFileChooser.APPROVE_OPTION) {
+          File saveImage = saveHere.getSelectedFile();
+          features.save(saveImage.getAbsolutePath());
+        }
+    });
     exitButton.addActionListener(evt -> features.exitProgram());
     redButton.addActionListener(evt -> features.redComponent());
     greenButton.addActionListener(evt -> features.greenComponent());
