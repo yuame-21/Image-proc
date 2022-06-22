@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.IOException;
+
 import controller.commands.ColorComponent;
 import controller.commands.Command;
 import controller.commands.DarkenBrighten;
@@ -29,8 +31,12 @@ public class ImageProcessorGUIControllerImpl implements Features {
 
   private void initAndRender() {
     this.command.initCommand(this.model);
-    this.command.renderCommandMessage(this.view);
     this.view.renderImage();
+    try {
+      this.view.renderMessage(this.command.getMessage());
+    } catch (IOException e) {
+      throw new IllegalStateException("Render message failed : transmission failed");
+    }
   }
 
 
@@ -120,13 +126,13 @@ public class ImageProcessorGUIControllerImpl implements Features {
 
   @Override
   public void load(String path) {
-    this.command = new Load(path, path.substring(0, path.length() - 4));
+    this.command = new Load(path, TEMP_NAME);
     this.initAndRender();
   }
 
   @Override
   public void save(String path) {
-    this.command = new Save(path, path.substring(0, path.length() - 4));
+    this.command = new Save(path, TEMP_NAME);
     this.initAndRender();
   }
 

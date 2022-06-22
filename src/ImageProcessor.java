@@ -28,5 +28,4 @@ public final class ImageProcessor {
     controller.processImage();
 
   }
-
 }

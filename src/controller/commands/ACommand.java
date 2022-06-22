@@ -63,5 +63,4 @@ public abstract class ACommand implements Command {
     this.message = message;
   }
 
-
 }

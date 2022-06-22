@@ -14,15 +14,15 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   private JPanel histogram;
 
   private JButton loadButton, saveButton, exitButton, redButton, greenButton, blueButton,
-      horizFlipButton, vertFlipButton, intensityButton, valueButton, sepiaButton, lumaButton,
-      greyscaleButton, sharpenButton, blurButton, darkenButton, brightenButton;
+          horizFlipButton, vertFlipButton, intensityButton, valueButton, sepiaButton, lumaButton,
+          greyscaleButton, sharpenButton, blurButton, darkenButton, brightenButton;
   private JTextField loadInput, saveInput;
   private JTextField darkenInput, brightenInput;
 //  private JLabel featuresCheckbox;
 
   private String[] featuresList = new String[]{"Red Component", "Green Component", "Blue " +
-      "Component", "Horizontal Flip", "Vertical Flip", "Intensity", "Value", "Sepia", "Luma",
-      "Greyscale", "Sharpen", "Blur", "Darken", "Brighten"}; // Darken? Brighten?
+          "Component", "Horizontal Flip", "Vertical Flip", "Intensity", "Value", "Sepia", "Luma",
+          "Greyscale", "Sharpen", "Blur", "Darken", "Brighten"}; // Darken? Brighten?
 
   public ImageProcessorGUIViewImpl() {
     super();
@@ -132,7 +132,7 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   @Override
   public void addFeatures(Features features) {
     loadButton.addActionListener(evt -> features.load(loadInput.getText()));
-  saveButton.addActionListener(evt -> features.save(saveInput.getText())); // fix save and load
+    saveButton.addActionListener(evt -> features.save(saveInput.getText())); // fix save and load
     // -- hsouldnt be taking in text
     exitButton.addActionListener(evt -> features.exitProgram());
     redButton.addActionListener(evt -> features.redComponent());
@@ -140,23 +140,23 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     blueButton.addActionListener(evt -> features.blueComponent());
     horizFlipButton.addActionListener(evt -> features.horizontalFlip());
     vertFlipButton.addActionListener(evt -> features.verticalFlip());
-
-///    loadButton, saveButton,
-// exitButton,
-// redButton,
-// greenButton,
-// blueButton,
-//        horizFlipButton, vertFlipButton, intensityButton, valueButton, sepiaButton, lumaButton,
-//        greyscaleButton, sharpenButton, blurButton, darkenButton, brightenButton;
-    private JTextField loadInput, saveInput;
-
-
+    intensityButton.addActionListener(evt -> features.intensity());
+    valueButton.addActionListener(evt -> features.value());
+    lumaButton.addActionListener(evt -> features.luma());
+    sepiaButton.addActionListener(evt -> features.sepia());
+    greyscaleButton.addActionListener(evt -> features.greyscale());
+    sharpenButton.addActionListener(evt -> features.sharpen());
+    blurButton.addActionListener(evt -> features.blur());
+    darkenButton.addActionListener(evt -> features.darken(Integer.valueOf(darkenInput.getText())));
+    brightenButton.addActionListener(evt ->
+            features.brighten(Integer.valueOf(brightenInput.getText())));
   }
 
   @Override
   public void renderImage() {
 
   }
+
 
   @Override
   public void renderMessage(String message) throws IOException {
