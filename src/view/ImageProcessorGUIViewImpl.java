@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.*;
@@ -10,8 +9,15 @@ import controller.Features;
 
 public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorGUIView {
 
+  public static Color VIOLET = new Color(204, 153, 255);
+  public static Color PEONY = new Color(255, 0, 127);
+  public static Color TEAL = new Color(0, 153, 140);
+  public static Color ORANGE = new Color(255, 204, 153);
+  public static Color BLUE = new Color(102, 178, 255);
+
   private JScrollPane mainScrollPane, mainImageScroll;
   private JPanel histogram;
+  private JPanel featuresButtonPanel, loadSaveExitPanel;
 
   private JButton loadButton, saveButton, exitButton, redButton, greenButton, blueButton,
           horizFlipButton, vertFlipButton, intensityButton, valueButton, sepiaButton, lumaButton,
@@ -32,10 +38,11 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLayout(new FlowLayout());
 
-    // constructs the base image
+    // constructs the base panel
     JPanel mainPanel = new JPanel();
+    mainPanel.setBackground(PEONY);
 
-    // puts that image into a scroll pane
+    // puts main panel into a scroll pane
     mainScrollPane = new JScrollPane(mainPanel);
     add(mainScrollPane); // adds to the GUI
 
@@ -44,42 +51,54 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     mainImageScroll = new JScrollPane(mainImage);
     mainPanel.add(mainImageScroll);
 
+    // makes a panel for load and save buttons
+    loadSaveExitPanel = new JPanel();
+    loadSaveExitPanel.setLayout(new FlowLayout());
+    loadSaveExitPanel.setBackground(VIOLET);
+    mainPanel.add(loadSaveExitPanel);
+
     // load text box
     loadInput = new JTextField(10); // dont know what columns means lol
-    mainPanel.add(loadInput);
+    loadSaveExitPanel.add(loadInput);
 
     // load Button
-    this.makeButton(loadButton, "Load", mainPanel);
+    this.makeButton(loadButton, "Load", loadSaveExitPanel);
 
     // save text box
     saveInput = new JTextField(10); // dont know what columns means lol
-    mainPanel.add(saveInput);
+    loadSaveExitPanel.add(saveInput);
 
     // save button
-    this.makeButton(saveButton, "Save", mainPanel);
+    this.makeButton(saveButton, "Save", loadSaveExitPanel);
 
     // exit button
-    this.makeButton(exitButton, "Exit", mainPanel);
+    this.makeButton(exitButton, "Exit", loadSaveExitPanel);
+
+    // makes a button panel
+    featuresButtonPanel = new JPanel();
+    featuresButtonPanel.setLayout(new BoxLayout(featuresButtonPanel, BoxLayout.PAGE_AXIS));
+    featuresButtonPanel.setBackground(BLUE);
+    mainPanel.add(featuresButtonPanel);
 
     // features bottons
-    this.makeButton(redButton, "Red Component", mainPanel);
-    this.makeButton(greenButton, "Green Component", mainPanel);
-    this.makeButton(blueButton, "Blue Component", mainPanel);
-    this.makeButton(horizFlipButton, "Horizontal Flip", mainPanel);
-    this.makeButton(vertFlipButton, "Vertical Flip", mainPanel);
-    this.makeButton(intensityButton, "Intensity", mainPanel);
-    this.makeButton(valueButton, "Value", mainPanel);
-    this.makeButton(lumaButton, "Luma", mainPanel);
-    this.makeButton(sepiaButton, "Sepia", mainPanel);
-    this.makeButton(greyscaleButton, "Greyscale", mainPanel);
-    this.makeButton(sharpenButton, "Sharpen", mainPanel);
-    this.makeButton(blurButton, "Blur", mainPanel);
-    this.makeButton(darkenButton, "Darken", mainPanel);
+    this.makeButton(redButton, "Red Component", featuresButtonPanel);
+    this.makeButton(greenButton, "Green Component", featuresButtonPanel);
+    this.makeButton(blueButton, "Blue Component", featuresButtonPanel);
+    this.makeButton(horizFlipButton, "Horizontal Flip", featuresButtonPanel);
+    this.makeButton(vertFlipButton, "Vertical Flip", featuresButtonPanel);
+    this.makeButton(intensityButton, "Intensity", featuresButtonPanel);
+    this.makeButton(valueButton, "Value", featuresButtonPanel);
+    this.makeButton(lumaButton, "Luma", featuresButtonPanel);
+    this.makeButton(sepiaButton, "Sepia", featuresButtonPanel);
+    this.makeButton(greyscaleButton, "Greyscale", featuresButtonPanel);
+    this.makeButton(sharpenButton, "Sharpen", featuresButtonPanel);
+    this.makeButton(blurButton, "Blur", featuresButtonPanel);
+    this.makeButton(darkenButton, "Darken", featuresButtonPanel);
     darkenInput = new JTextField(10);
-    mainPanel.add(darkenInput);
-    this.makeButton(brightenButton, "Brighten", mainPanel);
+    featuresButtonPanel.add(darkenInput);
+    this.makeButton(brightenButton, "Brighten", featuresButtonPanel);
     brightenInput = new JTextField(10);
-    mainPanel.add(brightenInput);
+    featuresButtonPanel.add(brightenInput);
 
 //    // features check boxes
 //    JPanel checkBox = new JPanel();
@@ -103,10 +122,10 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.makeVisible();
   }
 
-  private void makeButton(JButton button, String s, JPanel mainPanel) {
+  private void makeButton(JButton button, String s, JPanel panel) {
     button = new JButton(s);
     button.setActionCommand(s + " Button");
-    mainPanel.add(button);
+    panel.add(button);
   }
 
   @Override
