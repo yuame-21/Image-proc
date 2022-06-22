@@ -23,7 +23,6 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   private JScrollPane mainScrollPane, mainImageScroll;
   private JPanel histogram;
   private JLabel mainImage, feedback, fileName;
-  private JPanel histogram, mainImage;
   private JPanel featuresButtonPanel, loadSaveExitPanel;
 
   private JButton loadButton, saveButton, exitButton, redButton, greenButton, blueButton,
@@ -125,6 +124,7 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.makeButton(darkenButton, "Darken", featuresButtonPanel);
     darkenInput = new JTextField(10);
     featuresButtonPanel.add(darkenInput);
+    brightenButton = new JButton("Brighten");
     this.makeButton(brightenButton, "Brighten", featuresButtonPanel);
     brightenInput = new JTextField(10);
     featuresButtonPanel.add(brightenInput);

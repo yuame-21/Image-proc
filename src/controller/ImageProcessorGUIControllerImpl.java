@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.IOException;
+
 import controller.commands.ColorComponent;
 import controller.commands.Command;
 import controller.commands.DarkenBrighten;
@@ -31,6 +33,7 @@ public class ImageProcessorGUIControllerImpl implements Features {
 //    this.view.renderImage();
     this.command.renderCommandMessage(this.view);
   }
+
 
   @Override
   public void redComponent() {
