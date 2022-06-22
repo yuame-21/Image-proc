@@ -2,12 +2,10 @@ package view;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileFilter;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
@@ -24,16 +22,19 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
 
   private JScrollPane mainScrollPane, mainImageScroll;
   private JPanel histogram;
+  private JLabel mainImage, feedback, fileName;
   private JPanel featuresButtonPanel, loadSaveExitPanel;
 
   private JButton loadButton, saveButton, exitButton, redButton, greenButton, blueButton,
           horizFlipButton, vertFlipButton, intensityButton, valueButton, sepiaButton, lumaButton,
           greyscaleButton, sharpenButton, blurButton, darkenButton, brightenButton;
+  private JTextField loadInput, saveInput;
   private JTextField darkenInput, brightenInput;
+//  private JLabel featuresCheckbox;
 
   private String[] featuresList = new String[]{"Red Component", "Green Component", "Blue " +
           "Component", "Horizontal Flip", "Vertical Flip", "Intensity", "Value", "Sepia", "Luma",
-          "Greyscale", "Sharpen", "Blur", "Darken", "Brighten"};
+          "Greyscale", "Sharpen", "Blur", "Darken", "Brighten"}; // Darken? Brighten?
 
   public ImageProcessorGUIViewImpl() {
     super();
@@ -52,9 +53,19 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     add(mainScrollPane); // adds to the GUI
 
     // adds image panel with scrollbars
-    JPanel mainImage = new JPanel(); // starts blank - then mutates to be actual image somehow
-    mainImageScroll = new JScrollPane(mainImage);
+    this.mainImage = new JLabel();// starts blank - then mutates to be actual image somehow
+    this.mainImage.setText("Load an Image!");
+    mainImageScroll = new JScrollPane(this.mainImage);
+    this.mainImageScroll.setSize(200, 200);
     mainPanel.add(mainImageScroll);
+
+    // add label with name of file
+    this.fileName = new JLabel();
+    mainPanel.add(this.fileName);
+
+    // makes feedback message label
+    feedback = new JLabel();
+    mainPanel.add(feedback);
 
     // makes a panel for load and save buttons
     loadSaveExitPanel = new JPanel();
@@ -126,37 +137,33 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
 //  }
 
   @Override
-  public void showErrorMessage(String error) {
-
-  }
-
-  @Override
   public void addFeatures(Features features) {
     // connecting button with choosing menu
     loadButton.addActionListener((ActionEvent a) -> {
-      final JFileChooser chooser =
-          new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+      // create the choosing
+      JFileChooser chooser =
+              new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
       // filters the file endings
       FileNameExtensionFilter imageEnds = new FileNameExtensionFilter("Valid types"
-          , "png", "jpg", "bmp", "ppm");
+              , "png", "jpg", "bmp", "ppm");
       chooser.setFileFilter(imageEnds);
       // opens the actual file thing
       int yes = chooser.showOpenDialog(null);
       // is this chosen file good?
-      if(yes == JFileChooser.APPROVE_OPTION) {
+      if (yes == JFileChooser.APPROVE_OPTION) {
         File imageReq = chooser.getSelectedFile();
         features.load(imageReq.getAbsolutePath());
       }
     });
 
     saveButton.addActionListener(evt -> {
-      final JFileChooser saveHere = new JFileChooser(".");
-        int yesSave = saveHere.showSaveDialog(this);
-        if(yesSave == JFileChooser.APPROVE_OPTION) {
-          File saveImage = saveHere.getSelectedFile();
-          features.save(saveImage.getAbsolutePath());
-        }
+      JFileChooser saveHere = new JFileChooser(".");
+      int yesSave = saveHere.showSaveDialog(this);
+      if (yesSave == JFileChooser.APPROVE_OPTION) {
+        File saveImage = saveHere.getSelectedFile();
+        features.save(saveImage.getAbsolutePath());
+      }
     });
     exitButton.addActionListener(evt -> features.exitProgram());
     redButton.addActionListener(evt -> features.redComponent());
@@ -177,14 +184,14 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   }
 
   @Override
-  public void renderImage() {
-
+  public void renderImage(BufferedImage image) {
+    this.mainImage.setIcon(new ImageIcon(image));
   }
 
 
   @Override
   public void renderMessage(String message) throws IOException {
-
+    feedback.setText(message);
   }
 
 }

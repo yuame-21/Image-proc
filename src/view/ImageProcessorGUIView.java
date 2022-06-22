@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
@@ -30,16 +31,9 @@ public interface ImageProcessorGUIView extends ImageProcessorView {
 //   */
 //  void setCommandButtonListener(JButton button, ActionListener actionEvent);
 
-  /**
-   * Transmit an error message to the view, in case-
-   * the command could not be processed correctly
-   *
-   * @param error error message to render
-   */
-  void showErrorMessage(String error);
 
   void addFeatures(Features features);
 
-  void renderImage();
+  void renderImage(BufferedImage image);
 
 }
