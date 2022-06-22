@@ -33,53 +33,53 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.setLayout(new FlowLayout());
 
     // constructs the base image
-    JPanel baseImage = new JPanel();
+    JPanel mainPanel = new JPanel();
 
     // puts that image into a scroll pane
-    mainScrollPane = new JScrollPane(baseImage);
+    mainScrollPane = new JScrollPane(mainPanel);
     add(mainScrollPane); // adds to the GUI
 
     // adds image panel with scrollbars
     JPanel mainImage = new JPanel(); // starts blank - then mutates to be actual image somehow
     mainImageScroll = new JScrollPane(mainImage);
-    mainScrollPane.add(mainImage);
+    mainPanel.add(mainImageScroll);
 
     // load text box
     loadInput = new JTextField(10); // dont know what columns means lol
-    mainScrollPane.add(loadInput);
+    mainPanel.add(loadInput);
 
     // load Button
-    this.makeButton(loadButton, "Load");
+    this.makeButton(loadButton, "Load", mainPanel);
 
     // save text box
     saveInput = new JTextField(10); // dont know what columns means lol
-    mainScrollPane.add(saveInput);
+    mainPanel.add(saveInput);
 
     // save button
-    this.makeButton(saveButton, "Save");
+    this.makeButton(saveButton, "Save", mainPanel);
 
     // exit button
-    this.makeButton(exitButton, "Exit");
+    this.makeButton(exitButton, "Exit", mainPanel);
 
     // features bottons
-    this.makeButton(redButton, "Red Component");
-    this.makeButton(greenButton, "Green Component");
-    this.makeButton(blueButton, "Blue Component");
-    this.makeButton(horizFlipButton, "Horizontal Flip");
-    this.makeButton(vertFlipButton, "Vertical Flip");
-    this.makeButton(intensityButton, "Intensity");
-    this.makeButton(valueButton, "Value");
-    this.makeButton(lumaButton, "Luma");
-    this.makeButton(sepiaButton, "Sepia");
-    this.makeButton(greyscaleButton, "Greyscale");
-    this.makeButton(sharpenButton, "Sharpen");
-    this.makeButton(blurButton, "Blur");
-    this.makeButton(darkenButton, "Darken");
+    this.makeButton(redButton, "Red Component", mainPanel);
+    this.makeButton(greenButton, "Green Component", mainPanel);
+    this.makeButton(blueButton, "Blue Component", mainPanel);
+    this.makeButton(horizFlipButton, "Horizontal Flip", mainPanel);
+    this.makeButton(vertFlipButton, "Vertical Flip", mainPanel);
+    this.makeButton(intensityButton, "Intensity", mainPanel);
+    this.makeButton(valueButton, "Value", mainPanel);
+    this.makeButton(lumaButton, "Luma", mainPanel);
+    this.makeButton(sepiaButton, "Sepia", mainPanel);
+    this.makeButton(greyscaleButton, "Greyscale", mainPanel);
+    this.makeButton(sharpenButton, "Sharpen", mainPanel);
+    this.makeButton(blurButton, "Blur", mainPanel);
+    this.makeButton(darkenButton, "Darken", mainPanel);
     darkenInput = new JTextField(10);
-    mainImageScroll.add(darkenInput);
-    this.makeButton(brightenButton, "Brighten");
+    mainPanel.add(darkenInput);
+    this.makeButton(brightenButton, "Brighten", mainPanel);
     brightenInput = new JTextField(10);
-    mainImageScroll.add(brightenInput);
+    mainPanel.add(brightenInput);
 
 //    // features check boxes
 //    JPanel checkBox = new JPanel();
@@ -97,16 +97,16 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     // I think we should make a pop up box or something for darken and brighten
 
     // histogram
-    mainImageScroll.add();
+//    mainPanel.add();
 
     pack();
     this.makeVisible();
   }
 
-  private void makeButton(JButton button, String s) {
+  private void makeButton(JButton button, String s, JPanel mainPanel) {
     button = new JButton(s);
     button.setActionCommand(s + " Button");
-    mainScrollPane.add(button);
+    mainPanel.add(button);
   }
 
   @Override
@@ -119,10 +119,10 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.setVisible(true);
   }
 
-  @Override
-  public void setCommandButtonListener(JButton button, ActionListener actionEvent) {
-    button.addActionListener(actionEvent);
-  }
+//  @Override
+//  public void setCommandButtonListener(JButton button, ActionListener actionEvent) {
+//    button.addActionListener(actionEvent);
+//  }
 
   @Override
   public void showErrorMessage(String error) {

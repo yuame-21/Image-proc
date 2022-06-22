@@ -27,16 +27,13 @@ public class ImageProcessorGUIControllerImpl implements Features {
     this.view = v;
     //provide view with all the callbacks
     this.view.addFeatures(this);
+    this.view.makeVisible();
   }
 
   private void initAndRender() {
     this.command.initCommand(this.model);
     this.view.renderImage();
-    try {
-      this.view.renderMessage(this.command.getMessage());
-    } catch (IOException e) {
-      throw new IllegalStateException("Render message failed : transmission failed");
-    }
+    this.command.renderCommandMessage(this.view);
   }
 
 
