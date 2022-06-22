@@ -1,5 +1,8 @@
 package controller;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import controller.commands.ColorComponent;
@@ -12,6 +15,7 @@ import controller.commands.Load;
 import controller.commands.Save;
 import controller.commands.Transformation;
 import model.ImageModel;
+import model.Pixel;
 import view.ImageProcessorGUIView;
 
 public class ImageProcessorGUIControllerImpl implements Features {
@@ -123,6 +127,26 @@ public class ImageProcessorGUIControllerImpl implements Features {
   public void load(String path) {
     this.command = new Load(path, TEMP_NAME);
     this.initAndRender();
+
+    this.view.renderImage(createImage(this.model.generateString(TEMP_NAME)));
+  }
+
+  private BufferedImage createImage(String imageData){
+    String[] ar = imageData.split("\n");
+    int width = Integer.parseInt(ar[0]);
+    int height = Integer.parseInt(ar[1]);
+
+    BufferedImage result = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+    int c = 0;
+    // set the RGB of the file
+    for (int j = 0; j < height; j++) {
+      for (int i = 0; i < width; i++) {
+        result.setRGB(i, j, new Color(Integer.parseInt(ar[c]), Integer.parseInt(ar[c+1]),
+            Integer.parseInt(ar[c+2])).getRGB());
+        c = c + 3;
+      }
+    }
+    return result;
   }
 
   @Override

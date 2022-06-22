@@ -95,7 +95,7 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     featuresButtonPanel.setBackground(BLUE);
     mainPanel.add(featuresButtonPanel);
 
-    // features bottons
+    // features buttons
     redButton = new JButton("Red Component");
     this.makeButton(redButton, "Red Component", featuresButtonPanel);
     greenButton = new JButton("Green Component");
@@ -207,7 +207,6 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   public void renderImage(BufferedImage image) {
     this.mainImage.setIcon(new ImageIcon(image));
   }
-
 
   @Override
   public void renderMessage(String message) throws IOException {
