@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.IOException;
+
 import controller.commands.ColorComponent;
 import controller.commands.Command;
 import controller.commands.DarkenBrighten;
@@ -18,19 +20,22 @@ public class ImageProcessorGUIControllerImpl implements Features {
   private Command command;
   private static String TEMP_NAME = "temp";
 
-  public ImageProcessorGUIControllerImpl(ImageModel model, ImageProcessorGUIView view) {
+  public ImageProcessorGUIControllerImpl(ImageModel model) {
     this.model = model;
-    this.view = view;
+  }
+  public void setView(ImageProcessorGUIView v) {
+    this.view = v;
+    //provide view with all the callbacks
     this.view.addFeatures(this);
     this.view.makeVisible();
-    this.view.refresh();
   }
 
   private void initAndRender() {
     this.command.initCommand(this.model);
-//    this.view.renderImage();
+    this.view.renderImage();
     this.command.renderCommandMessage(this.view);
   }
+
 
   @Override
   public void redComponent() {

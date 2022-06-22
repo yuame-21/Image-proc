@@ -23,6 +23,7 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   private JScrollPane mainScrollPane, mainImageScroll;
   private JPanel histogram;
   private JLabel mainImage, feedback, fileName;
+  private JPanel histogram, mainImage;
   private JPanel featuresButtonPanel, loadSaveExitPanel;
 
   private JButton loadButton, saveButton, exitButton, redButton, greenButton, blueButton,
@@ -57,6 +58,7 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.mainImage.setText("Load an Image!");
     mainImageScroll = new JScrollPane(this.mainImage);
     this.mainImageScroll.setSize(200, 200);
+    mainImageScroll = new JScrollPane(mainImage);
     mainPanel.add(mainImageScroll);
 
     // add label with name of file
@@ -73,13 +75,19 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     loadSaveExitPanel.setBackground(VIOLET);
     mainPanel.add(loadSaveExitPanel);
 
+    // meserve 335
+
     // load Button
+    // set the button properly
+    loadButton = new JButton("Load");
     this.makeButton(loadButton, "Load", loadSaveExitPanel);
 
     // save button
+    saveButton = new JButton("Save");
     this.makeButton(saveButton, "Save", loadSaveExitPanel);
 
     // exit button
+    exitButton = new JButton("Exit");
     this.makeButton(exitButton, "Exit", loadSaveExitPanel);
 
     // makes a button panel
@@ -89,18 +97,31 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     mainPanel.add(featuresButtonPanel);
 
     // features bottons
+    redButton = new JButton("Red Component");
     this.makeButton(redButton, "Red Component", featuresButtonPanel);
+    greenButton = new JButton("Green Component");
     this.makeButton(greenButton, "Green Component", featuresButtonPanel);
+    blueButton = new JButton("Blue Component");
     this.makeButton(blueButton, "Blue Component", featuresButtonPanel);
+    horizFlipButton = new JButton("Horizontal Flip");
     this.makeButton(horizFlipButton, "Horizontal Flip", featuresButtonPanel);
+    vertFlipButton = new JButton("Vertical Flip");
     this.makeButton(vertFlipButton, "Vertical Flip", featuresButtonPanel);
+    intensityButton = new JButton("Intensity");
     this.makeButton(intensityButton, "Intensity", featuresButtonPanel);
+    valueButton = new JButton("Value");
     this.makeButton(valueButton, "Value", featuresButtonPanel);
+    lumaButton = new JButton("Luma");
     this.makeButton(lumaButton, "Luma", featuresButtonPanel);
+    sepiaButton = new JButton("Sepia");
     this.makeButton(sepiaButton, "Sepia", featuresButtonPanel);
+    greyscaleButton = new JButton("Greyscale");
     this.makeButton(greyscaleButton, "Greyscale", featuresButtonPanel);
+    sharpenButton = new JButton("Sharpen");
     this.makeButton(sharpenButton, "Sharpen", featuresButtonPanel);
+    blurButton = new JButton("Blur");
     this.makeButton(blurButton, "Blur", featuresButtonPanel);
+    darkenButton = new JButton("Darken");
     this.makeButton(darkenButton, "Darken", featuresButtonPanel);
     darkenInput = new JTextField(10);
     featuresButtonPanel.add(darkenInput);
@@ -116,7 +137,6 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   }
 
   private void makeButton(JButton button, String s, JPanel panel) {
-    button = new JButton(s);
     button.setActionCommand(s + " Button");
     panel.add(button);
   }
@@ -149,7 +169,7 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
               , "png", "jpg", "bmp", "ppm");
       chooser.setFileFilter(imageEnds);
       // opens the actual file thing
-      int yes = chooser.showOpenDialog(null);
+      int yes = chooser.showOpenDialog(ImageProcessorGUIViewImpl.this);
       // is this chosen file good?
       if (yes == JFileChooser.APPROVE_OPTION) {
         File imageReq = chooser.getSelectedFile();
