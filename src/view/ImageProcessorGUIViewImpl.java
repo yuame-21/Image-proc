@@ -19,6 +19,7 @@ import static java.awt.BorderLayout.LINE_END;
 import static java.awt.BorderLayout.LINE_START;
 import static java.awt.BorderLayout.PAGE_END;
 import static java.awt.BorderLayout.PAGE_START;
+import static javax.swing.ScrollPaneConstants.COLUMN_HEADER;
 
 public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorGUIView {
 
@@ -29,9 +30,10 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   public static Color BLUE = new Color(102, 178, 255);
 
   private JScrollPane mainScrollPane, imageScroll;
-  private JPanel  mainPanel;
+  private JPanel  mainPanel, hisPanel;
   private ImageProcessorHistogramView histogram;
-  private JLabel mainImage, feedback, fileName;
+  private JLabel mainImage, fileName;
+  private JLabel feedback;
   private JPanel featuresButtonPanel, loadSaveExitPanel, imagePanel;
 
   private JButton loadButton, saveButton, exitButton, redButton, greenButton, blueButton,
@@ -94,7 +96,8 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.imagePanel.add(imageScroll);
 
     // makes feedback message label
-    feedback = new JLabel();
+    this.feedback = new JLabel();
+    feedback.setSize(10,20);
     imagePanel.add(feedback);
 
     // makes a button panel
@@ -136,11 +139,18 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.makeButton(brightenButton, "Brighten", featuresButtonPanel);
     brightenInput = new JTextField(10);
     featuresButtonPanel.add(brightenInput);
-//
-//    this.histogram = new ImageProcessorHistogramView();
-//    this.histogram.setPreferredSize(new Dimension(100, 100));
-//    mainPanel.add(this.histogram);
 
+
+    // make histogram panel
+    this.hisPanel = new JPanel();
+    JLabel textArea = new JLabel();
+    textArea.setText("Image Histogram \n Histogram Color Key: \n red shading = red color " +
+            "values \n green shading = green color values \n blue shading " +
+            "= blue color values \n grey shading = intensity values");
+    textArea.setFont(new java.awt.Font("Papyrus", 1, 10));
+    this.hisPanel.add(textArea);
+    this.hisPanel.setBackground(ORANGE);
+    this.mainPanel.add(this.hisPanel);
 
     pack();
     this.makeVisible();
@@ -224,12 +234,13 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.histogram.setHistogramModel(new ImageProcessorHistogram(model));
     this.histogram.setPreferredSize(new Dimension(700,300));
     JScrollPane scrollPane = new JScrollPane(this.histogram);
-    mainPanel.add(scrollPane);
+    this.hisPanel.add(scrollPane);
   }
 
   @Override
   public void renderMessage(String message) throws IOException {
     feedback.setText(message);
+    feedback.setFont(new java.awt.Font("Papyrus", 1, 10));
   }
 
 

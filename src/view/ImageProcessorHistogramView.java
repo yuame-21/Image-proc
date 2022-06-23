@@ -46,7 +46,7 @@ public class ImageProcessorHistogramView extends JPanel {
     g2d.translate(0, this.getPreferredSize().getHeight());
     g2d.scale(1, -1);
 
-    paintOneColor(Color.yellow, this.histogramModel.getIntensities(), g2d);
+    paintOneColor(Color.lightGray, this.histogramModel.getIntensities(), g2d);
     paintOneColor(Color.green, this.histogramModel.getGreens(), g2d);
     paintOneColor(Color.blue, this.histogramModel.getBlues(),g2d);
     paintOneColor(Color.red, this.histogramModel.getReds(), g2d);
