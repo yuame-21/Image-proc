@@ -28,13 +28,14 @@ public class ImageProcessorGUIControllerImpl implements Features {
     this.view = view;
     this.view.addFeatures(this);
     this.view.makeVisible();
-    this.view.refresh();
+    this.view.makeHistogram(model);
   }
 
   private void initAndRender() {
     this.command.initCommand(this.model);
     this.view.renderImage(createImage(this.model.generateString(TEMP_NAME)));
     this.command.renderCommandMessage(this.view);
+    this.view.refresh();
   }
 
 

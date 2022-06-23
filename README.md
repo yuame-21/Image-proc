@@ -1,3 +1,18 @@
+# A6 Image Processor with GUI 
+## Ella Taira and Amelia Yu
+
+## Design Changes: 
+
+- Removed the File class from the controller commands when writing this assignment's command line arguments. Our past interpretation was to have the "-file" command work the same as all other Edit commands, but we have since reevaluated based on the assignment brief. 
+  - Now, the main() method looks for either: 
+    - no arguments after loading the jar, which opens the GUI
+    - "-file + [fileName]" to run the given script on the textUI (same functionality as A5)
+    - "-text" to run the textUI and wait for command line arguments 
+
+
+
+**----------------------------------------------------------------------------------------------------**
+
 # A5 Image Processor, Extended
 ## Ella Taira and Amelia Yu 
 

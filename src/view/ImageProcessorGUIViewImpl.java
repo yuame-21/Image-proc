@@ -11,6 +11,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
 import controller.Features;
+import model.ImageModel;
+import model.ImageProcessorHistogram;
 
 import static java.awt.BorderLayout.CENTER;
 import static java.awt.BorderLayout.LINE_END;
@@ -140,7 +142,6 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     // histogram
     this.histogram = new JPanel();
     this.histogram.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
-    this.histogram = new ImageProcessorHistogramView(  , this.histogram);
     mainPanel.add(this.histogram);
 
     // set up histrogram after loading in controller
@@ -166,10 +167,7 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.setVisible(true);
   }
 
-//  @Override
-//  public void setCommandButtonListener(JButton button, ActionListener actionEvent) {
-//    button.addActionListener(actionEvent);
-//  }
+
 
   @Override
   public void addFeatures(Features features) {
@@ -225,9 +223,17 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   }
 
   @Override
+  public void makeHistogram(ImageModel model) {
+    ImageProcessorHistogram histogramModel = new ImageProcessorHistogram(model);
+    this.histogram = new ImageProcessorHistogramView(histogramModel);
+  }
+
+  @Override
   public void renderMessage(String message) throws IOException {
     feedback.setText(message);
   }
+
+
 
 }
 

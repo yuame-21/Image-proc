@@ -9,7 +9,6 @@ import java.util.function.Function;
 import controller.commands.ColorComponent;
 import controller.commands.Command;
 import controller.commands.DarkenBrighten;
-import controller.commands.File;
 import controller.commands.Filter;
 import controller.commands.Flip;
 import controller.commands.IntensityLumaValue;
@@ -122,9 +121,7 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
     this.knownCommands.put("sharpen", (Scanner s) -> {
       return new Filter(s.next(), s.next(), "sharpen");
     });
-    this.knownCommands.put("-file", (Scanner s) -> {
-      return new File(s.next());
-    });
+
   }
 
   /**
@@ -180,9 +177,7 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
   private void welcome() {
     renderImageWithTryCatch("Welcome to Mimi and Ella's Image Processor <3\n\n"
         + "To use this program, first load a file with the command:\n"
-        + "load + file + name\n"
-        + "Or, use a .txt script with:\n"
-        + "-file + file.txt\n\n"
+        + "load + file + name\n\n\n\n"
         + "Then, you can edit the image in the following ways:\n"
         + "brighten + degree, darken + degree\n"
         + "red-component, green-component, blue-component\n"
