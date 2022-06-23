@@ -6,6 +6,7 @@ import model.ImageModelImpl;
 import model.ImageModelStateImpl;
 import model.ImageProcessorHistogram;
 import model.Pixel;
+import view.ImageProcessorHistogramView;
 
 import static org.junit.Assert.*;
 
@@ -66,6 +67,22 @@ public class ImageProcessorHistogramTest {
     assertEquals(140, this.histogram.getReds()[1]);
     assertEquals(0, this.histogram.getReds()[2]);
     assertEquals(255, this.histogram.getReds()[3]);
+  }
+
+  @Test
+  public void setHistogramModel() {
+    ImageModel m = new ImageModelImpl();
+    m.load("././res/pink.ppm", "temp");
+    ImageProcessorHistogram hm = new ImageProcessorHistogram(m);
+    ImageProcessorHistogramView v = new ImageProcessorHistogramView();
+    v.setHistogramModel(hm);
+
+    try {
+      v.repaint();
+      return;
+    } catch (NullPointerException e) {
+      fail("should not have thrown");
+    }
   }
 
 }
