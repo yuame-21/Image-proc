@@ -223,7 +223,10 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
 
   @Override
   public void setHistogram(ImageModel model) {
+    this.histogram = new ImageProcessorHistogramView();
     this.histogram.setHistogramModel(new ImageProcessorHistogram(model));
+    this.histogram.setPreferredSize(new Dimension(100, 100));
+    mainPanel.add(this.histogram);
   }
 
   @Override

@@ -34,8 +34,8 @@ public class ImageProcessorGUIControllerImpl implements Features {
     this.command.initCommand(this.model);
     this.view.renderImage(createImage(this.model.generateString(TEMP_NAME)));
     this.command.renderCommandMessage(this.view);
-//    this.view.setHistogram(this.model);
-//    this.view.refresh();
+    this.view.setHistogram(this.model);
+    this.view.refresh();
   }
 
 

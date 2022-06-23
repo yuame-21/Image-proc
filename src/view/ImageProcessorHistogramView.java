@@ -56,6 +56,7 @@ public class ImageProcessorHistogramView extends JPanel {
 
     for (int i = 0; i < arr.length; i++) {
       g2d.drawRect(i, 0, 1, arr[i]);
+//      g.setColor(color);
     }
 
   }
