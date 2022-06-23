@@ -21,7 +21,7 @@ public class ImageProcessorHistogram {
     this.image = image;
     this.histogram(image.generateString("temp"));
 
-//    this.reds = this.histogram("red");
+    //this.reds = this.histogram("red");
 //    this.greens = this.histogram("green");
 //    this.blues = this.histogram("blue");
 //    this.intensities = this.histogram("intensity");
