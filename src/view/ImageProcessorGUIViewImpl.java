@@ -15,9 +15,6 @@ import model.ImageModel;
 import model.ImageProcessorHistogram;
 
 import static java.awt.BorderLayout.CENTER;
-import static java.awt.BorderLayout.LINE_END;
-import static java.awt.BorderLayout.LINE_START;
-import static java.awt.BorderLayout.PAGE_END;
 import static java.awt.BorderLayout.PAGE_START;
 
 public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorGUIView {
@@ -138,18 +135,6 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     brightenInput = new JTextField(10);
     featuresButtonPanel.add(brightenInput);
 
-
-    // make histogram panel
-    this.hisPanel = new JPanel();
-    JLabel textArea = new JLabel();
-    textArea.setText("Image Histogram \n Histogram Color Key: \n red shading = red color " +
-            "values \n green shading = green color values \n blue shading " +
-            "= blue color values \n grey shading = intensity values");
-    textArea.setFont(new java.awt.Font("Papyrus", 1, 10));
-    this.hisPanel.add(textArea);
-    this.hisPanel.setBackground(ORANGE);
-    this.mainPanel.add(this.hisPanel);
-
     pack();
     this.makeVisible();
   }
@@ -162,8 +147,6 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   @Override
   public void refresh() {
     this.repaint();
-
-    // contorller calls when load /// commadn to refresh
   }
 
   @Override
@@ -242,13 +225,29 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
 
   @Override
   public void setHistogram(ImageModel model) {
+
+    JPanel histogramPanel = new JPanel();
+    histogramPanel.setBackground(ORANGE);
+
+    // make histogram text label
+    JLabel textArea = new JLabel();
+    textArea.setText("Image Histogram Color Key: red shading = red color " +
+            "values; green shading = green color values; blue shading " +
+            "= blue color values; grey shading = intensity values");
+    textArea.setFont(new java.awt.Font("Papyrus", 1, 10));
+    histogramPanel.add(textArea);
+
+
+    // make histogram
     this.histogram = new ImageProcessorHistogramView();
     this.histogram.repaint();
     this.histogram.setHistogramModel(new ImageProcessorHistogram(model));
     this.histogram.setPreferredSize(new Dimension(400,300));
     JScrollPane scrollPane = new JScrollPane(this.histogram);
     scrollPane.setPreferredSize(new Dimension(400,300));
-    mainPanel.add(scrollPane);
+    histogramPanel.add(scrollPane);
+
+    mainPanel.add(histogramPanel);
   }
 
   @Override

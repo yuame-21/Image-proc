@@ -47,10 +47,8 @@ public class ImageProcessorHistogram {
 
     int[] histogram = new int[arrSize];
 
-//    for (int a = 0; a < arrSize; a++) {
-    int a = 0;
-//    for (int i = 0; i < width; i++) {
-//      for (int j = 0; j < height; j++) {
+    int a =0;
+
       switch (type) {
         case "red":
           for (int r = 3; r < ar.length; r += 3) {

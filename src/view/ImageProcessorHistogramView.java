@@ -75,4 +75,5 @@ public class ImageProcessorHistogramView extends JPanel {
     this.histogramModel = histogramModel;
   }
 
+
 }
