@@ -48,31 +48,31 @@ public class ImageProcessorHistogram {
     int[] histogram = new int[arrSize];
 
 //    for (int a = 0; a < arrSize; a++) {
-    int a =0;
+    int a = 0;
 //    for (int i = 0; i < width; i++) {
 //      for (int j = 0; j < height; j++) {
       switch (type) {
         case "red":
-          for (int r = 3; r < arrSize; r += 3) {
+          for (int r = 3; r < ar.length; r += 3) {
             histogram[a] = Integer.parseInt(ar[r]);
             a++;
           }
           break;
         case "green":
-          for (int g = 4; g < arrSize; g += 3) {
+          for (int g = 4; g < ar.length; g += 3) {
             histogram[a] = Integer.parseInt(ar[g]);
             a++;
           }
           break;
         case "blue":
-          for (int b = 5; b < arrSize; b += 3) {
+          for (int b = 5; b < ar.length; b += 3) {
             histogram[a] = Integer.parseInt(ar[b]);
             a++;
           }
           break;
         case "intensity":
           int sum = 0;
-          for (int in = 3; in < arrSize; in += 3) {
+          for (int in = 3; in < ar.length; in += 3) {
             sum += Integer.parseInt(ar[in]);
             sum += Integer.parseInt(ar[in + 1]);
             sum += Integer.parseInt(ar[in + 2]);
