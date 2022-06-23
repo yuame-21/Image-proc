@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 import controller.Features;
+import model.ImageModel;
 
 public interface ImageProcessorGUIView extends ImageProcessorView {
 
@@ -35,5 +36,7 @@ public interface ImageProcessorGUIView extends ImageProcessorView {
   void addFeatures(Features features);
 
   void renderImage(BufferedImage image);
+
+  void makeHistogram(ImageModel model);
 
 }

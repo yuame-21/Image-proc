@@ -5,7 +5,6 @@ import java.io.StringReader;
 
 import controller.ImageProcessorController;
 import controller.ImageProcessorControllerImpl;
-import controller.commands.File;
 import controller.commands.Filter;
 import controller.commands.Transformation;
 import model.ImageModel;
@@ -102,8 +101,6 @@ public class ImageProcessorControllerImplTest {
     assertEquals("Welcome to Mimi and Ella's Image Processor <3", arr[0]);
     assertEquals("To use this program, first load a file with the command:", arr[2]);
     assertEquals("load + file + name", arr[3]);
-    assertEquals("Or, use a .txt script with:", arr[4]);
-    assertEquals("-file + file.txt", arr[5]);
     assertEquals("Then, you can edit the image in the following ways:", arr[7]);
     assertEquals("brighten + degree, darken + degree", arr[8]);
     assertEquals("red-component, green-component, blue-component", arr[9]);
@@ -360,28 +357,7 @@ public class ImageProcessorControllerImplTest {
     }
   }
 
-  @Test
-  public void testFileCons() {
-    try {
-      new File("pink.ppm");
-    } catch (IllegalArgumentException e) {
-      if (!e.getMessage().equals("invalid file")) {
-        fail("should have thrown illegal arg exc: invalid file");
-      }
-    }
-  }
 
-  @Test
-  public void testFile() {
-    Readable r = new StringReader("-file ././res/miniscript.txt");
-    this.c1 = new ImageProcessorControllerImpl(this.m1, this.v1, r);
-
-    this.c1.processImage();
-
-    String[] arr = app.toString().split("\n");
-    assertEquals("uploaded file, ././res/miniscript.txtand ran the " +
-        "previous stream of commands.", arr[18]);
-  }
 
   @Test
   public void testLoad() {
