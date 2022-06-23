@@ -53,16 +53,20 @@ public class ImageProcessorHistogramView extends JPanel {
   }
 
   private void paintOneColor(Color color, int[] arr, Graphics g2d) {
-
     int alpha = 127;
 
     Color colorTranslucent = new Color(color.getRed(), color.getBlue(), color.getGreen(), alpha);
 
-
     g2d.setColor(colorTranslucent);
 
-    for (int i = 0; i < arr.length; i++) {
-      g2d.drawRect(i, 0, 1, arr[i]);
+    for (int i = 0; i < 255; i++) {
+      int height = 0;
+      for(int h = 0; h < arr.length; h++){
+        if(i == arr[h]){
+          height++;
+        }
+      }
+      g2d.drawRect(i, 0, 1, height);
     }
 
   }

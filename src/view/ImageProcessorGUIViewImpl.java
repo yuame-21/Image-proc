@@ -233,9 +233,9 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.histogram = new ImageProcessorHistogramView();
     this.histogram.repaint();
     this.histogram.setHistogramModel(new ImageProcessorHistogram(model));
-    this.histogram.setPreferredSize(new Dimension(700,300));
+    this.histogram.setPreferredSize(new Dimension(400,300));
     JScrollPane scrollPane = new JScrollPane(this.histogram);
-    scrollPane.setPreferredSize(new Dimension(700,300));
+    scrollPane.setPreferredSize(new Dimension(400,300));
     mainPanel.add(scrollPane);
   }
 

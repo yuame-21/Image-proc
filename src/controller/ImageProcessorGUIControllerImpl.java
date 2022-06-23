@@ -127,6 +127,7 @@ public class ImageProcessorGUIControllerImpl implements Features {
     this.command = new Load(path, TEMP_NAME);
     this.initAndRender();
     this.view.setHistogram(this.model);
+    this.view.refresh();
   }
 
   private BufferedImage createImage(String imageData) {
