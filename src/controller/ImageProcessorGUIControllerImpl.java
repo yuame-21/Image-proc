@@ -133,9 +133,10 @@ public class ImageProcessorGUIControllerImpl implements Features {
     String[] ar = imageData.split("\n");
     int width = Integer.parseInt(ar[0]);
     int height = Integer.parseInt(ar[1]);
+    int maxNum = Integer.parseInt(ar[2]);
 
     BufferedImage result = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-    int c = 0;
+    int c = 3;
     // set the RGB of the file
     for (int j = 0; j < height; j++) {
       for (int i = 0; i < width; i++) {
