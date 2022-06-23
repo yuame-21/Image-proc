@@ -24,17 +24,9 @@ public class ImageProcessorHistogramView extends JPanel {
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
 
-    paintOneColor(Color.red, this.histogramModel.getReds(), g);
-    paintOneColor(Color.green, this.histogramModel.getGreens(), g);
-    paintOneColor(Color.blue, this.histogramModel.getBlues(),g);
-    paintOneColor(Color.lightGray, this.histogramModel.getIntensities(), g);
-  }
-
-  private void paintOneColor(Color color, int[] arr, Graphics g) {
+    this.setBackground(Color.white);
 
     Graphics2D g2d = (Graphics2D) g;
-
-    g2d.setColor(color);
 
     /*
     the origin of the panel is top left. In order
@@ -54,9 +46,23 @@ public class ImageProcessorHistogramView extends JPanel {
     g2d.translate(0, this.getPreferredSize().getHeight());
     g2d.scale(1, -1);
 
+    paintOneColor(Color.yellow, this.histogramModel.getIntensities(), g2d);
+    paintOneColor(Color.green, this.histogramModel.getGreens(), g2d);
+    paintOneColor(Color.blue, this.histogramModel.getBlues(),g2d);
+    paintOneColor(Color.red, this.histogramModel.getReds(), g2d);
+  }
+
+  private void paintOneColor(Color color, int[] arr, Graphics g2d) {
+
+    int alpha = 127;
+
+    Color colorTranslucent = new Color(color.getRed(), color.getBlue(), color.getGreen(), alpha);
+
+
+    g2d.setColor(colorTranslucent);
+
     for (int i = 0; i < arr.length; i++) {
       g2d.drawRect(i, 0, 1, arr[i]);
-//      g.setColor(color);
     }
 
   }

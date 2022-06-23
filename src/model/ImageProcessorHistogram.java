@@ -47,23 +47,27 @@ public class ImageProcessorHistogram {
 
     int[] histogram = new int[arrSize];
 
-    for (int a = 0; a < arrSize; a++) {
+//    for (int a = 0; a < arrSize; a++) {
+    int a =0;
 //    for (int i = 0; i < width; i++) {
 //      for (int j = 0; j < height; j++) {
       switch (type) {
         case "red":
           for (int r = 3; r < arrSize; r += 3) {
             histogram[a] = Integer.parseInt(ar[r]);
+            a++;
           }
           break;
         case "green":
           for (int g = 4; g < arrSize; g += 3) {
             histogram[a] = Integer.parseInt(ar[g]);
+            a++;
           }
           break;
         case "blue":
           for (int b = 5; b < arrSize; b += 3) {
             histogram[a] = Integer.parseInt(ar[b]);
+            a++;
           }
           break;
         case "intensity":
@@ -72,15 +76,18 @@ public class ImageProcessorHistogram {
             sum += Integer.parseInt(ar[in]);
             sum += Integer.parseInt(ar[in + 1]);
             sum += Integer.parseInt(ar[in + 2]);
+            int intensity = (int) Math.round(sum / 3);
+            histogram[a] = intensity;
+            a++;
+            sum = 0;
           }
-          int intensity = (int) Math.round(sum / 3);
-          histogram[a] = intensity;
+
           break;
         default:
           throw new IllegalArgumentException("Invalid histogram value: " +
                   "must be red, green, blue, or intensity");
       }
-    }
+//    }
 
     return histogram;
   }

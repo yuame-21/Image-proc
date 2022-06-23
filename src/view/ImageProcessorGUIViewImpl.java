@@ -28,7 +28,7 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   public static Color ORANGE = new Color(255, 204, 153);
   public static Color BLUE = new Color(102, 178, 255);
 
-  private JScrollPane mainScrollPane, mainImageScroll;
+  private JScrollPane mainScrollPane, imageScroll;
   private JPanel  mainPanel;
   private ImageProcessorHistogramView histogram;
   private JLabel mainImage, feedback, fileName;
@@ -37,7 +37,6 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   private JButton loadButton, saveButton, exitButton, redButton, greenButton, blueButton,
           horizFlipButton, vertFlipButton, intensityButton, valueButton, sepiaButton, lumaButton,
           greyscaleButton, sharpenButton, blurButton, darkenButton, brightenButton;
-  private JTextField loadInput, saveInput;
   private JTextField darkenInput, brightenInput;
 //  private JLabel featuresCheckbox;
 
@@ -89,12 +88,10 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.imagePanel.setBackground(TEAL);
     mainPanel.add(imagePanel, CENTER);
 
-    this.mainImage = new JLabel();// starts blank - then mutates to be actual image somehow
-//    this.mainImage.setText("Load an Image!");
-    mainImageScroll = new JScrollPane(this.mainImage);
-    this.mainImageScroll.setSize(200, 200);
-    mainImageScroll = new JScrollPane(mainImage);
-    this.imagePanel.add(mainImageScroll);
+    this.mainImage = new JLabel();
+    imageScroll = new JScrollPane(this.mainImage);
+    this.imageScroll.setSize(200, 200);
+    this.imagePanel.add(imageScroll);
 
     // makes feedback message label
     feedback = new JLabel();
@@ -225,8 +222,9 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   public void setHistogram(ImageModel model) {
     this.histogram = new ImageProcessorHistogramView();
     this.histogram.setHistogramModel(new ImageProcessorHistogram(model));
-    this.histogram.setPreferredSize(new Dimension(100, 100));
-    mainPanel.add(this.histogram);
+    this.histogram.setPreferredSize(new Dimension(700,300));
+    JScrollPane scrollPane = new JScrollPane(this.histogram);
+    mainPanel.add(scrollPane);
   }
 
   @Override
