@@ -83,19 +83,20 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     exitButton = new JButton("Exit");
     this.makeButton(exitButton, "Exit", loadSaveExitPanel);
 
-    // adds image panel with scrollbars
-    this.imagePanel = new JPanel();
-    this.imagePanel.setBackground(TEAL);
-    mainPanel.add(imagePanel, CENTER);
+//    // adds image panel with scrollbars
+//    this.imagePanel = new JPanel();
+//    this.imagePanel.setBackground(TEAL);
+//    mainPanel.add(imagePanel, CENTER);
+//
+//    this.mainImage = new JLabel();
+//    this.mainImage.setPreferredSize(new Dimension(300,200));
+//    imageScroll = new JScrollPane(this.mainImage);
+//    this.imageScroll.setSize(200, 200);
+//    this.imagePanel.add(imageScroll);
 
-    this.mainImage = new JLabel();
-    imageScroll = new JScrollPane(this.mainImage);
-    this.imageScroll.setSize(200, 200);
-    this.imagePanel.add(imageScroll);
-
-    // makes feedback message label
-    feedback = new JLabel();
-    imagePanel.add(feedback);
+//    // makes feedback message label
+//    feedback = new JLabel();
+//    imagePanel.add(feedback);
 
     // makes a button panel
     featuresButtonPanel = new JPanel();
@@ -136,11 +137,6 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.makeButton(brightenButton, "Brighten", featuresButtonPanel);
     brightenInput = new JTextField(10);
     featuresButtonPanel.add(brightenInput);
-//
-//    this.histogram = new ImageProcessorHistogramView();
-//    this.histogram.setPreferredSize(new Dimension(100, 100));
-//    mainPanel.add(this.histogram);
-
 
     pack();
     this.makeVisible();
@@ -169,6 +165,20 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   public void addFeatures(Features features) {
     // connecting button with choosing menu
     loadButton.addActionListener((ActionEvent a) -> {
+
+      // adds image panel with scrollbars
+      this.imagePanel = new JPanel();
+      this.imagePanel.setBackground(TEAL);
+      mainPanel.add(imagePanel, CENTER);
+
+      this.mainImage = new JLabel();
+      this.mainImage.setPreferredSize(new Dimension(200,200));
+      imageScroll = new JScrollPane(this.mainImage);
+      this.imageScroll.setSize(200, 200);
+      this.imagePanel.add(imageScroll);
+      // makes feedback message label
+      feedback = new JLabel();
+      imagePanel.add(feedback);
       // create the choosing
       JFileChooser chooser =
               new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
@@ -221,9 +231,11 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   @Override
   public void setHistogram(ImageModel model) {
     this.histogram = new ImageProcessorHistogramView();
+    this.histogram.repaint();
     this.histogram.setHistogramModel(new ImageProcessorHistogram(model));
     this.histogram.setPreferredSize(new Dimension(700,300));
     JScrollPane scrollPane = new JScrollPane(this.histogram);
+    scrollPane.setPreferredSize(new Dimension(700,300));
     mainPanel.add(scrollPane);
   }
 
