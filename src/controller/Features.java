@@ -17,7 +17,6 @@ public interface Features {
   void greyscale();
   void sharpen();
   void blur();
-
   void load(String path);
   void save(String path);
   void exitProgram();

@@ -19,48 +19,72 @@ public class ImageProcessorHistogram {
    */
   public ImageProcessorHistogram(ImageModel image) {
     this.image = image;
-    this.histogram(image.generateString("temp"));
+    String temp = image.generateString("temp");
 
-    //this.reds = this.histogram("red");
-//    this.greens = this.histogram("green");
-//    this.blues = this.histogram("blue");
-//    this.intensities = this.histogram("intensity");
+    this.reds = this.histogram(temp, "red");
+    this.greens = this.histogram(temp, "green");
+    this.blues = this.histogram(temp, "blue");
+    this.intensities = this.histogram(temp, "intensity");
   }
 
   /**
    * Creates a single histogram array of a given type,
    * either reds, greens, blues, or intensities
-   * All color values are integers --- intensity is rounded as needed using {@codeMath.round()}.
+   * All color values are integers --- intensity is rounded as needed using {@code Math.round()}.
    *
-   * @param type String type of histogram to make
+   * @param type    String type of histogram to make
+   * @param tempArr String version of image pixels and values
    * @return int array of histogram values of given type
    * @throws IllegalArgumentException if histogram String type is invalid
    */
-  private int[] histogram(String type) throws IllegalArgumentException {
-    String[] ar = type.split("\n");
+  private int[] histogram(String tempArr, String type) throws IllegalArgumentException {
+
+    String[] ar = tempArr.split("\n");
     int width = Integer.parseInt(ar[0]);
     int height = Integer.parseInt(ar[1]);
 
     int arrSize = width * height;
 
     int[] histogram = new int[arrSize];
-    int a = 0;
-    int c = 2;
 
-    for (int i = 0; i < height; i++) {
-      for (int j = 0; j < width; j++) {
-        int sum = 0;
-        for(c = c; c < c + 3; c++) {
-          histogram[a] = Integer.parseInt(ar[c]);
-          sum += Integer.parseInt(ar[c]);
-        }
-        int intensity = Math.round(sum / 3);
-        histogram[a] = intensity;
+    for (int a = 0; a < arrSize; a++) {
+//    for (int i = 0; i < width; i++) {
+//      for (int j = 0; j < height; j++) {
+      switch (type) {
+        case "red":
+          for (int r = 3; r < arrSize; r += 3) {
+            histogram[a] = Integer.parseInt(ar[r]);
+          }
+          break;
+        case "green":
+          for (int g = 4; g < arrSize; g += 3) {
+            histogram[a] = Integer.parseInt(ar[g]);
+          }
+          break;
+        case "blue":
+          for (int b = 5; b < arrSize; b += 3) {
+            histogram[a] = Integer.parseInt(ar[b]);
+          }
+          break;
+        case "intensity":
+          int sum = 0;
+          for (int in = 3; in < arrSize; in += 3) {
+            sum += Integer.parseInt(ar[in]);
+            sum += Integer.parseInt(ar[in + 1]);
+            sum += Integer.parseInt(ar[in + 2]);
+          }
+          int intensity = (int) Math.round(sum / 3);
+          histogram[a] = intensity;
+          break;
+        default:
+          throw new IllegalArgumentException("Invalid histogram value: " +
+                  "must be red, green, blue, or intensity");
       }
-      a++;
     }
+
     return histogram;
   }
+
 
   /**
    * Returns a copy of the array of intensities.

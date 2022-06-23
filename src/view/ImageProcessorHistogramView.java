@@ -12,12 +12,11 @@ public class ImageProcessorHistogramView extends JPanel {
   private static int MIN = 0;
   private static int MAX = 255;
   private static String TITLE = "Histogram";
-  private Graphics reds, greens, blues, intensities;
   private ImageProcessorHistogram histogramModel;
 
-  public ImageProcessorHistogramView(ImageProcessorHistogram histogramModel) {
+  public ImageProcessorHistogramView() {
     super();
-    this.histogramModel = histogramModel;
+    this.histogramModel = null;
     setOpaque(false);
   }
 
@@ -58,6 +57,11 @@ public class ImageProcessorHistogramView extends JPanel {
     for (int i = 0; i < arr.length; i++) {
       g2d.drawRect(i, 0, 1, arr[i]);
     }
+
+  }
+
+  public void setHistogramModel(ImageProcessorHistogram histogramModel) {
+    this.histogramModel = histogramModel;
   }
 
 }

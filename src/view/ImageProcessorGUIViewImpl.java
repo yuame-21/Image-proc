@@ -29,7 +29,8 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   public static Color BLUE = new Color(102, 178, 255);
 
   private JScrollPane mainScrollPane, mainImageScroll;
-  private JPanel histogram;
+  private JPanel  mainPanel;
+  private ImageProcessorHistogramView histogram;
   private JLabel mainImage, feedback, fileName;
   private JPanel featuresButtonPanel, loadSaveExitPanel, imagePanel;
 
@@ -53,7 +54,7 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.setLayout(new BorderLayout());
 
     // constructs the base panel
-    JPanel mainPanel = new JPanel();
+    this.mainPanel = new JPanel();
     mainPanel.setBackground(PEONY);
 
     // puts main panel into a scroll pane
@@ -138,13 +139,11 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.makeButton(brightenButton, "Brighten", featuresButtonPanel);
     brightenInput = new JTextField(10);
     featuresButtonPanel.add(brightenInput);
+//
+//    this.histogram = new ImageProcessorHistogramView();
+//    this.histogram.setPreferredSize(new Dimension(100, 100));
+//    mainPanel.add(this.histogram);
 
-    // histogram
-    this.histogram = new JPanel();
-    this.histogram.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
-    mainPanel.add(this.histogram);
-
-    // set up histrogram after loading in controller
 
     pack();
     this.makeVisible();
@@ -223,9 +222,8 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   }
 
   @Override
-  public void makeHistogram(ImageModel model) {
-    ImageProcessorHistogram histogramModel = new ImageProcessorHistogram(model);
-    this.histogram = new ImageProcessorHistogramView(histogramModel);
+  public void setHistogram(ImageModel model) {
+    this.histogram.setHistogramModel(new ImageProcessorHistogram(model));
   }
 
   @Override

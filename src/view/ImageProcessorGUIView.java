@@ -37,6 +37,6 @@ public interface ImageProcessorGUIView extends ImageProcessorView {
 
   void renderImage(BufferedImage image);
 
-  void makeHistogram(ImageModel model);
+  void setHistogram(ImageModel model);
 
 }
