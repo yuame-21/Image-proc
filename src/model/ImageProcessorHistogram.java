@@ -74,7 +74,7 @@ public class ImageProcessorHistogram {
             sum += Integer.parseInt(ar[in]);
             sum += Integer.parseInt(ar[in + 1]);
             sum += Integer.parseInt(ar[in + 2]);
-            int intensity = (int) Math.round(sum / 3);
+            int intensity = Math.round(sum / 3);
             histogram[a] = intensity;
             a++;
             sum = 0;

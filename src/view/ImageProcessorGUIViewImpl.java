@@ -17,13 +17,16 @@ import model.ImageProcessorHistogram;
 import static java.awt.BorderLayout.CENTER;
 import static java.awt.BorderLayout.PAGE_START;
 
+/**
+ * Creates the visual implementation for our GUI.
+ */
 public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorGUIView {
 
-  public static Color VIOLET = new Color(204, 153, 255);
-  public static Color PEONY = new Color(255, 0, 127);
-  public static Color TEAL = new Color(0, 153, 140);
-  public static Color ORANGE = new Color(255, 204, 153);
-  public static Color BLUE = new Color(102, 178, 255);
+  private static Color VIOLET = new Color(204, 153, 255);
+  private static Color PEONY = new Color(255, 0, 127);
+  private static Color TEAL = new Color(0, 153, 140);
+  private static Color ORANGE = new Color(255, 204, 153);
+  private static Color BLUE = new Color(102, 178, 255);
 
   private JScrollPane mainScrollPane, imageScroll;
   private JPanel mainPanel, histogramPanel;
@@ -32,15 +35,13 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   private JPanel featuresButtonPanel, loadSaveExitPanel, imagePanel;
 
   private JButton loadButton, saveButton, exitButton, redButton, greenButton, blueButton,
-          horizFlipButton, vertFlipButton, intensityButton, valueButton, sepiaButton, lumaButton,
-          greyscaleButton, sharpenButton, blurButton, darkenButton, brightenButton;
+      horizFlipButton, vertFlipButton, intensityButton, valueButton, sepiaButton, lumaButton,
+      greyscaleButton, sharpenButton, blurButton, darkenButton, brightenButton;
   private JTextField darkenInput, brightenInput;
-//  private JLabel featuresCheckbox;
 
-  private String[] featuresList = new String[]{"Red Component", "Green Component", "Blue " +
-          "Component", "Horizontal Flip", "Vertical Flip", "Intensity", "Value", "Sepia", "Luma",
-          "Greyscale", "Sharpen", "Blur", "Darken", "Brighten"}; // Darken? Brighten?
-
+  /**
+   * Constructs a visual representation of the GUI.
+   */
   public ImageProcessorGUIViewImpl() {
     super();
     this.setTitle("Image Processor");
@@ -143,8 +144,8 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     // make histogram text label
     JLabel textArea = new JLabel();
     textArea.setText("Image Histogram Color Key: red shading = red color " +
-            "values; green shading = green color values; blue shading " +
-            "= blue color values; grey shading = intensity values");
+        "values; green shading = green color values; blue shading " +
+        "= blue color values; grey shading = intensity values");
     textArea.setFont(new java.awt.Font("Papyrus", 1, 10));
     histogramPanel.add(textArea);
     mainPanel.add(histogramPanel);
@@ -159,22 +160,40 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.makeVisible();
   }
 
+  /**
+   * Makes a JButton's action commands and adds it to the visual.
+   *
+   * @param button The button to update
+   * @param s      The type of the button
+   * @param panel  The panel to add it to
+   */
   private void makeButton(JButton button, String s, JPanel panel) {
     button.setActionCommand(s + " Button");
     panel.add(button);
   }
 
+  /**
+   * Refreshes the program when changes are made to the histogram.
+   */
   @Override
   public void refresh() {
-    this.repaint();
+    this.histogram.repaint();
   }
 
+  /**
+   * Makes the JFrame visible.
+   */
   @Override
   public void makeVisible() {
     this.setVisible(true);
   }
 
-
+  /**
+   * Connects the features of the controller to the view and allows for functionality to be added
+   * to the buttons and boxes.
+   *
+   * @param features The features of the controller
+   */
   @Override
   public void addFeatures(Features features) {
     // connecting button with choosing menu
@@ -182,11 +201,11 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
 
       // create the choosing
       JFileChooser chooser =
-              new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+          new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
       // filters the file endings
       FileNameExtensionFilter imageEnds = new FileNameExtensionFilter("Valid types"
-              , "png", "jpg", "bmp", "ppm");
+          , "png", "jpg", "bmp", "ppm");
       chooser.setFileFilter(imageEnds);
       // opens the actual file thing
       int yes = chooser.showOpenDialog(ImageProcessorGUIViewImpl.this);
@@ -220,29 +239,36 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     blurButton.addActionListener(evt -> features.blur());
     darkenButton.addActionListener(evt -> features.darken(darkenInput.getText()));
     brightenButton.addActionListener(evt ->
-            features.brighten(brightenInput.getText()));
+        features.brighten(brightenInput.getText()));
 
   }
 
+  /**
+   * Renders a given image in the view.
+   *
+   * @param image The image desired to be rendered
+   */
   @Override
   public void renderImage(BufferedImage image) {
     this.mainImage.setIcon(new ImageIcon(image));
   }
 
+  /**
+   * Sets the histogram data from the model into the view.
+   *
+   * @param model The model of the histogram
+   */
   @Override
   public void setHistogram(ImageModel model) {
-//    this.histogram = new ImageProcessorHistogramView();
-//    this.histogram.setHistogramModel(new ImageProcessorHistogram(model));
-//    this.histogram.setPreferredSize(new Dimension(400,300));
-//    JScrollPane scrollPane = new JScrollPane(this.histogram);
-//    scrollPane.setPreferredSize(new Dimension(400,300));
-//    histogramPanel.add(scrollPane);
-
     this.histogram.setHistogramModel(new ImageProcessorHistogram(model));
-
-
   }
 
+  /**
+   * Renders a message.
+   *
+   * @param message text to render
+   * @throws IOException Thrown when there is a transmission error
+   */
   @Override
   public void renderMessage(String message) throws IOException {
     feedback.setText(message);

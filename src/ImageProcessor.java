@@ -33,7 +33,7 @@ public final class ImageProcessor {
     if (args.length == 0) {
       ImageProcessorGUIView view = new ImageProcessorGUIViewImpl();
       ImageProcessorGUIControllerImpl guiController =
-              new ImageProcessorGUIControllerImpl(model, view);
+          new ImageProcessorGUIControllerImpl(model, view);
     }
 
     // Text UI with script
@@ -55,7 +55,7 @@ public final class ImageProcessor {
 
       ImageProcessorView textView = new ImageProcessorTextView();
       ImageProcessorController textController = new ImageProcessorControllerImpl(model,
-              textView, input);
+          textView, input);
       textController.processImage();
     }
 
@@ -64,7 +64,7 @@ public final class ImageProcessor {
       Readable input = new InputStreamReader(System.in);
       ImageProcessorView textView = new ImageProcessorTextView();
       ImageProcessorController textController = new ImageProcessorControllerImpl(model,
-              textView, input);
+          textView, input);
       textController.processImage();
     } else {
       throw new IllegalArgumentException("invalid main command!");

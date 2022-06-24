@@ -7,6 +7,9 @@ import javax.swing.*;
 
 import model.ImageProcessorHistogram;
 
+/**
+ * Creates the view of a histogram.
+ */
 public class ImageProcessorHistogramView extends JPanel {
 
   private static int MIN = 0;
@@ -14,12 +17,20 @@ public class ImageProcessorHistogramView extends JPanel {
   private static String TITLE = "Histogram";
   private ImageProcessorHistogram histogramModel;
 
+  /**
+   * Constructs the view.
+   */
   public ImageProcessorHistogramView() {
     super();
     this.histogramModel = null;
     setOpaque(false);
   }
 
+  /**
+   * Calls the UI delegate paint method to visualize the histogram.
+   *
+   * @param g the <code>Graphics</code> object to protect
+   */
   @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
@@ -48,10 +59,17 @@ public class ImageProcessorHistogramView extends JPanel {
 
     paintOneColor(Color.darkGray, this.histogramModel.getIntensities(), g2d);
     paintOneColor(Color.green, this.histogramModel.getGreens(), g2d);
-    paintOneColor(Color.blue, this.histogramModel.getBlues(),g2d);
+    paintOneColor(Color.blue, this.histogramModel.getBlues(), g2d);
     paintOneColor(Color.red, this.histogramModel.getReds(), g2d);
   }
 
+  /**
+   * Paints one layer of the histogram bars based on what type is given.
+   *
+   * @param color The color to paint with
+   * @param arr   The array of numbers to parse through
+   * @param g2d   The graphics to paint onto
+   */
   private void paintOneColor(Color color, int[] arr, Graphics g2d) {
     int alpha = 127;
 
@@ -61,19 +79,21 @@ public class ImageProcessorHistogramView extends JPanel {
 
     for (int i = 0; i < 255; i++) {
       int height = 0;
-      for(int h = 0; h < arr.length; h++){
-        if(i == arr[h]){
+      for (int h = 0; h < arr.length; h++) {
+        if (i == arr[h]) {
           height++;
         }
       }
       g2d.drawRect(i, 0, 1, height);
     }
-
   }
 
+  /**
+   * Sets the model using given {@code ImageProcessorHistogram}.
+   *
+   * @param histogramModel The model to base the histogram model off of.
+   */
   public void setHistogramModel(ImageProcessorHistogram histogramModel) {
     this.histogramModel = histogramModel;
   }
-
-
 }
