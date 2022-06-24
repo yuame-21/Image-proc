@@ -13,7 +13,7 @@ Once the GUI is launched, the user may interact with the present scroll bars to 
   - The image will appear in the GUI alongside its image histogram. 
     - Next to the image is text feedback that corresponds to the action committed.
     
-![img_2.png](img_2.png)
+![img_1.png](img_1.png)
 
 - You may load a new image at any time. 
 
@@ -41,7 +41,6 @@ The following buttons will perform their named edits as-is when pressed:
 ![img_3.png](img_3.png)
 ![img_4.png](img_4.png)
 
-
 The following buttons require the user to enter an INTEGER before pressing. This integer represents how much the image will be brightened or darkened. If an invalid input is entered when pressing the button, the on-screen feedback will indicate that, and no edit will be performed 
 - Darken + [integer]
 - Brighten + [integer]
@@ -49,7 +48,7 @@ The following buttons require the user to enter an INTEGER before pressing. This
 **e.g.** 
 ![img_5.png](img_5.png)
 To demonstrate the feedback when an improper input is entered alongside brighen:
-![img_6.png](img_6.png)
+![img_7.png](img_7.png)
 
 ### Histogram 
 - Once the user loads an image, they can view that image's corresponding histogram. 
@@ -60,7 +59,7 @@ To demonstrate the feedback when an improper input is entered alongside brighen:
 - To save the image currently shown in the frame, press the "save" button. 
   - In finder box that pops up, enter a file name to save the image at, define its location, and press "save". 
 
-![img_7.png](img_7.png)
+![img_8.png](img_8.png)
 
 ### Exit
 - To exit the GUI at any time, press "exit."
