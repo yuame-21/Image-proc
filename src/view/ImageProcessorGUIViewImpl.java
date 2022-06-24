@@ -22,22 +22,39 @@ import static java.awt.BorderLayout.PAGE_START;
  */
 public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorGUIView {
 
-  private static Color VIOLET = new Color(204, 153, 255);
   private static Color PEONY = new Color(255, 0, 127);
-  private static Color TEAL = new Color(0, 153, 140);
-  private static Color ORANGE = new Color(255, 204, 153);
-  private static Color BLUE = new Color(102, 178, 255);
 
-  private JScrollPane mainScrollPane, imageScroll;
-  private JPanel mainPanel, histogramPanel;
+  private JScrollPane mainScrollPane;
+  private JScrollPane imageScroll;
+  private JPanel mainPanel;
+  private JPanel histogramPanel;
   private ImageProcessorHistogramView histogram;
-  private JLabel mainImage, feedback, fileName;
-  private JPanel featuresButtonPanel, loadSaveExitPanel, imagePanel;
+  private JLabel mainImage;
+  private JLabel feedback;
+  private JLabel fileName;
+  private JPanel featuresButtonPanel;
+  private JPanel loadSaveExitPanel;
+  private JPanel imagePanel;
 
-  private JButton loadButton, saveButton, exitButton, redButton, greenButton, blueButton,
-      horizFlipButton, vertFlipButton, intensityButton, valueButton, sepiaButton, lumaButton,
-      greyscaleButton, sharpenButton, blurButton, darkenButton, brightenButton;
-  private JTextField darkenInput, brightenInput;
+  private JButton loadButton;
+  private JButton saveButton;
+  private JButton exitButton;
+  private JButton redButton;
+  private JButton greenButton;
+  private JButton blueButton;
+  private JButton horizFlipButton;
+  private JButton vertFlipButton;
+  private JButton intensityButton;
+  private JButton valueButton;
+  private JButton sepiaButton;
+  private JButton lumaButton;
+  private JButton greyscaleButton;
+  private JButton sharpenButton;
+  private JButton blurButton;
+  private JButton darkenButton;
+  private JButton brightenButton;
+  private JTextField darkenInput;
+  private JTextField brightenInput;
 
   /**
    * Constructs a visual representation of the GUI.
@@ -63,6 +80,8 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.fileName = new JLabel();
     mainPanel.add(this.fileName, PAGE_START);
 
+    Color VIOLET = new Color(204, 153, 255);
+
     // makes a panel for load and save buttons
     loadSaveExitPanel = new JPanel();
     loadSaveExitPanel.setLayout(new FlowLayout());
@@ -82,6 +101,8 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     exitButton = new JButton("Exit");
     this.makeButton(exitButton, "Exit", loadSaveExitPanel);
 
+    Color TEAL = new Color(0, 153, 140);
+
     // adds image panel with scrollbars
     this.imagePanel = new JPanel();
     this.imagePanel.setBackground(TEAL);
@@ -96,6 +117,8 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     // makes feedback message label
     feedback = new JLabel();
     imagePanel.add(feedback);
+
+    Color BLUE = new Color(102, 178, 255);
 
     // makes a button panel
     featuresButtonPanel = new JPanel();
@@ -137,6 +160,7 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     brightenInput = new JTextField(10);
     featuresButtonPanel.add(brightenInput);
 
+    Color ORANGE = new Color(255, 204, 153);
 
     this.histogramPanel = new JPanel();
     histogramPanel.setBackground(ORANGE);

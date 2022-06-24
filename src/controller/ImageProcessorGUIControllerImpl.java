@@ -137,7 +137,7 @@ public class ImageProcessorGUIControllerImpl implements Features {
   }
 
   /**
-   * The feature that edits the image to the average of each pixel's RGB
+   * The feature that edits the image to the average of each pixel's RGB.
    */
   @Override
   public void intensity() {

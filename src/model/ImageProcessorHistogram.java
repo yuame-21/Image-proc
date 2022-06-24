@@ -5,7 +5,6 @@ package model;
  * This class creates arrays of each histogram field from a given ImageModelState.
  */
 public class ImageProcessorHistogram {
-  private ImageModel image;
   private int[] reds;
   private int[] greens;
   private int[] blues;
@@ -18,7 +17,6 @@ public class ImageProcessorHistogram {
    * @param image Image Model State that supplies data to make a histogram
    */
   public ImageProcessorHistogram(ImageModel image) {
-    this.image = image;
     String temp = image.generateString("temp");
 
     this.reds = this.histogram(temp, "red");
@@ -47,44 +45,44 @@ public class ImageProcessorHistogram {
 
     int[] histogram = new int[arrSize];
 
-    int a =0;
+    int a = 0;
 
-      switch (type) {
-        case "red":
-          for (int r = 3; r < ar.length; r += 3) {
-            histogram[a] = Integer.parseInt(ar[r]);
-            a++;
-          }
-          break;
-        case "green":
-          for (int g = 4; g < ar.length; g += 3) {
-            histogram[a] = Integer.parseInt(ar[g]);
-            a++;
-          }
-          break;
-        case "blue":
-          for (int b = 5; b < ar.length; b += 3) {
-            histogram[a] = Integer.parseInt(ar[b]);
-            a++;
-          }
-          break;
-        case "intensity":
-          int sum = 0;
-          for (int in = 3; in < ar.length; in += 3) {
-            sum += Integer.parseInt(ar[in]);
-            sum += Integer.parseInt(ar[in + 1]);
-            sum += Integer.parseInt(ar[in + 2]);
-            int intensity = Math.round(sum / 3);
-            histogram[a] = intensity;
-            a++;
-            sum = 0;
-          }
+    switch (type) {
+      case "red":
+        for (int r = 3; r < ar.length; r += 3) {
+          histogram[a] = Integer.parseInt(ar[r]);
+          a++;
+        }
+        break;
+      case "green":
+        for (int g = 4; g < ar.length; g += 3) {
+          histogram[a] = Integer.parseInt(ar[g]);
+          a++;
+        }
+        break;
+      case "blue":
+        for (int b = 5; b < ar.length; b += 3) {
+          histogram[a] = Integer.parseInt(ar[b]);
+          a++;
+        }
+        break;
+      case "intensity":
+        int sum = 0;
+        for (int in = 3; in < ar.length; in += 3) {
+          sum += Integer.parseInt(ar[in]);
+          sum += Integer.parseInt(ar[in + 1]);
+          sum += Integer.parseInt(ar[in + 2]);
+          int intensity = Math.round(sum / 3);
+          histogram[a] = intensity;
+          a++;
+          sum = 0;
+        }
 
-          break;
-        default:
-          throw new IllegalArgumentException("Invalid histogram value: " +
-                  "must be red, green, blue, or intensity");
-      }
+        break;
+      default:
+        throw new IllegalArgumentException("Invalid histogram value: " +
+            "must be red, green, blue, or intensity");
+    }
 //    }
 
     return histogram;

@@ -45,7 +45,7 @@ public interface Features {
   void verticalFlip();
 
   /**
-   * The feature that edits the image to the average of each pixel's RGB
+   * The feature that edits the image to the average of each pixel's RGB.
    */
   void intensity();
 
