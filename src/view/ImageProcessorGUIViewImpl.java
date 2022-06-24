@@ -26,7 +26,7 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   public static Color BLUE = new Color(102, 178, 255);
 
   private JScrollPane mainScrollPane, imageScroll;
-  private JPanel  mainPanel, histogramPanel;
+  private JPanel mainPanel, histogramPanel;
   private ImageProcessorHistogramView histogram;
   private JLabel mainImage, feedback, fileName;
   private JPanel featuresButtonPanel, loadSaveExitPanel, imagePanel;
@@ -47,11 +47,12 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     this.setSize(500, 500);
     this.setLocation(200, 200);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setLayout(new BorderLayout());
+    this.setBackground(PEONY);
 
     // constructs the base panel
     this.mainPanel = new JPanel();
     mainPanel.setBackground(PEONY);
+    mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
 
     // puts main panel into a scroll pane
     mainScrollPane = new JScrollPane(mainPanel);
@@ -86,7 +87,7 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     mainPanel.add(imagePanel, CENTER);
 
     this.mainImage = new JLabel();
-    this.mainImage.setPreferredSize(new Dimension(300,200));
+    this.mainImage.setPreferredSize(new Dimension(300, 200));
     imageScroll = new JScrollPane(this.mainImage);
     this.imageScroll.setSize(200, 200);
     this.imagePanel.add(imageScroll);
@@ -97,7 +98,7 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
 
     // makes a button panel
     featuresButtonPanel = new JPanel();
-    featuresButtonPanel.setLayout(new BoxLayout(featuresButtonPanel, BoxLayout.PAGE_AXIS));
+    featuresButtonPanel.setLayout(new BoxLayout(featuresButtonPanel, BoxLayout.X_AXIS));
     featuresButtonPanel.setBackground(BLUE);
     mainPanel.add(featuresButtonPanel);
 
@@ -149,9 +150,9 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     mainPanel.add(histogramPanel);
 
     this.histogram = new ImageProcessorHistogramView();
-    this.histogram.setPreferredSize(new Dimension(400,300));
+    this.histogram.setPreferredSize(new Dimension(400, 300));
     JScrollPane scrollPane = new JScrollPane(this.histogram);
-    scrollPane.setPreferredSize(new Dimension(400,300));
+    scrollPane.setPreferredSize(new Dimension(400, 300));
     histogramPanel.add(scrollPane);
 
     pack();
@@ -172,7 +173,6 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   public void makeVisible() {
     this.setVisible(true);
   }
-
 
 
   @Override
@@ -248,7 +248,6 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     feedback.setText(message);
     feedback.setFont(new java.awt.Font("Papyrus", 1, 10));
   }
-
 
 
 }
