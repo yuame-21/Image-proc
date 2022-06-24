@@ -41,8 +41,8 @@ public class ColorComponent extends ACommand {
   @Override
   public void initCommand(ImageModel model) {
     model.editImage(this.originalName, this.revisedName, new model.edit.ColorComponent(this.color));
-    this.updateCommandMessage("Greyscaled image, " + originalName + ", for color component, "
-        + this.color + ". Renamed edited image as " + revisedName + "\n");
+    this.updateCommandMessage("Greyscaled image for color component, "
+        + this.color + ".\n");
   }
 
 

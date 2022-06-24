@@ -42,8 +42,8 @@ public class IntensityLumaValue extends ACommand {
 
     model.editImage(this.originalName, this.revisedName, editor);
 
-    this.updateCommandMessage("Greyscaled image, " + originalName + ", for "
-        + this.type + ". Renamed edited image as " + revisedName + "\n");
+    this.updateCommandMessage("Greyscaled image for "
+        + this.type + ".\n");
   }
 
 }

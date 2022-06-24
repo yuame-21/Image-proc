@@ -29,12 +29,12 @@ public class GUIControllerMock implements Features {
   }
 
   @Override
-  public void darken(int degree) {
+  public void darken(String degree) {
     log.append("darken " + degree + " ");
   }
 
   @Override
-  public void brighten(int degree) {
+  public void brighten(String degree) {
     log.append("brighten " + degree + " ");
   }
 

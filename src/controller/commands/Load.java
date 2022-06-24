@@ -39,7 +39,7 @@ public class Load implements Command {
   @Override
   public void initCommand(ImageModel model) {
     model.load(path, name);
-    this.message = ("Loaded image, " + this.name + ". From path, " + this.path + "\n");
+    this.message = ("Loaded image from path, " + this.path + "\n");
   }
 
   /**

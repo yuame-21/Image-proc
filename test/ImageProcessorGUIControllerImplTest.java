@@ -40,13 +40,13 @@ public class ImageProcessorGUIControllerImplTest {
 
   @Test
   public void darken() {
-    this.controller.darken(10);
+    this.controller.darken("10");
     assertEquals(controller.log.toString(), "darken 10 ");
   }
 
   @Test
   public void brighten() {
-    this.controller.brighten(10);
+    this.controller.brighten("10");
     assertEquals(controller.log.toString(), "brighten 10 ");
   }
 
@@ -125,7 +125,7 @@ public class ImageProcessorGUIControllerImplTest {
   @Test
  public void mixedFeatures() {
     this.controller.load("path");
-    this.controller.brighten(10);
+    this.controller.brighten("10");
     this.controller.luma();
     this.controller.greyscale();
     this.controller.verticalFlip();

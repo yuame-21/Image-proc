@@ -1,8 +1,6 @@
 package controller;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -36,7 +34,7 @@ public class ImageProcessorGUIControllerImpl implements Features {
     this.command.initCommand(this.model);
     this.view.renderImage(createImage(this.model.generateString(TEMP_NAME)));
     this.command.renderCommandMessage(this.view);
-    this.view.refresh();
+    this.view.setHistogram(this.model);
   }
 
 
@@ -59,15 +57,33 @@ public class ImageProcessorGUIControllerImpl implements Features {
   }
 
   @Override
-  public void darken(int degree) {
-    this.command = new DarkenBrighten(TEMP_NAME, TEMP_NAME, degree, "darken");
-    this.initAndRender();
+  public void darken(String degree) {
+    try {
+      int d = Integer.parseInt(degree);
+      this.command = new DarkenBrighten(TEMP_NAME, TEMP_NAME, d, "darken");
+      this.initAndRender();
+    } catch (NumberFormatException e) {
+      try {
+        this.view.renderMessage("UNABLE TO DARKEN: To darken, please enter an integer");
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+    }
   }
 
   @Override
-  public void brighten(int degree) {
-    this.command = new DarkenBrighten(TEMP_NAME, TEMP_NAME, degree, "brighten");
-    this.initAndRender();
+  public void brighten(String degree) {
+    try {
+      int d = Integer.parseInt(degree);
+      this.command = new DarkenBrighten(TEMP_NAME, TEMP_NAME, d, "brighten");
+      this.initAndRender();
+    } catch (NumberFormatException e) {
+      try {
+        this.view.renderMessage("UNABLE TO BRIGHTEN: To brighten, please enter an integer");
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+    }
   }
 
   @Override
@@ -129,7 +145,6 @@ public class ImageProcessorGUIControllerImpl implements Features {
     this.command = new Load(path, TEMP_NAME);
     this.initAndRender();
     this.view.setHistogram(this.model);
-    this.view.refresh();
   }
 
   private BufferedImage createImage(String imageData) {

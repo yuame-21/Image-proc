@@ -38,7 +38,7 @@ public class Save implements Command {
   @Override
   public void initCommand(ImageModel model) {
     model.save(path, name);
-    this.message = ("Saved image, " + this.name + " to path, " + this.path + "\n");
+    this.message = ("Saved image to path, " + this.path + "\n");
   }
 
   /**

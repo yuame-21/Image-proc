@@ -39,8 +39,8 @@ public class Transformation extends ACommand {
 
     model.editImage(this.originalName, this.revisedName, new Transform(this.s));
 
-    this.updateCommandMessage("Transformed image, " + originalName + ", to "
-        + this.s + ". Renamed edited image as " + revisedName + "\n");
+    this.updateCommandMessage("Transformed image to "
+        + this.s + ".\n");
   }
 
 

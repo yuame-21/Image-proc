@@ -26,7 +26,7 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
   public static Color BLUE = new Color(102, 178, 255);
 
   private JScrollPane mainScrollPane, imageScroll;
-  private JPanel  mainPanel;
+  private JPanel  mainPanel, histogramPanel;
   private ImageProcessorHistogramView histogram;
   private JLabel mainImage, feedback, fileName;
   private JPanel featuresButtonPanel, loadSaveExitPanel, imagePanel;
@@ -80,20 +80,20 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     exitButton = new JButton("Exit");
     this.makeButton(exitButton, "Exit", loadSaveExitPanel);
 
-//    // adds image panel with scrollbars
-//    this.imagePanel = new JPanel();
-//    this.imagePanel.setBackground(TEAL);
-//    mainPanel.add(imagePanel, CENTER);
-//
-//    this.mainImage = new JLabel();
-//    this.mainImage.setPreferredSize(new Dimension(300,200));
-//    imageScroll = new JScrollPane(this.mainImage);
-//    this.imageScroll.setSize(200, 200);
-//    this.imagePanel.add(imageScroll);
+    // adds image panel with scrollbars
+    this.imagePanel = new JPanel();
+    this.imagePanel.setBackground(TEAL);
+    mainPanel.add(imagePanel, CENTER);
 
-//    // makes feedback message label
-//    feedback = new JLabel();
-//    imagePanel.add(feedback);
+    this.mainImage = new JLabel();
+    this.mainImage.setPreferredSize(new Dimension(300,200));
+    imageScroll = new JScrollPane(this.mainImage);
+    this.imageScroll.setSize(200, 200);
+    this.imagePanel.add(imageScroll);
+
+    // makes feedback message label
+    feedback = new JLabel();
+    imagePanel.add(feedback);
 
     // makes a button panel
     featuresButtonPanel = new JPanel();
@@ -135,6 +135,25 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     brightenInput = new JTextField(10);
     featuresButtonPanel.add(brightenInput);
 
+
+    this.histogramPanel = new JPanel();
+    histogramPanel.setBackground(ORANGE);
+
+    // make histogram text label
+    JLabel textArea = new JLabel();
+    textArea.setText("Image Histogram Color Key: red shading = red color " +
+            "values; green shading = green color values; blue shading " +
+            "= blue color values; grey shading = intensity values");
+    textArea.setFont(new java.awt.Font("Papyrus", 1, 10));
+    histogramPanel.add(textArea);
+    mainPanel.add(histogramPanel);
+
+    this.histogram = new ImageProcessorHistogramView();
+    this.histogram.setPreferredSize(new Dimension(400,300));
+    JScrollPane scrollPane = new JScrollPane(this.histogram);
+    scrollPane.setPreferredSize(new Dimension(400,300));
+    histogramPanel.add(scrollPane);
+
     pack();
     this.makeVisible();
   }
@@ -161,19 +180,6 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     // connecting button with choosing menu
     loadButton.addActionListener((ActionEvent a) -> {
 
-      // adds image panel with scrollbars
-      this.imagePanel = new JPanel();
-      this.imagePanel.setBackground(TEAL);
-      mainPanel.add(imagePanel, CENTER);
-
-      this.mainImage = new JLabel();
-      this.mainImage.setPreferredSize(new Dimension(200,200));
-      imageScroll = new JScrollPane(this.mainImage);
-      this.imageScroll.setSize(200, 200);
-      this.imagePanel.add(imageScroll);
-      // makes feedback message label
-      feedback = new JLabel();
-      imagePanel.add(feedback);
       // create the choosing
       JFileChooser chooser =
               new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
@@ -212,9 +218,9 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
     greyscaleButton.addActionListener(evt -> features.greyscale());
     sharpenButton.addActionListener(evt -> features.sharpen());
     blurButton.addActionListener(evt -> features.blur());
-    darkenButton.addActionListener(evt -> features.darken(Integer.valueOf(darkenInput.getText())));
+    darkenButton.addActionListener(evt -> features.darken(darkenInput.getText()));
     brightenButton.addActionListener(evt ->
-            features.brighten(Integer.valueOf(brightenInput.getText())));
+            features.brighten(brightenInput.getText()));
 
   }
 
@@ -225,29 +231,16 @@ public class ImageProcessorGUIViewImpl extends JFrame implements ImageProcessorG
 
   @Override
   public void setHistogram(ImageModel model) {
+//    this.histogram = new ImageProcessorHistogramView();
+//    this.histogram.setHistogramModel(new ImageProcessorHistogram(model));
+//    this.histogram.setPreferredSize(new Dimension(400,300));
+//    JScrollPane scrollPane = new JScrollPane(this.histogram);
+//    scrollPane.setPreferredSize(new Dimension(400,300));
+//    histogramPanel.add(scrollPane);
 
-    JPanel histogramPanel = new JPanel();
-    histogramPanel.setBackground(ORANGE);
-
-    // make histogram text label
-    JLabel textArea = new JLabel();
-    textArea.setText("Image Histogram Color Key: red shading = red color " +
-            "values; green shading = green color values; blue shading " +
-            "= blue color values; grey shading = intensity values");
-    textArea.setFont(new java.awt.Font("Papyrus", 1, 10));
-    histogramPanel.add(textArea);
-
-
-    // make histogram
-    this.histogram = new ImageProcessorHistogramView();
-    this.histogram.repaint();
     this.histogram.setHistogramModel(new ImageProcessorHistogram(model));
-    this.histogram.setPreferredSize(new Dimension(400,300));
-    JScrollPane scrollPane = new JScrollPane(this.histogram);
-    scrollPane.setPreferredSize(new Dimension(400,300));
-    histogramPanel.add(scrollPane);
 
-    mainPanel.add(histogramPanel);
+
   }
 
   @Override

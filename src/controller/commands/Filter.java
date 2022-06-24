@@ -38,8 +38,8 @@ public class Filter extends ACommand {
   public void initCommand(ImageModel model) {
     model.editImage(this.originalName, this.revisedName, new FilterSharpenBlur(this.s));
 
-    this.updateCommandMessage("Filtered image, " + originalName + ", to "
-        + this.s + ". Renamed edited image as " + revisedName + "\n");
+    this.updateCommandMessage("Filtered image to "
+        + this.s + ".\n");
   }
 
 }

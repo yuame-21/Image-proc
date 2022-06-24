@@ -39,8 +39,7 @@ public class Flip extends ACommand {
   @Override
   public void initCommand(ImageModel model) {
     model.editImage(this.originalName, this.revisedName, new FlipHZ(this.flipDirection));
-    this.updateCommandMessage(this.flipDirection + "ly flipped image, " + originalName + ". "
-        + "Renamed edited image as " + revisedName + "\n");
+    this.updateCommandMessage(this.flipDirection + "ly flipped image.\n");
 
   }
 

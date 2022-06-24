@@ -47,8 +47,8 @@ public class DarkenBrighten extends ACommand {
   @Override
   public void initCommand(ImageModel model) {
     model.editImage(this.originalName, this.revisedName, new BrightenDarken(this.degree));
-    this.updateCommandMessage(this.direction + "ed image, " + originalName + ", by "
-        + Math.abs(this.degree) + ". Renamed edited image as " + revisedName + "\n");
+    this.updateCommandMessage(this.direction + "ed image by "
+        + Math.abs(this.degree) + ".\n");
   }
 
 }

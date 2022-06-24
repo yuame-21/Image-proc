@@ -6,8 +6,8 @@ public interface Features {
   void redComponent();
   void greenComponent();
   void blueComponent();
-  void darken(int degree);
-  void brighten(int degree);
+  void darken(String degree);
+  void brighten(String degree);
   void horizontalFlip();
   void verticalFlip();
   void intensity();

@@ -8,6 +8,8 @@
     - no arguments after loading the jar, which opens the GUI
     - "-file + [fileName]" to run the given script on the textUI (same functionality as A5)
     - "-text" to run the textUI and wait for command line arguments 
+- We altered the command messages that are returned after each Command (edit/load/save) is executed to generalize them for both the textUI and GUI
+  - Before, the messages included the file names, but we removed that clause because file names are not inputed/changing in the GUI as buttons are clicked. 
 
 
 
