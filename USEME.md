@@ -1,124 +1,66 @@
-# Program Command Instructions
+# GUI Instructions
 
-First, you must run the` main()` method in `ImageProcessor` to instantiate the program. 
-Then, you can use the Image Processor with either a .txt or a series of command line inputs 
+To run the GUI, open terminal at folder, res, and enter, "java -jar Group.jar"
 
-Alternatively, you can initiate the program by running its jar, `Group.jar`.
+Once the GUI is launched, the user may interact with the present scroll bars to see all facets of the frame. 
 
-## .txt script 
+### Load 
+- Before performing any edits, you must first load an image. 
+  - Click the "load" button and select an image from your finder. 
 
-To run the program using a .txt file, enter the following in the console : 
+![img.png](img.png)
 
--file [fileName.txt] \n 
-e.g. 
--file ././res/miniscript.txt 
+  - The image will appear in the GUI alongside its image histogram. 
+    - Next to the image is text feedback that corresponds to the action committed.
+    
+![img_2.png](img_2.png)
 
-## command line inputs 
+- You may load a new image at any time. 
 
-### load 
-Before making any edits, you must first load an image of type .jpg, .ppm, .png, or .bmp
-Enter the following in the console: 
-load [file] [fileName] \n 
+### Edit 
+- After loading, you will see an array of buttons; each button performs a different edit on the image. 
+  - Once you click the button, the edit will be applied to your image. The image displayed will update to reflect the change, as will the image histogram.
+    - Again, text feedback will appear next to the image to confirm what was performed. 
 
-e.g. 
-load ././res/pink.txt pink 
+#### Buttons: 
+The following buttons will perform their named edits as-is when pressed: 
+- Red component 
+- Green component 
+- Blue component 
+- Horizontal flip
+- Vertical flip 
+- Intensity 
+- Value 
+- Luma 
+- Sepia 
+- Greyscale 
+- Sharpen 
+- Blur
 
-You can load a new image at any point in the program to change the image you wish to edit. 
-
-### edits
-Then, you can edit the loaded image with any of the following commands: 
-Multiple commands can be used on an image in a row.
-
-brighten [oldFileName] [newFileName] [int increment] \n
-
-e.g. 
-brighten pink pinkBrighter 20 
-
-darken [oldFileName] [newFileName] [int increment] \n
-
-e.g.
-darken pink pinkDarker 20
-
-red-component [oldFileName] [newFileName] \n
-
-e.g.
-red-component pink pinkRedC
-
-green-component [oldFileName] [newFileName] \n
-
-e.g.
-green-component pink pinkGreenC
-
-blue-component [oldFileName] [newFileName] \n
-
-e.g.
-blue-component pink pinkBlueC
-
-horizontal-flip [oldFileName] [newFileName] \n
-
-e.g. 
-horizontal-flip pink pinkHoriz
-
-vertical-flip [oldFileName] [newFileName] \n
-
-e.g. 
-vertical-flip pink pinkVert
-
-value-component [oldFileName] [newFileName] \n
-
-e.g. 
-value-component pink pinkValue
-
-luma-component [oldFileName] [newFileName] \n
-
-e.g. 
-luma-component pink pinkLuma
-
-intensity-component [oldFileName] [newFileName] \n
-
-e.g. 
-intensity-component pink pinkIntensity
-
-sepia [oldFileName] [newFileName] \n 
-
-e.g. 
-sepia pink pinkSepia
-
-greyscale [oldFileName] [newFileName] \n
-
-e.g. 
-greyscale pink pinkGreyscale
-
-blur [oldFileName] [newFileName] \n
-
-e.g. 
-blur pink pinkBlur
-
-sharpen [oldFileName] [newFileName] \n
-
-e.g. 
-sharpen pink pinkSharpen
-
-### save 
-You can save an image as a .ppm, .png, .bmp, .jpg based on the file you enter to save it as. 
-Enter the following into the console: 
-save [file] [fileName] \n
-
-e.g. 
-to save as a .bmp
-save ././res/pink.bmp pink
-
-to save as a .ppm
-save ././res/pink.ppm pink
-
-to save as a .jpg
-save ././res/pink.jpg pink
-
-to save as a .png
-save ././res/pink.png pink
-
-### quit 
-You can quit the program at any time. To quit, enter the following either 'q' or 'Q' in the console 
+**e.g.**
+![img_3.png](img_3.png)
+![img_4.png](img_4.png)
 
 
+The following buttons require the user to enter an INTEGER before pressing. This integer represents how much the image will be brightened or darkened. If an invalid input is entered when pressing the button, the on-screen feedback will indicate that, and no edit will be performed 
+- Darken + [integer]
+- Brighten + [integer]
 
+**e.g.** 
+![img_5.png](img_5.png)
+To demonstrate the feedback when an improper input is entered alongside brighen:
+![img_6.png](img_6.png)
+
+### Histogram 
+- Once the user loads an image, they can view that image's corresponding histogram. 
+  - The histogram is updated to reflect each edit. 
+  - The text next to the histogram serves as a key for the colors shown. 
+
+### Save
+- To save the image currently shown in the frame, press the "save" button. 
+  - In finder box that pops up, enter a file name to save the image at, define its location, and press "save". 
+
+![img_7.png](img_7.png)
+
+### Exit
+- To exit the GUI at any time, press "exit."

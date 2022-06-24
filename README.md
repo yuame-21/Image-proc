@@ -1,6 +1,171 @@
 # A6 Image Processor with GUI 
 ## Ella Taira and Amelia Yu
 
+## How to use the program
+- From `ImageProcessor`'s `main()` method, you can interact with this program through either a GUI or a TextUI
+  - From terminal,
+    - run the GUI by typing "java -jar Group.jar"
+    - run the TextUI on a script by typing "java -jar Group.jar -file [fileName.txt]"
+    - run the TextUI with command line inputs by typing "java -jar Group.jar -text" and then continuing to type commands as described below 
+
+### TextUI Instructions
+
+#### command line inputs
+
+##### load
+Before making any edits, you must first load an image of type .jpg, .ppm, .png, or .bmp
+Enter the following in the console:
+load [file] [fileName] \n
+
+e.g.
+load ././res/pink.txt pink
+
+You can load a new image at any point in the program to change the image you wish to edit.
+
+##### edits
+Then, you can edit the loaded image with any of the following commands:
+Multiple commands can be used on an image in a row.
+
+brighten [oldFileName] [newFileName] [int increment] \n
+
+e.g.
+brighten pink pinkBrighter 20
+
+darken [oldFileName] [newFileName] [int increment] \n
+
+e.g.
+darken pink pinkDarker 20
+
+red-component [oldFileName] [newFileName] \n
+
+e.g.
+red-component pink pinkRedC
+
+green-component [oldFileName] [newFileName] \n
+
+e.g.
+green-component pink pinkGreenC
+
+blue-component [oldFileName] [newFileName] \n
+
+e.g.
+blue-component pink pinkBlueC
+
+horizontal-flip [oldFileName] [newFileName] \n
+
+e.g.
+horizontal-flip pink pinkHoriz
+
+vertical-flip [oldFileName] [newFileName] \n
+
+e.g.
+vertical-flip pink pinkVert
+
+value-component [oldFileName] [newFileName] \n
+
+e.g.
+value-component pink pinkValue
+
+luma-component [oldFileName] [newFileName] \n
+
+e.g.
+luma-component pink pinkLuma
+
+intensity-component [oldFileName] [newFileName] \n
+
+e.g.
+intensity-component pink pinkIntensity
+
+sepia [oldFileName] [newFileName] \n
+
+e.g.
+sepia pink pinkSepia
+
+greyscale [oldFileName] [newFileName] \n
+
+e.g.
+greyscale pink pinkGreyscale
+
+blur [oldFileName] [newFileName] \n
+
+e.g.
+blur pink pinkBlur
+
+sharpen [oldFileName] [newFileName] \n
+
+e.g.
+sharpen pink pinkSharpen
+
+##### save
+You can save an image as a .ppm, .png, .bmp, .jpg based on the file you enter to save it as.
+Enter the following into the console:
+save [file] [fileName] \n
+
+e.g.
+to save as a .bmp
+save ././res/pink.bmp pink
+
+to save as a .ppm
+save ././res/pink.ppm pink
+
+to save as a .jpg
+save ././res/pink.jpg pink
+
+to save as a .png
+save ././res/pink.png pink
+
+##### quit
+You can quit the program at any time. To quit, enter the following either 'q' or 'Q' in the console
+
+## Completed Parts of the Program (contd. from A5)
+
+- `ImageProcessor` class
+  - contains `main()`
+
+### Model:
+
+- `ImageModel` interface and implementing class, `ImageModelImpl`
+- `ImageModelState` interface and implementing class, `ImageModelStateImpl`
+- `Edit` interface, implementing abstract class, `AEdit`, and all extending concrete classes
+  - concrete classes:
+    - `BrightenDarken`, `ColorComponent`, `FilterSharpenBlur`, `FlipHorizontal`, `FlipVertical`, `ILV`, `Transform`
+- `Pixel` class 
+- `ImageProcessorHistogram` class 
+
+### View:
+
+- `ImageProcessorView` interface and implementing class,` ImageProcessorTextView`
+- `ImageProcessorGUIView` interface and implementing class, `ImageProcessorGUIViewImpl`
+- `ImageProcessorHistogramView` class 
+
+### Controller:
+
+- `ImageProcessorController` interface and implementing class, `ImageProcessorControllerImpl`
+- `Command` interface, implementing abstract class, `ACommand`, and all concrete command classes
+  - concrete classes:
+    - extending `ACommand`:
+      - `ColorComponent`, `DarkenBrighten`, `Filter`, `Flip`, `IntensityLumaValue`, `Transformation`
+    - JUST implementing `Command` --- not extending `ACommand`
+      - `File`, `Load`, `Save`
+- `Features` interface and implementing class, `ImageProcessorGUIControllerImpl`
+
+### Testing:
+- Testing classes:
+  - `ImageModelImplTest`, `ImageModelStateImplTest`, `EditTest`, `ImageProcessorControllerImplTest`, `ImageProcessorTextViewTest`, `ImageProcessorGUIControllerImplTest`, `ImageProcessorHistogramTest`
+- Mocks used:
+  - `AppendableMock`, `ImageModelMock`, `ImageProcessorViewMock`, `ReadableMock`, `GUIControllerMock`
+
+### res:
+- jar file, `Group.jar`
+- sample script that showcases all commands/functionality, `script.txt`
+- all image files used in testing 
+
+### other:
+- README.md
+- USEME.md
+
+** all images used are either taken by us, or handmade, tiny, pixel images 
+
 ## Design Changes: 
 
 - Removed the File class from the controller commands when writing this assignment's command line arguments. Our past interpretation was to have the "-file" command work the same as all other Edit commands, but we have since reevaluated based on the assignment brief. 
@@ -9,7 +174,8 @@
     - "-file + [fileName]" to run the given script on the textUI (same functionality as A5)
     - "-text" to run the textUI and wait for command line arguments 
 - We altered the command messages that are returned after each Command (edit/load/save) is executed to generalize them for both the textUI and GUI
-  - Before, the messages included the file names, but we removed that clause because file names are not inputed/changing in the GUI as buttons are clicked. 
+  - Before, the messages included the file names, but we removed that clause because file names are not inputted/changing in the GUI as buttons are clicked. 
+- In order to complete this assignment, we added to our past design to implement the new functionality. In brief, we added a second controller for the GUI using a Features interface, wrote classes in the view and model packages to make the histogram and collect data needed, and added another view for the GUI. 
 
 
 

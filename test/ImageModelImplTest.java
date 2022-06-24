@@ -40,12 +40,12 @@ public class ImageModelImplTest extends TestCase {
           "170\n" +
           "0\n" +
           "255\n" +
-          "0\n" +
-          "171\n" +
-          "169\n" +
           "140\n" +
           "190\n" +
           "41\n" +
+          "0\n" +
+          "171\n" +
+          "169\n" +
           "255\n" +
           "0\n" +
           "127\n";
@@ -56,12 +56,12 @@ public class ImageModelImplTest extends TestCase {
           "163\n" +
           "8\n" +
           "250\n" +
-          "0\n" +
-          "167\n" +
-          "167\n" +
           "134\n" +
           "183\n" +
           "32\n" +
+          "0\n" +
+          "167\n" +
+          "167\n" +
           "255\n" +
           "5\n" +
           "143\n";
