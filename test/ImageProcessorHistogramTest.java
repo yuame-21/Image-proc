@@ -8,8 +8,13 @@ import model.ImageProcessorHistogram;
 import model.Pixel;
 import view.ImageProcessorHistogramView;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
+/**
+ * Tests for the histogram.
+ */
 public class ImageProcessorHistogramTest {
 
   ImageModelStateImpl twoXTwoMS;
@@ -22,8 +27,8 @@ public class ImageProcessorHistogramTest {
   @Before
   public void init() {
     this.twoBoard = new Pixel[][]{
-            {new Pixel(170, 0, 255), new Pixel(140, 190, 41)},
-            {new Pixel(0, 171, 169), new Pixel(255, 0, 127)}
+        {new Pixel(170, 0, 255), new Pixel(140, 190, 41)},
+        {new Pixel(0, 171, 169), new Pixel(255, 0, 127)}
     };
     this.twoName = "2x2";
     this.twoMaxNum = 255;

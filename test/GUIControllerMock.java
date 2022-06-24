@@ -2,6 +2,9 @@ import controller.Features;
 import model.ImageModel;
 import view.ImageProcessorGUIView;
 
+/**
+ * A mock class of the GUI controller to test its features.
+ */
 public class GUIControllerMock implements Features {
   StringBuilder log;
   ImageProcessorGUIView view;

@@ -1,15 +1,16 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import controller.ImageProcessorController;
-import controller.ImageProcessorGUIControllerImpl;
 import model.ImageModel;
 import model.ImageModelImpl;
 import view.ImageProcessorGUIView;
 import view.ImageProcessorGUIViewImpl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+/**
+ * Tests for the GUI controller.
+ */
 public class ImageProcessorGUIControllerImplTest {
   GUIControllerMock controller;
 
@@ -123,7 +124,7 @@ public class ImageProcessorGUIControllerImplTest {
   }
 
   @Test
- public void mixedFeatures() {
+  public void mixedFeatures() {
     this.controller.load("path");
     this.controller.brighten("10");
     this.controller.luma();
@@ -132,7 +133,7 @@ public class ImageProcessorGUIControllerImplTest {
     this.controller.exitProgram();
 
     assertEquals(this.controller.log.toString(), "load path: path " +
-            "brighten 10 luma greyscale vertical flip exit ");
+        "brighten 10 luma greyscale vertical flip exit ");
 
   }
 }
