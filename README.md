@@ -1,5 +1,9 @@
-# A6 Image Processor with GUI 
+# Image Processor
 ## Ella Taira and Amelia Yu
+
+Java implementation of an image processor completed over the course of 3 assignments, as documented below, for Object-Oriented Design at Northeastern U. 
+
+# A6 Image Processor with GUI 
 
 ## How to use the program
 - From `ImageProcessor`'s `main()` method, you can interact with this program through either a GUI or a TextUI
@@ -17,8 +21,8 @@ Before making any edits, you must first load an image of type .jpg, .ppm, .png, 
 Enter the following in the console:
 load [file] [fileName] \n
 
-e.g.
-load ././res/pink.txt pink
+- e.g.
+    load ././res/pink.txt pink
 
 You can load a new image at any point in the program to change the image you wish to edit.
 
@@ -28,73 +32,73 @@ Multiple commands can be used on an image in a row.
 
 brighten [oldFileName] [newFileName] [int increment] \n
 
-e.g.
-brighten pink pinkBrighter 20
+  - e.g.
+    brighten pink pinkBrighter 20
 
 darken [oldFileName] [newFileName] [int increment] \n
 
-e.g.
-darken pink pinkDarker 20
+  - e.g.
+    darken pink pinkDarker 20
 
 red-component [oldFileName] [newFileName] \n
 
-e.g.
-red-component pink pinkRedC
+   - e.g.
+    red-component pink pinkRedC
 
 green-component [oldFileName] [newFileName] \n
 
-e.g.
-green-component pink pinkGreenC
+  - e.g.
+    green-component pink pinkGreenC
 
 blue-component [oldFileName] [newFileName] \n
 
-e.g.
-blue-component pink pinkBlueC
+   - e.g.
+    blue-component pink pinkBlueC
 
 horizontal-flip [oldFileName] [newFileName] \n
 
-e.g.
-horizontal-flip pink pinkHoriz
+  - e.g.
+    horizontal-flip pink pinkHoriz
 
 vertical-flip [oldFileName] [newFileName] \n
 
-e.g.
-vertical-flip pink pinkVert
+  - e.g.
+    vertical-flip pink pinkVert
 
 value-component [oldFileName] [newFileName] \n
 
-e.g.
-value-component pink pinkValue
+   -e.g.
+    value-component pink pinkValue
 
 luma-component [oldFileName] [newFileName] \n
 
-e.g.
-luma-component pink pinkLuma
+  - e.g.
+    luma-component pink pinkLuma
 
 intensity-component [oldFileName] [newFileName] \n
 
-e.g.
-intensity-component pink pinkIntensity
+   - e.g.
+    intensity-component pink pinkIntensity
 
 sepia [oldFileName] [newFileName] \n
 
-e.g.
-sepia pink pinkSepia
+   - e.g.
+    sepia pink pinkSepia
 
 greyscale [oldFileName] [newFileName] \n
 
-e.g.
-greyscale pink pinkGreyscale
+  - e.g.
+    greyscale pink pinkGreyscale
 
 blur [oldFileName] [newFileName] \n
 
-e.g.
-blur pink pinkBlur
+  - e.g.
+    blur pink pinkBlur
 
 sharpen [oldFileName] [newFileName] \n
 
-e.g.
-sharpen pink pinkSharpen
+  - e.g.
+    sharpen pink pinkSharpen
 
 ##### save
 You can save an image as a .ppm, .png, .bmp, .jpg based on the file you enter to save it as.
@@ -102,16 +106,16 @@ Enter the following into the console:
 save [file] [fileName] \n
 
 e.g.
-to save as a .bmp
+  - to save as a .bmp
 save ././res/pink.bmp pink
 
-to save as a .ppm
+  - to save as a .ppm
 save ././res/pink.ppm pink
 
-to save as a .jpg
+  - to save as a .jpg
 save ././res/pink.jpg pink
 
-to save as a .png
+  - to save as a .png
 save ././res/pink.png pink
 
 ##### quit
