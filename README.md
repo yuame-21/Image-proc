@@ -3,7 +3,7 @@
 
 Java implementation of an image processor completed over the course of 3 assignments, as documented below, for Object-Oriented Design at Northeastern University. 
 
-See USEME.md for GUI instructions and captioned screenshots. 
+See [USEME.md](USEME.md) for GUI instructions and captioned screenshots. 
 
 # A6 Image Processor with GUI 
 
