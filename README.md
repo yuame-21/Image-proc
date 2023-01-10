@@ -5,7 +5,7 @@ Java implementation of an image processor completed over the course of 3 assignm
 
 See [USEME.md](USEME.md) for GUI instructions and captioned screenshots. 
 
-![GUI image](https://github.com/yuame-21/Group/blob/main/img_5.png)
+![GUI image](https://github.com/yuame-21/Image-proc/blob/main/img_5.png)
 
 # A6 Image Processor with GUI 
 
